@@ -456,26 +456,27 @@
       gap: 0;
       flex-wrap: nowrap;
       overflow-x: auto;
+      padding: 4px 8px;
     }
 
     .pipeline-step {
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-width: 90px;
-      max-width: 110px;
-      flex-shrink: 0;
+      min-width: 72px;
+      max-width: 88px;
+      flex-shrink: 1;
     }
 
     .pipeline-dot {
-      width: 48px;
-      height: 48px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       background: var(--accent);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
+      font-size: 1.05rem;
       color: white;
       box-shadow: 0 3px 10px rgba(26,107,138,0.25);
       flex-shrink: 0;
@@ -487,23 +488,23 @@
       flex: 1;
       height: 2px;
       background: linear-gradient(90deg, var(--accent), var(--accent2));
-      margin: 22px -2px 0;
-      min-width: 16px;
-      max-width: 30px;
-      flex-shrink: 0;
+      margin: 19px -2px 0;
+      min-width: 8px;
+      max-width: 20px;
+      flex-shrink: 1;
     }
 
     .pipeline-label {
-      font-size: 0.66rem;
+      font-size: 0.62rem;
       font-weight: 700;
       color: var(--text);
       text-align: center;
-      margin-top: 7px;
+      margin-top: 6px;
       line-height: 1.3;
     }
 
     .pipeline-sub {
-      font-size: 0.61rem;
+      font-size: 0.58rem;
       color: var(--muted);
       text-align: center;
       margin-top: 2px;
