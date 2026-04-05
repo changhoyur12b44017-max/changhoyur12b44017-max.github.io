@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chang Ho Yu | Life Sciences Researcher</title>
+  <style>
+    :root {
+      --bg: #f5f9fc;
+      --sidebar-bg: #eaf4f9;
+      --border: #c8dde8;
+      --accent: #1a6b8a;
+      --accent2: #2e9bbf;
+      --accent-hover: #134f68;
+      --accent-light: #dff0f9;
+      --text: #1e2e3a;
+      --muted: #5f7f94;
+      --tag-bg: #d0eaf8;
+      --tag-color: #1a6b8a;
+      --card-bg: #ffffff;
+      --footer-bg: #e5f2f8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 54px;
+      background: rgba(245,249,252,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 28px;
+      z-index: 200;
+      gap: 30px;
+    }
+
+    nav .nav-brand {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--accent);
+      margin-right: auto;
+      letter-spacing: -0.3px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+      position: relative;
+      padding-bottom: 2px;
+      transition: color 0.2s;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.2s ease;
+      border-radius: 2px;
+    }
+
+    nav a:hover { color: var(--accent); }
+    nav a:hover::after { transform: scaleX(1); }
+
+    /* ── LAYOUT ── */
+    .layout {
+      display: flex;
+      max-width: 1020px;
+      margin: 54px auto 0;
+      min-height: calc(100vh - 54px);
+    }
+
+    /* ── SIDEBAR ── */
+    aside {
+      width: 250px;
+      flex-shrink: 0;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border);
+      padding: 36px 20px;
+      position: sticky;
+      top: 54px;
+      height: calc(100vh - 54px);
+      overflow-y: auto;
+    }
+
+    .avatar-wrap {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      margin: 0 auto 14px;
+      overflow: hidden;
+      border: 3px solid var(--accent);
+      box-shadow: 0 4px 16px rgba(26,107,138,0.2);
+    }
+
+    .avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 22%;
+    }
+
+    .sidebar-name {
+      text-align: center;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 2px;
+      letter-spacing: -0.3px;
+    }
+
+    .sidebar-name-zh {
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .sidebar-tagline {
+      text-align: center;
+      font-size: 0.73rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 18px;
+      padding: 8px 10px;
+      background: var(--accent-light);
+      border-radius: 8px;
+      font-style: italic;
+    }
+
+    .sidebar-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 14px 0;
+    }
+
+    .sidebar-section-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .sidebar-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: var(--text);
+      margin-bottom: 7px;
+    }
+
+    .sidebar-info-item .icon { font-size: 0.85rem; flex-shrink: 0; margin-top: 1px; }
+
+    .sidebar-info-item a {
+      color: var(--accent);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .sidebar-info-item a:hover { text-decoration: underline; }
+
+    .skill-tag {
+      display: inline-block;
+      background: var(--tag-bg);
+      color: var(--tag-color);
+      font-size: 0.69rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 12px;
+      margin: 2px 2px;
+    }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      padding: 44px 44px 64px;
+      min-width: 0;
+    }
+
+    section { margin-bottom: 52px; }
+
+    h2.section-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--accent);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── BIO ── */
+    .bio-greeting {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 14px;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+
+    .bio-text {
+      font-size: 0.92rem;
+      color: var(--text);
+      line-height: 1.85;
+      margin-bottom: 14px;
+    }
+
+    .highlight-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .highlight-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      flex: 1;
+      min-width: 130px;
+      text-align: center;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .highlight-card:hover {
+      box-shadow: 0 6px 20px rgba(26,107,138,0.12);
+      transform: translateY(-2px);
+    }
+
+    .highlight-card .number {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .highlight-card .label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 3px;
+      line-height: 1.4;
+    }
+
+    /* ── RESEARCH PROJECT CARDS ── */
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 26px;
+      margin-bottom: 24px;
+      transition: box-shadow 0.2s;
+      overflow: hidden;
+    }
+
+    .project-card:hover { box-shadow: 0 6px 24px rgba(26,107,138,0.1); }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .project-title {
+      font-size: 0.97rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .project-org {
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .project-date {
+      font-size: 0.75rem;
+      color: var(--muted);
+      white-space: nowrap;
+      margin-top: 3px;
+      background: var(--accent-light);
+      padding: 2px 10px;
+      border-radius: 10px;
+    }
+
+    .project-desc {
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+
+    .project-list {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 22px;
+    }
+
+    .project-list li {
+      font-size: 0.84rem;
+      color: var(--text);
+      padding: 3px 0 3px 16px;
+      position: relative;
+      line-height: 1.65;
+    }
+
+    .project-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.72rem;
+      top: 6px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #fff3cd;
+      color: #7a5c00;
+      font-size: 0.69rem;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 10px;
+      border: 1px solid #ffc107;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* ── INFOGRAPHIC ── */
+    .infographic {
+      background: linear-gradient(135deg, #f0f8fd 0%, #e8f4f9 100%);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 4px;
+    }
+
+    .infographic-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    /* Flow diagram */
+    .flow-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .flow-box {
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 11px 14px;
+      text-align: center;
+      min-width: 110px;
+      max-width: 150px;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(26,107,138,0.07);
+    }
+
+    .flow-box.accent {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .flow-box.warn {
+      background: #fff8e1;
+      border-color: #f59e0b;
+    }
+
+    .flow-box.success {
+      background: #e8f5e9;
+      border-color: #66bb6a;
+    }
+
+    .flow-box .box-icon { font-size: 1.3rem; margin-bottom: 4px; }
+
+    .flow-box .box-title {
+      font-size: 0.73rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .flow-box .box-sub {
+      font-size: 0.65rem;
+      color: var(--muted);
+      margin-top: 2px;
+      line-height: 1.3;
+    }
+
+    .flow-box.accent .box-sub { color: rgba(255,255,255,0.75); }
+
+    .flow-arrow {
+      font-size: 1.1rem;
+      color: var(--muted);
+      padding: 0 6px;
+      flex-shrink: 0;
+    }
+
+    .flow-down {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      width: 100%;
+    }
+
+    .flow-down-arrow {
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin: 2px 0;
+    }
+
+    /* Pipeline steps */
+    .pipeline {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    }
+
+    .pipeline-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 90px;
+      max-width: 110px;
+      flex-shrink: 0;
+    }
+
+    .pipeline-dot {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      color: white;
+      box-shadow: 0 3px 10px rgba(26,107,138,0.25);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pipeline-line {
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      margin: 22px -2px 0;
+      min-width: 16px;
+      max-width: 30px;
+      flex-shrink: 0;
+    }
+
+    .pipeline-label {
+      font-size: 0.66rem;
+      font-weight: 700;
+      color: var(--text);
+      text-align: center;
+      margin-top: 7px;
+      line-height: 1.3;
+    }
+
+    .pipeline-sub {
+      font-size: 0.61rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 2px;
+      line-height: 1.3;
+    }
+
+    /* Approach cards */
+    .approach-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .approach-card {
+      flex: 1;
+      min-width: 120px;
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 13px;
+    }
+
+    .approach-num {
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+
+    .approach-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+
+    .approach-desc {
+      font-size: 0.65rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* Key finding badge */
+    .key-finding {
+      background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+      border: 1.5px solid #a5d6a7;
+      border-radius: 10px;
+      padding: 12px 15px;
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .key-finding-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+    .key-finding-text {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #2e7d32;
+      line-height: 1.5;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 12px 12px 0;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+      transition: box-shadow 0.2s;
+    }
+
+    .edu-card:hover { box-shadow: 0 4px 16px rgba(26,107,138,0.08); }
+
+    .edu-degree {
+      font-size: 0.93rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .edu-school {
+      font-size: 0.84rem;
+      color: var(--accent);
+      margin: 3px 0;
+      font-weight: 600;
+    }
+
+    .edu-detail {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .edu-award {
+      margin-top: 6px;
+      font-size: 0.78rem;
+      color: #b07d00;
+      font-weight: 700;
+      background: #fff9e6;
+      border: 1px solid #f5d76e;
+      border-radius: 6px;
+      padding: 4px 10px;
+      display: inline-block;
+    }
+
+    /* ── SKILLS GRID ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 14px;
+    }
+
+    .skill-group {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 15px 17px;
+      transition: box-shadow 0.2s;
+    }
+
+    .skill-group:hover { box-shadow: 0 4px 14px rgba(26,107,138,0.08); }
+
+    .skill-group-title {
+      font-size: 0.73rem;
+      font-weight: 800;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 9px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .skill-item {
+      font-size: 0.81rem;
+      color: var(--text);
+      padding: 2px 0;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .skill-item::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent2);
+      flex-shrink: 0;
+    }
+
+    /* ── AWARDS ── */
+    .award-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .award-item:last-child { border-bottom: none; }
+
+    .award-icon { font-size: 1.4rem; flex-shrink: 0; }
+
+    .award-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .award-sub {
+      font-size: 0.79rem;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+
+    /* ── CONTACT ── */
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 22px;
+      border-radius: 9px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+
+    .contact-btn.primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .contact-btn.primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(26,107,138,0.3);
+    }
+
+    .contact-btn.secondary {
+      background: var(--card-bg);
+      color: var(--accent);
+      border: 2px solid var(--accent);
+    }
+
+    .contact-btn.secondary:hover {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--footer-bg);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 22px;
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+
+      aside {
+        width: 100%;
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 24px 20px;
+      }
+
+      main { padding: 28px 20px 52px; }
+      nav { gap: 16px; padding: 0 16px; overflow-x: auto; }
+      nav a { white-space: nowrap; }
+      .highlight-card { min-width: 110px; }
+      .pipeline { flex-wrap: wrap; justify-content: flex-start; }
+      .pipeline-line { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <span class="nav-brand">Chang Ho Yu</span>
+  <a href="#about">About</a>
+  <a href="#research">Research</a>
+  <a href="#education">Education</a>
+  <a href="#skills">Skills</a>
+  <a href="#awards">Awards</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside>
+    <div class="avatar-wrap">
+      <img src="RESUME/畢業照.jpg" alt="Chang Ho Yu">
+    </div>
+
+    <div class="sidebar-name">Chang Ho Yu</div>
+    <div class="sidebar-name-zh">張合羽</div>
+    <div class="sidebar-tagline">Bridging life sciences with data-driven discovery</div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section-title">Contact</div>
+
+    <div class="sidebar-info-item">
+      <span class="icon">✉️</span>
+      <a href="mailto:changhoyur12b44017@gmail.com">changhoyur12b44017<br>@gmail.com</a>
+    </div>
+    <div class="sidebar-info-item">
+      <span class="icon">📱</span>
+      <span>0919-179-654</span>
+    </div>
+    <div class="sidebar-info-item">
+      <span class="icon">📍</span>
+      <span>Taiwan</span>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section-title">Expertise</div>
+    <div>
+      <span class="skill-tag">Histology / IHC</span>
+      <span class="skill-tag">DOE</span>
+      <span class="skill-tag">AI Image Analysis</span>
+      <span class="skill-tag">Antibody Development</span>
+      <span class="skill-tag">SOP Design</span>
+      <span class="skill-tag">Large Animal</span>
+      <span class="skill-tag">QuPath</span>
+      <span class="skill-tag">Western Blot</span>
+      <span class="skill-tag">SAS</span>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section-title">Education</div>
+    <div class="sidebar-info-item">
+      <span class="icon">🎓</span>
+      <span><strong>M.S.</strong> National Taiwan University<br><small style="color:var(--muted)">Biological Sciences · GPA 4.0/4.3</small></span>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main>
+
+    <!-- About -->
+    <section id="about">
+      <div class="bio-greeting">Hi, I'm Chang Ho Yu 👋</div>
+      <p class="bio-text">
+        I'm a life sciences researcher with an M.S. from <strong>National Taiwan University</strong> (GPA 4.0/4.3),
+        specializing in histological analysis, experimental design (DOE), and AI-powered image analysis pipelines.
+        My graduate research focused on cetacean biology — conducting <em>quantitative histological investigation
+        of skin pigmentation in Fraser's dolphins</em> — while coordinating with 100+ members across
+        5+ international and governmental organizations in Taiwan's cetacean stranding response network.
+      </p>
+      <p class="bio-text">
+        I combine rigorous wet-lab skills with data-driven optimization: I developed an automated image analysis
+        pipeline that increased throughput by <strong>70%</strong> and improved segmentation accuracy from
+        <strong>92% → 99%</strong>. I'm passionate about building reproducible, standardized workflows that
+        translate biological questions into quantifiable results.
+      </p>
+
+      <div class="highlight-row">
+        <div class="highlight-card">
+          <div class="number">+70%</div>
+          <div class="label">Throughput increase<br>via AI image pipeline</div>
+        </div>
+        <div class="highlight-card">
+          <div class="number">92→99%</div>
+          <div class="label">Detection accuracy<br>after model refinement</div>
+        </div>
+        <div class="highlight-card">
+          <div class="number">100+</div>
+          <div class="label">Multidisciplinary team<br>members coordinated</div>
+        </div>
+        <div class="highlight-card">
+          <div class="number">4.0/4.3</div>
+          <div class="label">M.S. GPA<br>National Taiwan University</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research -->
+    <section id="research">
+      <h2 class="section-title">🔬 Research Experience</h2>
+
+      <!-- NTU Graduate — Thesis -->
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <div class="project-title">
+              Research Assistant · Graduate Thesis
+              <span class="badge">⭐ Outstanding Award 2025</span>
+            </div>
+            <div class="project-org">National Taiwan University · Institute of Ecology and Evolutionary Biology (IEEB)</div>
+          </div>
+          <div class="project-date">Sep 2023 – Aug 2025</div>
+        </div>
+        <div class="project-desc">
+          Histological investigation of skin pigmentation biology in cetaceans — Fraser's dolphins (<em>Lagenodelphis hosei</em>)
+        </div>
+        <ul class="project-list">
+          <li>Conducted <strong>first quantitative histological analysis</strong> correlating surface pigmentation patterns with internal skin microstructure in Fraser's dolphins using IHC and Fontana-Masson staining.</li>
+          <li>Applied <strong>Factorial Design (DOE)</strong> to systematically optimize antibody protocols: concentration, incubation time, antigen retrieval conditions, and blocking parameters for novel cetacean tissue.</li>
+          <li>Developed an <strong>automated image analysis pipeline</strong> (QuPath scripting + NIS-Elements D) for quantifying melanin density and melanocyte counts, increasing throughput by 70% and accuracy from 92% to 99%.</li>
+          <li>Led cross-functional field operations with <strong>100+ multidisciplinary members</strong> from 5+ institutions (NAMR, Taiwan Cetacean Society, and international academic partners).</li>
+          <li>Standardized complete SOPs for large animal sample collection, tissue processing, cryosectioning, and preservation under field conditions.</li>
+        </ul>
+
+        <!-- Thesis Infographic -->
+        <div class="infographic">
+          <div class="infographic-title">Research Workflow — Cetacean Skin Pigmentation Study</div>
+          <div class="pipeline">
+            <div class="pipeline-step">
+              <div class="pipeline-dot">🐬</div>
+              <div class="pipeline-label">Field Response</div>
+              <div class="pipeline-sub">100+ member network; stranding events around Taiwan</div>
+            </div>
+            <div class="pipeline-line"></div>
+            <div class="pipeline-step">
+              <div class="pipeline-dot">✂️</div>
+              <div class="pipeline-label">Sampling</div>
+              <div class="pipeline-sub">Whole-body skin from defined anatomical regions</div>
+            </div>
+            <div class="pipeline-line"></div>
+            <div class="pipeline-step">
+              <div class="pipeline-dot">🧊</div>
+              <div class="pipeline-label">Processing</div>
+              <div class="pipeline-sub">Cryosectioning, fixation, tissue preservation</div>
+            </div>
+            <div class="pipeline-line"></div>
+            <div class="pipeline-step">
+              <div class="pipeline-dot">🔬</div>
+              <div class="pipeline-label">IHC Staining</div>
+              <div class="pipeline-sub">Melanocyte markers + Fontana-Masson; DOE optimized</div>
+            </div>
+            <div class="pipeline-line"></div>
+            <div class="pipeline-step">
+              <div class="pipeline-dot">🤖</div>
+              <div class="pipeline-label">AI Analysis</div>
+              <div class="pipeline-sub">QuPath pipeline; automated cell segmentation &amp; counting</div>
+            </div>
+            <div class="pipeline-line"></div>
+            <div class="pipeline-step">
+              <div class="pipeline-dot">📊</div>
+              <div class="pipeline-label">Statistics</div>
+              <div class="pipeline-sub">SAS; correlation between coloration &amp; microstructure</div>
+            </div>
+          </div>
+          <div class="key-finding">
+            <div class="key-finding-icon">💡</div>
+            <div class="key-finding-text">
+              Key Finding: Subdermal melanocyte density positively correlates with surface skin coloration — establishing a quantitative link between the lateral stripe pattern and internal histological architecture in Fraser's dolphins.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NCKU Undergraduate -->
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <div class="project-title">Laboratory Intern · NSTC Undergraduate Research Project</div>
+            <div class="project-org">Dept. of Life Sciences, National Cheng Kung University · Neuro-Molecular Lab</div>
+          </div>
+          <div class="project-date">Jul 2020 – Sep 2021</div>
+        </div>
+        <div class="project-desc">
+          Investigated the role of dopamine receptor D2R in oligodendrocyte differentiation and CNS myelination
+        </div>
+        <ul class="project-list">
+          <li>Designed and submitted an <strong>NSTC undergraduate research proposal</strong> investigating how dopamine receptor D2R regulates oligodendrocyte precursor cell (OPC) differentiation and myelin formation in the mouse CNS.</li>
+          <li>Performed IHC/IF staining (GFAP, NG2, MBP, PLP markers) to characterize glial cell populations in mouse brain regions (corpus callosum, hippocampus) under inflammatory conditions.</li>
+          <li>Key finding: Pro-inflammatory cytokines (TNF-α, IL-1β, IL-6, LPS) significantly reduce <em>Drd2</em> mRNA expression in OPCs, suggesting D2R plays a protective role in myelination under neuroinflammation.</li>
+          <li>Completed professional <strong>LAC (Laboratory Animal Center) certification</strong> and cell culture training (NHRI workshop).</li>
+        </ul>
+
+        <!-- D2R Infographic -->
+        <div class="infographic">
+          <div class="infographic-title">Research Overview — D2R &amp; Oligodendrocyte Differentiation in CNS</div>
+
+          <!-- Central pathway -->
+          <div style="display:flex; align-items:center; justify-content:center; gap:0; flex-wrap:wrap; margin-bottom:14px;">
+            <div class="flow-box warn">
+              <div class="box-icon">🔥</div>
+              <div class="box-title">Neuroinflammation</div>
+              <div class="box-sub">TNF-α · IL-1β · IL-6 · LPS</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box accent">
+              <div class="box-icon">📉</div>
+              <div class="box-title">D2R Expression ↓</div>
+              <div class="box-sub">in OPCs under stress</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box" style="border-color:#90caf9; background:#e3f2fd;">
+              <div class="box-icon">🧠</div>
+              <div class="box-title">OPC → OL</div>
+              <div class="box-sub">Impaired differentiation</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box" style="border-color:#ef9a9a; background:#ffebee;">
+              <div class="box-icon">⚠️</div>
+              <div class="box-title">Myelin Loss</div>
+              <div class="box-sub">MBP · PLP · MOG ↓</div>
+            </div>
+          </div>
+
+          <!-- Three experimental approaches -->
+          <div class="approach-row">
+            <div class="approach-card">
+              <div class="approach-num">Approach I</div>
+              <div class="approach-title">Inflammatory Model</div>
+              <div class="approach-desc">Treat OLs with cytokines in differentiation medium; quantify D2R expression changes via QPCR &amp; Western Blot</div>
+            </div>
+            <div class="approach-card">
+              <div class="approach-num">Approach II</div>
+              <div class="approach-title">D2R Knockdown</div>
+              <div class="approach-desc">Lentiviral shRNA transduction in OPCs to silence D2R; assess OL maturation markers (CNPase, MBP, PLP) by IF staining</div>
+            </div>
+            <div class="approach-card">
+              <div class="approach-num">Approach III</div>
+              <div class="approach-title">Pharmacological Study</div>
+              <div class="approach-desc">Apply D2R agonist/antagonist during OPC differentiation; evaluate myelination outcomes &amp; myelin protein expression</div>
+            </div>
+          </div>
+
+          <div class="key-finding" style="margin-top:14px;">
+            <div class="key-finding-icon">💡</div>
+            <div class="key-finding-text">
+              Key Finding: Inflammatory cytokines significantly suppress D2R (Drd2) mRNA in OPCs (p &lt; 0.01), suggesting D2R downregulation under stress may impair myelin repair — with relevance to multiple sclerosis, Parkinson's disease, and other demyelinating conditions.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <h2 class="section-title">🎓 Education</h2>
+
+      <div class="edu-card">
+        <div class="edu-degree">Master of Science · Biological Sciences</div>
+        <div class="edu-school">National Taiwan University (國立臺灣大學)</div>
+        <div class="edu-detail">Institute of Ecology and Evolutionary Biology &nbsp;·&nbsp; Sep 2023 – Aug 2025</div>
+        <div class="edu-detail">GPA &nbsp;<strong>4.0 / 4.3</strong></div>
+        <div class="edu-award">⭐ 特優 (Top Honor) — 2025 NTU IEEB Student Academic Presentation</div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <h2 class="section-title">🛠 Skills &amp; Certifications</h2>
+      <div class="skills-grid">
+
+        <div class="skill-group">
+          <div class="skill-group-title">🧫 Histology &amp; Staining</div>
+          <div class="skill-item">IHC / IF Staining</div>
+          <div class="skill-item">Fontana-Masson Staining</div>
+          <div class="skill-item">H&amp;E Staining</div>
+          <div class="skill-item">Antigen Retrieval</div>
+          <div class="skill-item">Cryosectioning</div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">🧬 Molecular Biology</div>
+          <div class="skill-item">Western Blot</div>
+          <div class="skill-item">Cell Culture (NHRI workshop)</div>
+          <div class="skill-item">Antibody Development &amp; Optimization</div>
+          <div class="skill-item">LAC Certified</div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">📊 Data &amp; Image Analysis</div>
+          <div class="skill-item">QuPath (scripting / console)</div>
+          <div class="skill-item">NIS-Elements D</div>
+          <div class="skill-item">AI Segmentation Models</div>
+          <div class="skill-item">SAS (Statistical Analysis)</div>
+          <div class="skill-item">Grapher</div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">🔩 Experimental Design</div>
+          <div class="skill-item">DOE / Factorial Design</div>
+          <div class="skill-item">Protocol Standardization (SOP)</div>
+          <div class="skill-item">Large Animal Field Sampling</div>
+          <div class="skill-item">Multi-variable Optimization</div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">💻 Software</div>
+          <div class="skill-item">Photoshop</div>
+          <div class="skill-item">Microsoft Office Suite</div>
+          <div class="skill-item">Grapher</div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">🤝 Soft Skills</div>
+          <div class="skill-item">Cross-functional Team Leadership</div>
+          <div class="skill-item">Teaching Assistant (30+ sessions)</div>
+          <div class="skill-item">Scientific Presentation (EN)</div>
+          <div class="skill-item">Field Logistics Coordination</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Awards -->
+    <section id="awards">
+      <h2 class="section-title">🏆 Awards &amp; Activities</h2>
+
+      <div class="award-item">
+        <div class="award-icon">🏆</div>
+        <div>
+          <div class="award-title">Outstanding Performance Award</div>
+          <div class="award-sub">2025 · NTU IEEB Student Academic Presentation — recognized for excellence in academic presentation and logical synthesis</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <div class="award-icon">🥇</div>
+        <div>
+          <div class="award-title">特優 (Top Honor) — Academic Presentation</div>
+          <div class="award-sub">2025 · NTU IEEB Student Academic Presentation Competition</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <div class="award-icon">📋</div>
+        <div>
+          <div class="award-title">NSTC Undergraduate Research Project</div>
+          <div class="award-sub">National Science and Technology Council — submitted independent research proposal on D2R regulation of oligodendrocyte differentiation</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <div class="award-icon">📚</div>
+        <div>
+          <div class="award-title">Teaching Assistant — Multiple Laboratory Courses</div>
+          <div class="award-sub">Guided students in experimental procedures, data analysis, and facilitated 30+ critical discussion sessions</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <div class="award-icon">🐬</div>
+        <div>
+          <div class="award-title">Taiwan Wildlife Conservation Outreach</div>
+          <div class="award-sub">Active participant in civic conservation education and wildlife advocacy events (ZA Share, Taiwan Wildlife Parade)</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <div class="award-icon">🏛️</div>
+        <div>
+          <div class="award-title">Ministry of Education SOROUT Project</div>
+          <div class="award-sub">Participated in Higher Education Public Nature Enhancement Initiative</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2 class="section-title">✉️ Contact</h2>
+      <p style="font-size:0.88rem; color:var(--muted); margin-bottom: 18px; line-height:1.7;">
+        Open to roles in life science research, biotech, process development, and related industry positions.<br>
+        Feel free to reach out — I'm happy to connect!
+      </p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <a href="mailto:changhoyur12b44017@gmail.com" class="contact-btn primary">
+          ✉️ Email Me
+        </a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 Chang Ho Yu (張合羽) &nbsp;·&nbsp; M.S. Life Sciences, National Taiwan University &nbsp;·&nbsp; Taiwan</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+# Exclude personal documents - only keep website files
+RESUME/*.pdf
+RESUME/*.docx
+RESUME/*.pptx
+RESUME/大頭.jpg
+RESUME/畢業證書.jpg
+RESUME/大學歷年成績.pdf
