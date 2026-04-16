@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chang Ho Yu | Process Engineering Candidate · TASC Semiconductor</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --sidebar-bg: #e8eef6;
+      --border: #c0cfe0;
+      --accent: #1e3a6e;
+      --accent2: #2d6ab4;
+      --accent-hover: #142a52;
+      --accent-light: #dce9f7;
+      --text: #1a2535;
+      --muted: #556880;
+      --tag-bg: #cfe1f5;
+      --tag-color: #1e3a6e;
+      --card-bg: #ffffff;
+      --footer-bg: #e4edf7;
+      --success: #2e7d32;
+      --success-bg: #e8f5e9;
+      --success-border: #a5d6a7;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 54px;
+      background: rgba(244,247,251,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 28px;
+      z-index: 200;
+      gap: 30px;
+    }
+
+    nav .nav-brand {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--accent);
+      margin-right: auto;
+      letter-spacing: -0.3px;
+    }
+
+    nav .nav-target {
+      font-size: 0.75rem;
+      color: var(--accent2);
+      font-weight: 600;
+      background: var(--accent-light);
+      padding: 3px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+      position: relative;
+      padding-bottom: 2px;
+      transition: color 0.2s;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.2s ease;
+      border-radius: 2px;
+    }
+
+    nav a:hover { color: var(--accent); }
+    nav a:hover::after { transform: scaleX(1); }
+
+    /* ── LAYOUT ── */
+    .layout {
+      display: flex;
+      max-width: 1020px;
+      margin: 54px auto 0;
+      min-height: calc(100vh - 54px);
+    }
+
+    /* ── SIDEBAR ── */
+    aside {
+      width: 250px;
+      flex-shrink: 0;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border);
+      padding: 36px 20px;
+      position: sticky;
+      top: 54px;
+      height: calc(100vh - 54px);
+      overflow-y: auto;
+    }
+
+    .avatar-wrap {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      margin: 0 auto 14px;
+      overflow: hidden;
+      border: 3px solid var(--accent);
+      box-shadow: 0 4px 16px rgba(30,58,110,0.2);
+    }
+
+    .avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 22%;
+    }
+
+    .sidebar-name {
+      text-align: center;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 2px;
+      letter-spacing: -0.3px;
+    }
+
+    .sidebar-name-zh {
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .sidebar-tagline {
+      text-align: center;
+      font-size: 0.73rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 18px;
+      padding: 8px 10px;
+      background: var(--accent-light);
+      border-radius: 8px;
+      font-style: italic;
+    }
+
+    .sidebar-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 14px 0;
+    }
+
+    .sidebar-section-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .sidebar-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: var(--text);
+      margin-bottom: 7px;
+    }
+
+    .sidebar-info-item .icon { font-size: 0.85rem; flex-shrink: 0; margin-top: 1px; }
+
+    .sidebar-info-item a {
+      color: var(--accent);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .sidebar-info-item a:hover { text-decoration: underline; }
+
+    .skill-tag {
+      display: inline-block;
+      background: var(--tag-bg);
+      color: var(--tag-color);
+      font-size: 0.69rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 12px;
+      margin: 2px 2px;
+    }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      padding: 44px 44px 64px;
+      min-width: 0;
+    }
+
+    section { margin-bottom: 52px; }
+
+    h2.section-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--accent);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── BIO ── */
+    .bio-greeting {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 14px;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+
+    .bio-text {
+      font-size: 0.92rem;
+      color: var(--text);
+      line-height: 1.85;
+      margin-bottom: 14px;
+    }
+
+    .highlight-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .highlight-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      flex: 1;
+      min-width: 130px;
+      text-align: center;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .highlight-card:hover {
+      box-shadow: 0 6px 20px rgba(30,58,110,0.12);
+      transform: translateY(-2px);
+    }
+
+    .highlight-card .number {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .highlight-card .label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 3px;
+      line-height: 1.4;
+    }
+
+    /* ── COMPETENCY MAP ── */
+    .comp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .comp-row {
+      display: contents;
+    }
+
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.83rem;
+    }
+
+    .comp-table th {
+      background: var(--accent);
+      color: white;
+      padding: 9px 14px;
+      text-align: left;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .comp-table th:first-child { border-radius: 8px 0 0 0; }
+    .comp-table th:last-child { border-radius: 0 8px 0 0; }
+
+    .comp-table td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    .comp-table tr:last-child td { border-bottom: none; }
+
+    .comp-table tr:nth-child(even) td { background: var(--accent-light); }
+
+    .comp-check {
+      color: var(--success);
+      font-weight: 700;
+      font-size: 0.8rem;
+      white-space: nowrap;
+    }
+
+    /* ── PROJECT CARDS ── */
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 26px;
+      margin-bottom: 24px;
+      transition: box-shadow 0.2s;
+      overflow: hidden;
+    }
+
+    .project-card:hover { box-shadow: 0 6px 24px rgba(30,58,110,0.1); }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .project-title {
+      font-size: 0.97rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .project-org {
+      font-size: 0.82rem;
+      color: var(--accent2);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .project-date {
+      font-size: 0.75rem;
+      color: var(--muted);
+      white-space: nowrap;
+      margin-top: 3px;
+      background: var(--accent-light);
+      padding: 2px 10px;
+      border-radius: 10px;
+    }
+
+    .project-desc {
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+
+    .project-list {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 22px;
+    }
+
+    .project-list li {
+      font-size: 0.84rem;
+      color: var(--text);
+      padding: 3px 0 3px 16px;
+      position: relative;
+      line-height: 1.65;
+    }
+
+    .project-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent2);
+      font-size: 0.72rem;
+      top: 6px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #fff3cd;
+      color: #7a5c00;
+      font-size: 0.69rem;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 10px;
+      border: 1px solid #ffc107;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* ── INFOGRAPHIC ── */
+    .infographic {
+      background: linear-gradient(135deg, #eef4fc 0%, #e6eef8 100%);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 4px;
+    }
+
+    .infographic-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    /* Pipeline */
+    .pipeline {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding: 4px 8px;
+    }
+
+    .pipeline-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 72px;
+      max-width: 88px;
+      flex-shrink: 1;
+    }
+
+    .pipeline-dot {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05rem;
+      color: white;
+      box-shadow: 0 3px 10px rgba(30,58,110,0.25);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pipeline-line {
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      margin: 19px -2px 0;
+      min-width: 8px;
+      max-width: 20px;
+      flex-shrink: 1;
+    }
+
+    .pipeline-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: var(--text);
+      text-align: center;
+      margin-top: 6px;
+      line-height: 1.3;
+    }
+
+    .pipeline-sub {
+      font-size: 0.58rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 2px;
+      line-height: 1.3;
+    }
+
+    /* Flow */
+    .flow-box {
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 11px 14px;
+      text-align: center;
+      min-width: 110px;
+      max-width: 150px;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(30,58,110,0.07);
+    }
+
+    .flow-box.accent {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .flow-box .box-icon { font-size: 1.3rem; margin-bottom: 4px; }
+    .flow-box .box-title { font-size: 0.73rem; font-weight: 700; line-height: 1.3; }
+    .flow-box .box-sub { font-size: 0.65rem; color: var(--muted); margin-top: 2px; line-height: 1.3; }
+    .flow-box.accent .box-sub { color: rgba(255,255,255,0.75); }
+
+    .flow-arrow { font-size: 1.1rem; color: var(--muted); padding: 0 6px; flex-shrink: 0; }
+
+    /* Key finding */
+    .key-finding {
+      background: linear-gradient(135deg, var(--success-bg), #f1f8e9);
+      border: 1.5px solid var(--success-border);
+      border-radius: 10px;
+      padding: 12px 15px;
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .key-finding-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+    .key-finding-text {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--success);
+      line-height: 1.5;
+    }
+
+    /* DOE hexagon visual */
+    .doe-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .doe-param {
+      background: white;
+      border: 1.5px solid var(--accent2);
+      border-radius: 8px;
+      padding: 8px 10px;
+      text-align: center;
+    }
+
+    .doe-param-icon { font-size: 1.1rem; }
+    .doe-param-name { font-size: 0.68rem; font-weight: 700; color: var(--accent); margin-top: 3px; }
+    .doe-param-range { font-size: 0.6rem; color: var(--muted); margin-top: 1px; }
+
+    .doe-center {
+      background: var(--accent);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      color: white;
+      margin-bottom: 14px;
+    }
+
+    .doe-center-title { font-size: 0.8rem; font-weight: 800; }
+    .doe-center-sub { font-size: 0.65rem; opacity: 0.85; margin-top: 3px; }
+
+    /* Results bar */
+    .result-bar-wrap { margin-bottom: 10px; }
+    .result-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .result-bar-label span { color: var(--accent2); }
+
+    .result-bar-track {
+      height: 8px;
+      background: var(--accent-light);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .result-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 4px;
+    }
+
+    /* Skill transfer map */
+    .transfer-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.82rem;
+    }
+
+    .transfer-from {
+      flex: 1;
+      background: #fff8e1;
+      border: 1px solid #f5c842;
+      border-radius: 8px;
+      padding: 8px 11px;
+      color: #5a4000;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .transfer-arrow { font-size: 1.2rem; color: var(--accent2); flex-shrink: 0; }
+
+    .transfer-to {
+      flex: 1;
+      background: var(--accent-light);
+      border: 1px solid var(--accent2);
+      border-radius: 8px;
+      padding: 8px 11px;
+      color: var(--accent);
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 12px 12px 0;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+      transition: box-shadow 0.2s;
+    }
+
+    .edu-card:hover { box-shadow: 0 4px 16px rgba(30,58,110,0.08); }
+
+    .edu-degree { font-size: 0.93rem; font-weight: 800; color: var(--text); }
+    .edu-school { font-size: 0.84rem; color: var(--accent2); margin: 3px 0; font-weight: 600; }
+    .edu-detail { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
+
+    .edu-award {
+      margin-top: 6px;
+      font-size: 0.78rem;
+      color: #b07d00;
+      font-weight: 700;
+      background: #fff9e6;
+      border: 1px solid #f5d76e;
+      border-radius: 6px;
+      padding: 4px 10px;
+      display: inline-block;
+    }
+
+    /* ── SKILLS GRID ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 14px;
+    }
+
+    .skill-group {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 15px 17px;
+      transition: box-shadow 0.2s;
+    }
+
+    .skill-group:hover { box-shadow: 0 4px 14px rgba(30,58,110,0.08); }
+    .skill-group.priority { border-color: var(--accent2); border-width: 1.5px; }
+
+    .skill-group-title {
+      font-size: 0.73rem;
+      font-weight: 800;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 9px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .skill-item {
+      font-size: 0.81rem;
+      color: var(--text);
+      padding: 2px 0;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .skill-item::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent2);
+      flex-shrink: 0;
+    }
+
+    /* ── AWARDS ── */
+    .award-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .award-item:last-child { border-bottom: none; }
+    .award-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .award-title { font-size: 0.9rem; font-weight: 700; color: var(--text); }
+    .award-sub { font-size: 0.79rem; color: var(--muted); margin-top: 1px; }
+
+    /* ── CONTACT ── */
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 22px;
+      border-radius: 9px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+
+    .contact-btn.primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .contact-btn.primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(30,58,110,0.3);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--footer-bg);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 22px;
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      aside { width: 100%; position: static; height: auto; border-right: none; border-bottom: 1px solid var(--border); padding: 24px 20px; }
+      main { padding: 28px 20px 52px; }
+      nav { gap: 16px; padding: 0 16px; overflow-x: auto; }
+      nav a { white-space: nowrap; }
+      .comp-table { font-size: 0.75rem; }
+      .pipeline { flex-wrap: wrap; justify-content: flex-start; }
+      .pipeline-line { display: none; }
+      .doe-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <span class="nav-brand">Chang Ho Yu</span>
+  <span class="nav-target">Applying · TASC Semiconductor 製程工程師</span>
+  <a href="#about">About</a>
+  <a href="#fit">Fit</a>
+  <a href="#experience">Experience</a>
+  <a href="#skills">Skills</a>
+  <a href="#education">Education</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside>
+    <div class="avatar-wrap">
+      <img src="RESUME/畢業照.jpg" alt="Chang Ho Yu">
+    </div>
+
+    <div class="sidebar-name">Chang Ho Yu</div>
+    <div class="sidebar-name-zh">張合羽</div>
+    <div class="sidebar-tagline">
+      M.S. · National Taiwan University<br><br>
+      Process-oriented researcher with hands-on expertise in DOE-driven optimization, SOP standardization, multi-parameter QC, and automated data pipelines. Proven ability to build reproducible processes from zero in resource-constrained environments.
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section-title">Contact</div>
+    <div class="sidebar-info-item">
+      <span class="icon">✉️</span>
+      <a href="mailto:changhoyur12b44017@gmail.com">changhoyur12b44017<br>@gmail.com</a>
+    </div>
+    <div class="sidebar-info-item">
+      <span class="icon">📱</span>
+      <span>0919-179-654</span>
+    </div>
+    <div class="sidebar-info-item">
+      <span class="icon">📍</span>
+      <span>Taiwan (open to Hsinchu)</span>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section-title">Core Competencies</div>
+    <div>
+      <span class="skill-tag">DOE / Factorial Design</span>
+      <span class="skill-tag">SOP Standardization</span>
+      <span class="skill-tag">Process Optimization</span>
+      <span class="skill-tag">Anomaly / QC Handling</span>
+      <span class="skill-tag">Data-Driven Analysis</span>
+      <span class="skill-tag">SAS · Statistical</span>
+      <span class="skill-tag">AI Image Pipeline</span>
+      <span class="skill-tag">Multi-param Optimization</span>
+      <span class="skill-tag">Cross-team Coordination</span>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section-title">Education</div>
+    <div class="sidebar-info-item">
+      <span class="icon">🎓</span>
+      <span><strong>M.S.</strong> National Taiwan University<br><small style="color:var(--muted)">Biological Sciences · GPA 4.0/4.3</small></span>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main>
+
+    <!-- About -->
+    <section id="about">
+      <div class="bio-greeting">Chang Ho Yu — Process-Oriented Researcher</div>
+      <p class="bio-text">
+        M.S. graduate from <strong>National Taiwan University</strong> (GPA 4.0/4.3), with a core strength in
+        <strong>building validated processes from scratch</strong> under conditions with no existing standards.
+        My graduate research required establishing a complete multi-step workflow — from raw sample intake
+        through multi-parameter optimization (DOE) to automated quantitative output — in a domain with no reference protocols,
+        mirroring the core challenges of <strong>process flow improvement and anomaly analysis</strong> in manufacturing.
+        I bring a systematic, data-driven mindset and the discipline to maintain output quality under
+        variable input conditions.
+      </p>
+
+      <div class="highlight-row">
+        <div class="highlight-card">
+          <div class="number">+70%</div>
+          <div class="label">Process throughput<br>via automated pipeline</div>
+        </div>
+        <div class="highlight-card">
+          <div class="number">92→99%</div>
+          <div class="label">Output accuracy<br>after DOE refinement</div>
+        </div>
+        <div class="highlight-card">
+          <div class="number">6</div>
+          <div class="label">Process parameters<br>optimized simultaneously</div>
+        </div>
+        <div class="highlight-card">
+          <div class="number">4.0/4.3</div>
+          <div class="label">M.S. GPA<br>National Taiwan University</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Competency Fit -->
+    <section id="fit">
+      <h2 class="section-title">⚙️ Competency Fit — TASC Semiconductor 製程工程師</h2>
+      <p style="font-size:0.85rem; color:var(--muted); margin-bottom:16px; line-height:1.7;">
+        My research background maps directly onto the core responsibilities of process engineering.
+        While my domain is biological sciences, the underlying process logic — DOE optimization,
+        SOP validation, anomaly root-cause analysis, and cost-conscious decision-making — is domain-agnostic.
+      </p>
+
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Job Requirement (台亞半導體)</th>
+            <th>My Equivalent Experience</th>
+            <th>Fit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>製程流程改善<br><small>Process flow improvement</small></td>
+            <td>Built complete histological process SOP from zero; eliminated redundant steps via systematic trial; cut cycle time by 70%</td>
+            <td class="comp-check">✔ Direct analogue</td>
+          </tr>
+          <tr>
+            <td>生產異常分析處理<br><small>Anomaly analysis &amp; handling</small></td>
+            <td>Designed batch QC criteria; isolated root causes when staining batches failed; developed remediation protocols for out-of-spec samples</td>
+            <td class="comp-check">✔ Direct analogue</td>
+          </tr>
+          <tr>
+            <td>降低生產製造成本<br><small>Cost reduction</small></td>
+            <td>DOE reduced reagent waste by identifying minimum-effective concentrations; automated pipeline eliminated manual labor hours</td>
+            <td class="comp-check">✔ Transferable</td>
+          </tr>
+          <tr>
+            <td>替代料評估<br><small>Substitute material evaluation</small></td>
+            <td>Evaluated multiple antibody vendors and antigen retrieval reagents for performance equivalence; documented substitution impact via controlled experiments</td>
+            <td class="comp-check">✔ Transferable</td>
+          </tr>
+          <tr>
+            <td>多參數系統優化<br><small>Multi-parameter optimization</small></td>
+            <td>Applied Factorial DOE to simultaneously optimize 6 variables; selected optimal combination using signal-to-noise ratio analysis</td>
+            <td class="comp-check">✔ Direct analogue</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+      <h2 class="section-title">🔬 Research &amp; Process Experience</h2>
+
+      <!-- NTU Graduate Thesis -->
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <div class="project-title">
+              Graduate Research — Process Development from Zero
+              <span class="badge">⭐ Outstanding Award 2025</span>
+            </div>
+            <div class="project-org">National Taiwan University · Institute of Ecology and Evolutionary Biology</div>
+          </div>
+          <div class="project-date">Sep 2023 – Aug 2025</div>
+        </div>
+        <div class="project-desc">
+          Established a complete validated multi-step analytical process for cetacean skin tissue — a domain with no existing standard protocols.
+        </div>
+        <ul class="project-list">
+          <li><strong>SOP from scratch:</strong> Independently developed complete protocols covering sample intake, preservation, sectioning, staining, imaging, and statistical output — achieving inter-batch reproducibility with no prior reference standards.</li>
+          <li><strong>DOE multi-parameter optimization:</strong> Applied Factorial Design to simultaneously optimize 6 process variables (antibody concentration, incubation time, antigen retrieval temperature/duration, blocking concentration, section thickness), reducing trial-and-error cycles and reagent cost.</li>
+          <li><strong>Automated output pipeline:</strong> Built a QuPath scripting pipeline replacing manual counting; increased throughput by <strong>70%</strong> and raised output accuracy from 92% to <strong>99%</strong>.</li>
+          <li><strong>Batch QC &amp; anomaly handling:</strong> Defined acceptance criteria for each batch; developed root-cause diagnostic workflow for out-of-spec results and implemented corrective SOPs.</li>
+          <li><strong>Substitute reagent evaluation:</strong> Evaluated multiple antibody vendors and antigen retrieval reagents for performance equivalence under controlled experimental conditions.</li>
+          <li><strong>Cross-institutional coordination:</strong> Managed logistics and quality consistency across 100+ members from 5 institutions under high-pressure field conditions.</li>
+        </ul>
+
+        <!-- Process Optimization Infographic -->
+        <div class="infographic">
+          <div class="infographic-title">DOE-Driven Process Optimization — 6-Parameter System</div>
+
+          <div class="doe-center">
+            <div class="doe-center-title">Factorial DOE · Taguchi Method</div>
+            <div class="doe-center-sub">Simultaneous multi-parameter optimization → minimum trials, maximum information</div>
+          </div>
+
+          <div class="doe-grid">
+            <div class="doe-param">
+              <div class="doe-param-icon">💉</div>
+              <div class="doe-param-name">Antibody Conc.</div>
+              <div class="doe-param-range">1:50 · 1:100 · 1:200</div>
+            </div>
+            <div class="doe-param">
+              <div class="doe-param-icon">⏱️</div>
+              <div class="doe-param-name">Incubation Time</div>
+              <div class="doe-param-range">1 h · 2 h · overnight</div>
+            </div>
+            <div class="doe-param">
+              <div class="doe-param-icon">🌡️</div>
+              <div class="doe-param-name">Retrieval Temp.</div>
+              <div class="doe-param-range">95°C · 100°C · 121°C</div>
+            </div>
+            <div class="doe-param">
+              <div class="doe-param-icon">🧪</div>
+              <div class="doe-param-name">Blocking Conc.</div>
+              <div class="doe-param-range">3% · 5% · 10% BSA</div>
+            </div>
+            <div class="doe-param">
+              <div class="doe-param-icon">🔪</div>
+              <div class="doe-param-name">Section Thickness</div>
+              <div class="doe-param-range">8 µm · 12 µm · 16 µm</div>
+            </div>
+            <div class="doe-param">
+              <div class="doe-param-icon">⏳</div>
+              <div class="doe-param-name">Retrieval Duration</div>
+              <div class="doe-param-range">10 min · 20 min · 30 min</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 4px;">
+            <div class="result-bar-wrap">
+              <div class="result-bar-label">Throughput improvement <span>+70%</span></div>
+              <div class="result-bar-track"><div class="result-bar-fill" style="width:85%"></div></div>
+            </div>
+            <div class="result-bar-wrap">
+              <div class="result-bar-label">Detection accuracy <span>92% → 99%</span></div>
+              <div class="result-bar-track"><div class="result-bar-fill" style="width:99%"></div></div>
+            </div>
+            <div class="result-bar-wrap">
+              <div class="result-bar-label">Reagent cost efficiency <span>Optimized to min. effective dose</span></div>
+              <div class="result-bar-track"><div class="result-bar-fill" style="width:70%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Process Pipeline -->
+        <div class="infographic" style="margin-top: 12px;">
+          <div class="infographic-title">End-to-End Process Workflow</div>
+          <div class="pipeline">
+            <div class="pipeline-step">
+              <div class="pipeline-dot">📥</div>
+              <div class="pipeline-label">Sample Intake</div>
+              <div class="pipeline-sub">Field collection; preservation SOP; QC check-in</div>
+            </div>
+            <div class="pipeline-line"></div>
+            <div class="pipeline-step">
+              <div class="pipeline-dot">🧊</div>
+              <div class="pipeline-label">Processing</div>
+              <div class="pipeline-sub">Cryosectioning; fixation; batch logging</div>
+            </div>
+            <div class="pipeline-line"></div>
+            <div class="pipeline-step">
+              <div class="pipeline-dot">⚗️</div>
+              <div class="pipeline-label">DOE Optimization</div>
+              <div class="pipeline-sub">6-parameter factorial design; S/N ratio analysis</div>
+            </div>
+            <div class="pipeline-line"></div>
+            <div class="pipeline-step">
+              <div class="pipeline-dot">🔬</div>
+              <div class="pipeline-label">Process Execution</div>
+              <div class="pipeline-sub">Validated SOP; in-process QC; anomaly flagging</div>
+            </div>
+            <div class="pipeline-line"></div>
+            <div class="pipeline-step">
+              <div class="pipeline-dot">🤖</div>
+              <div class="pipeline-label">Automated QC</div>
+              <div class="pipeline-sub">AI pipeline; batch acceptance criteria</div>
+            </div>
+            <div class="pipeline-line"></div>
+            <div class="pipeline-step">
+              <div class="pipeline-dot">📊</div>
+              <div class="pipeline-label">Output &amp; Report</div>
+              <div class="pipeline-sub">SAS statistics; yield tracking; process records</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NCKU Undergraduate -->
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <div class="project-title">Laboratory Intern · NSTC Undergraduate Research Project</div>
+            <div class="project-org">National Cheng Kung University · Neuro-Molecular Lab</div>
+          </div>
+          <div class="project-date">Jul 2020 – Sep 2021</div>
+        </div>
+        <div class="project-desc">
+          Independent research on cellular process regulation — systematic experimental design, multi-technique execution, and quantitative data analysis
+        </div>
+        <ul class="project-list">
+          <li>Designed and submitted an independent <strong>NSTC research proposal</strong>; planned experimental workflow and resource allocation from project start.</li>
+          <li>Executed multi-step experimental protocols (IHC/IF staining, Western Blot, qPCR, primary cell culture) requiring strict procedural consistency across replicates.</li>
+          <li>Applied controlled experimental design to isolate variables: compared neuroinflammation induction conditions across multiple cytokine types and concentrations.</li>
+          <li>Completed professional <strong>LAC (Laboratory Animal Center) certification</strong> and NHRI cell culture training workshop.</li>
+        </ul>
+
+        <!-- Skill Transfer Infographic -->
+        <div class="infographic">
+          <div class="infographic-title">Skill Transfer — Research Context → Manufacturing Relevance</div>
+
+          <div class="transfer-row">
+            <div class="transfer-from">🧬 Optimized antibody reagent protocols across multiple vendors for performance equivalence</div>
+            <div class="transfer-arrow">→</div>
+            <div class="transfer-to">替代料評估 · Substitute material qualification and equivalence testing</div>
+          </div>
+          <div class="transfer-row">
+            <div class="transfer-from">🔍 Root-cause diagnosed failed staining batches; isolated variable causing out-of-spec results</div>
+            <div class="transfer-arrow">→</div>
+            <div class="transfer-to">異常分析處理 · Production anomaly root-cause analysis and corrective action</div>
+          </div>
+          <div class="transfer-row">
+            <div class="transfer-from">📋 Built SOPs for novel workflows with no reference standard; verified reproducibility across batches</div>
+            <div class="transfer-arrow">→</div>
+            <div class="transfer-to">SOP建立與製程確效 · Process standardization and validation documentation</div>
+          </div>
+          <div class="transfer-row">
+            <div class="transfer-from">📉 Minimized reagent usage to lowest-effective dose via DOE; reduced waste without compromising output quality</div>
+            <div class="transfer-arrow">→</div>
+            <div class="transfer-to">降低製造成本 · Production cost reduction through systematic process optimization</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <h2 class="section-title">🛠 Skills &amp; Certifications</h2>
+      <div class="skills-grid">
+
+        <div class="skill-group priority">
+          <div class="skill-group-title">⚙️ Process Engineering</div>
+          <div class="skill-item">DOE / Factorial Design (Taguchi)</div>
+          <div class="skill-item">SOP Development &amp; Validation</div>
+          <div class="skill-item">Multi-parameter Optimization</div>
+          <div class="skill-item">Batch QC &amp; Acceptance Criteria</div>
+          <div class="skill-item">Anomaly Root-cause Analysis</div>
+        </div>
+
+        <div class="skill-group priority">
+          <div class="skill-group-title">📊 Data &amp; Automation</div>
+          <div class="skill-item">SAS (Statistical Analysis)</div>
+          <div class="skill-item">QuPath Pipeline (Scripting)</div>
+          <div class="skill-item">AI Segmentation / Image QC</div>
+          <div class="skill-item">NIS-Elements D</div>
+          <div class="skill-item">Automated Report Generation</div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">🧫 Lab Techniques</div>
+          <div class="skill-item">IHC / IF Staining</div>
+          <div class="skill-item">Western Blot · qPCR</div>
+          <div class="skill-item">Cryosectioning</div>
+          <div class="skill-item">Cell Culture (NHRI certified)</div>
+          <div class="skill-item">LAC Certified</div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">🤝 Operational</div>
+          <div class="skill-item">Cross-institutional Coordination</div>
+          <div class="skill-item">Field Logistics &amp; QC</div>
+          <div class="skill-item">Scientific Presentation (EN)</div>
+          <div class="skill-item">Microsoft Office Suite</div>
+          <div class="skill-item">Teaching Assistant (30+ sessions)</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <h2 class="section-title">🎓 Education</h2>
+
+      <div class="edu-card">
+        <div class="edu-degree">Master of Science · Biological Sciences</div>
+        <div class="edu-school">National Taiwan University (國立臺灣大學)</div>
+        <div class="edu-detail">Institute of Ecology and Evolutionary Biology &nbsp;·&nbsp; Sep 2023 – Aug 2025</div>
+        <div class="edu-detail">GPA &nbsp;<strong>4.0 / 4.3</strong></div>
+        <div class="edu-award">⭐ 特優 (Top Honor) — 2025 NTU IEEB Student Academic Presentation</div>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-degree">Bachelor of Science · Biological Sciences &amp; Technology</div>
+        <div class="edu-school">National Cheng Kung University (國立成功大學)</div>
+        <div class="edu-detail">Department of Life Sciences &nbsp;·&nbsp; Sep 2019 – Jul 2023</div>
+        <div class="edu-detail">NSTC Undergraduate Research Project Recipient</div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2 class="section-title">✉️ Contact</h2>
+      <p style="font-size:0.88rem; color:var(--muted); margin-bottom: 18px; line-height:1.7;">
+        Actively seeking a process engineering role where I can apply my systematic optimization background.<br>
+        Open to relocation to Hsinchu Science Park area. Feel free to reach out.
+      </p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <a href="mailto:changhoyur12b44017@gmail.com" class="contact-btn primary">
+          ✉️ Email Me
+        </a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 Chang Ho Yu (張合羽) &nbsp;·&nbsp; M.S. Biological Sciences, National Taiwan University &nbsp;·&nbsp; Applying for 製程工程師 · TASC Semiconductor</p>
+</footer>
+
+</body>
+</html>
