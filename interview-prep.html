@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>製程工程師面試準備筆記 — 張合羽</title>
+<style>
+  :root {
+    --teal: #1a4a5a;
+    --teal-light: #e6f0f4;
+    --teal-mid: #2d7a96;
+    --gold: #b8911a;
+    --gold-light: #fdf5dc;
+    --gold-border: #d4ab3a;
+    --red-tip: #c0392b;
+    --red-light: #fdf0ee;
+    --green: #2e7d32;
+    --green-light: #e8f5e9;
+    --text: #1a2535;
+    --muted: #556677;
+    --border: #ccd8e0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", sans-serif;
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--text);
+    background: #f8f9fa;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    background: white;
+    padding: 52px 60px 72px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+  }
+
+  /* ── COVER ── */
+  .cover {
+    text-align: center;
+    padding-bottom: 28px;
+    border-bottom: 3px solid var(--gold);
+    margin-bottom: 40px;
+  }
+
+  .cover h1 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--teal);
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+
+  .cover .subtitle {
+    font-size: 0.92rem;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .cover .topics {
+    font-size: 0.83rem;
+    color: var(--muted);
+  }
+
+  .cover .topics span {
+    margin: 0 8px;
+    color: var(--teal-mid);
+    font-weight: 600;
+  }
+
+  .cover .author {
+    font-size: 0.78rem;
+    color: var(--gold);
+    font-weight: 700;
+    margin-top: 8px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── CHAPTER ── */
+  .chapter {
+    background: var(--teal);
+    color: white;
+    font-size: 1.15rem;
+    font-weight: 800;
+    padding: 10px 20px;
+    border-radius: 6px;
+    margin: 40px 0 20px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── SECTION ── */
+  .section-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--teal);
+    margin: 26px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-title::before {
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 1.1em;
+    background: var(--teal);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ── BULLETS ── */
+  ul.note-list {
+    list-style: none;
+    padding: 0;
+    margin: 6px 0 14px 0;
+  }
+
+  ul.note-list li {
+    padding: 2px 0 2px 18px;
+    position: relative;
+    font-size: 0.87rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+
+  ul.note-list li::before {
+    content: '•';
+    position: absolute;
+    left: 4px;
+    color: var(--teal-mid);
+    font-weight: 700;
+  }
+
+  ul.note-list li.sub {
+    padding-left: 32px;
+    color: var(--muted);
+    font-size: 0.83rem;
+  }
+
+  ul.note-list li.sub::before {
+    content: '◦';
+    left: 18px;
+    color: var(--muted);
+  }
+
+  b { color: var(--teal); }
+  .arrow { color: var(--teal-mid); font-weight: 700; margin: 0 4px; }
+
+  /* ── TABLES ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 18px;
+    font-size: 0.84rem;
+  }
+
+  table th {
+    background: var(--teal);
+    color: white;
+    padding: 9px 13px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.82rem;
+  }
+
+  table th:first-child { border-radius: 6px 0 0 0; }
+  table th:last-child { border-radius: 0 6px 0 0; }
+
+  table td {
+    padding: 8px 13px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  table tr:nth-child(even) td { background: var(--teal-light); }
+  table tr:last-child td { border-bottom: none; }
+
+  .center { text-align: center; }
+  .check { color: var(--green); font-weight: 800; }
+  .warn  { color: #e65100; font-weight: 700; }
+
+  /* ── HIGHLIGHT BOXES ── */
+  .box-gold {
+    background: var(--gold-light);
+    border-left: 4px solid var(--gold-border);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin: 14px 0;
+    font-size: 0.86rem;
+  }
+
+  .box-gold .box-title {
+    font-weight: 800;
+    color: var(--gold);
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 5px;
+  }
+
+  .box-teal {
+    background: var(--teal-light);
+    border-left: 4px solid var(--teal-mid);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin: 14px 0;
+    font-size: 0.86rem;
+  }
+
+  .box-teal .box-title {
+    font-weight: 800;
+    color: var(--teal);
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 5px;
+  }
+
+  .box-red {
+    background: var(--red-light);
+    border-left: 4px solid var(--red-tip);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin: 14px 0;
+    font-size: 0.86rem;
+  }
+
+  .box-red .box-title {
+    font-weight: 800;
+    color: var(--red-tip);
+    font-size: 0.82rem;
+    margin-bottom: 5px;
+  }
+
+  .box-green {
+    background: var(--green-light);
+    border-left: 4px solid var(--green);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin: 14px 0;
+    font-size: 0.86rem;
+  }
+
+  .box-green .box-title {
+    font-weight: 800;
+    color: var(--green);
+    font-size: 0.82rem;
+    margin-bottom: 5px;
+  }
+
+  /* ── FLOW DIAGRAM ── */
+  .flow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0;
+    margin: 14px 0;
+    justify-content: center;
+  }
+
+  .flow-node {
+    background: var(--teal);
+    color: white;
+    border-radius: 8px;
+    padding: 8px 14px;
+    text-align: center;
+    font-size: 0.78rem;
+    font-weight: 700;
+    min-width: 80px;
+    line-height: 1.35;
+  }
+
+  .flow-node.light {
+    background: var(--teal-light);
+    color: var(--teal);
+    border: 1.5px solid var(--teal-mid);
+  }
+
+  .flow-node.gold {
+    background: var(--gold-light);
+    color: var(--gold);
+    border: 1.5px solid var(--gold-border);
+  }
+
+  .flow-node sub {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 400;
+    opacity: 0.85;
+    margin-top: 2px;
+  }
+
+  .flow-arr {
+    font-size: 1.1rem;
+    color: var(--teal-mid);
+    padding: 0 6px;
+    flex-shrink: 0;
+  }
+
+  /* ── STAR CARD ── */
+  .star-grid {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 0;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 10px 0;
+    font-size: 0.84rem;
+  }
+
+  .star-label {
+    background: var(--teal);
+    color: white;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 8px;
+    text-align: center;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .star-content {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.65;
+  }
+
+  .star-grid .star-label:last-of-type,
+  .star-grid .star-content:last-of-type { border-bottom: none; }
+
+  /* ── SCHEDULE ── */
+  .schedule-row {
+    display: flex;
+    gap: 0;
+    margin-bottom: 6px;
+    font-size: 0.84rem;
+    align-items: stretch;
+  }
+
+  .schedule-day {
+    background: var(--teal);
+    color: white;
+    font-weight: 800;
+    padding: 6px 14px;
+    border-radius: 6px 0 0 6px;
+    min-width: 80px;
+    text-align: center;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .schedule-content {
+    background: var(--teal-light);
+    border: 1px solid var(--border);
+    border-left: none;
+    padding: 6px 14px;
+    border-radius: 0 6px 6px 0;
+    flex: 1;
+    line-height: 1.6;
+  }
+
+  /* ── QA ── */
+  .qa-item {
+    margin: 12px 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 0.85rem;
+  }
+
+  .qa-q {
+    background: var(--teal);
+    color: white;
+    padding: 9px 14px;
+    font-weight: 700;
+  }
+
+  .qa-q::before { content: 'Q　'; opacity: 0.7; }
+
+  .qa-a {
+    padding: 10px 14px;
+    line-height: 1.7;
+    background: white;
+  }
+
+  .qa-a .key { color: var(--teal); font-weight: 700; }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    margin-top: 60px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  @media print {
+    body { background: white; }
+    .page { box-shadow: none; padding: 20px 28px; }
+    .chapter { break-before: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ══ COVER ══ -->
+<div class="cover">
+  <h1>製程工程師 面試準備筆記</h1>
+  <div class="subtitle">Semiconductor Process Engineer Interview Preparation — 完整整理</div>
+  <div class="topics">
+    <span>公司與產品</span>｜<span>半導體製程基礎</span>｜<span>DOE / SPC / 異常分析</span>｜<span>STAR故事框架</span>｜<span>面試Q&A</span>
+  </div>
+  <div class="author">張合羽 · Chang Ho Yu · 2026</div>
+</div>
+
+
+<!-- ══════════════════════════════════════════ -->
+<div class="chapter">一、公司 &amp; 產品快速了解</div>
+
+<div class="section-title">1.1 台亞半導體基本資料</div>
+<table>
+  <tr><th>項目</th><th>內容</th></tr>
+  <tr><td><b>成立</b></td><td>1983年（逾40年老牌半導體廠）</td></tr>
+  <tr><td><b>員工規模</b></td><td>約 840 人（中型廠）</td></tr>
+  <tr><td><b>資本額</b></td><td>43.8 億元</td></tr>
+  <tr><td><b>廠區</b></td><td>新竹科學園區（創新廠 + 力行廠）</td></tr>
+  <tr><td><b>網站</b></td><td>tascsemi.com</td></tr>
+  <tr><td><b>母集團</b></td><td>光磊科技（LEO Systems）旗下</td></tr>
+</table>
+
+<div class="section-title">1.2 主要產品線</div>
+<table>
+  <tr><th>類別</th><th>產品</th><th>應用場景</th></tr>
+  <tr><td><b>感測元件</b></td><td>光電二極體（Photodiode）、光電晶體、雙向光閘流體</td><td>光感測、遙控、工業自動化</td></tr>
+  <tr><td><b>發射元件</b></td><td>一般型 LED、高亮型 LED、VCSEL</td><td>光源、光通訊、ToF感測</td></tr>
+  <tr><td><b>其他</b></td><td>齊納二極體、功率 MOSFET、TVS 二極體、電阻</td><td>電源保護、整流</td></tr>
+</table>
+
+<div class="box-gold">
+  <div class="box-title">★ 面試前必知：公司定位一句話</div>
+  台亞專注「光電感測整合元件」，核心競爭力是垂直整合（從晶圓到封裝）+ 客製化服務。面試時可提到對這個方向有興趣。
+</div>
+
+
+<!-- ══════════════════════════════════════════ -->
+<div class="chapter">二、光電半導體製程基礎</div>
+
+<div class="section-title">2.1 製程總流程（前段 → 後段）</div>
+
+<div class="flow">
+  <div class="flow-node">磊晶<sub>Epitaxy / MOCVD</sub></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-node">黃光微影<sub>Photolithography</sub></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-node">蝕刻<sub>Etching</sub></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-node">擴散/佈植<sub>Diffusion / Ion Implant</sub></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-node">薄膜沉積<sub>CVD / PVD</sub></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-node gold">測試<sub>Wafer Test</sub></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-node gold">封裝<sub>Packaging</sub></div>
+</div>
+
+<div class="section-title">2.2 關鍵製程術語對照</div>
+<table>
+  <tr><th>術語</th><th>中文</th><th>一句話說明</th></tr>
+  <tr><td>MOCVD</td><td>有機金屬化學氣相沉積</td><td>LED/光電元件長晶的主要方式，控制各層厚度與組成</td></tr>
+  <tr><td>Photolithography</td><td>黃光微影</td><td>用光罩+光阻將電路圖案轉印到晶圓上</td></tr>
+  <tr><td>Dry Etching</td><td>乾式蝕刻</td><td>電漿蝕刻，精度高，用於精細圖案</td></tr>
+  <tr><td>Wet Etching</td><td>濕式蝕刻</td><td>化學液蝕刻，速度快，用於大面積去除</td></tr>
+  <tr><td>CVD / PVD</td><td>化學/物理氣相沉積</td><td>沉積介電層或金屬層</td></tr>
+  <tr><td>Yield（良率）</td><td>良率</td><td>良品數 ÷ 總投入數 × 100%，是製程工程師最核心的 KPI</td></tr>
+  <tr><td>Cleanroom</td><td>無塵室</td><td>Class 10 ~ 10000，顆粒數管控；製程工程師主要工作場域</td></tr>
+  <tr><td>VCSEL</td><td>垂直共振腔面射型雷射</td><td>台亞主力產品之一，用於ToF感測/光通訊</td></tr>
+</table>
+
+<div class="section-title">2.3 光電二極體 vs LED 製程差異</div>
+<table>
+  <tr><th>比較項目</th><th>光電二極體（Photodiode）</th><th>LED</th></tr>
+  <tr><td><b>功能</b></td><td>接收光 → 轉換成電流</td><td>電流 → 發射光</td></tr>
+  <tr><td><b>核心結構</b></td><td>p-n 接面（高反應靈敏度）</td><td>多層量子井（MQW）結構</td></tr>
+  <tr><td><b>關鍵製程重點</b></td><td>結面深度、低暗電流、響應速度</td><td>EQE（外部量子效率）、波長一致性</td></tr>
+  <tr><td><b>主要材料</b></td><td>Si、GaAs、InGaAs</td><td>GaN、AlGaInP、InGaN</td></tr>
+</table>
+
+<div class="box-teal">
+  <div class="box-title">💡 跨領域說法建議</div>
+  面試時若被問到半導體知識：「我目前正在補強光電半導體製程的專業知識，對磊晶、黃光、蝕刻等基本流程已有初步了解。我的核心優勢在於製程優化的方法論——DOE設計、SOP確效、數據驅動的異常分析——這些在我的研究中有直接實踐。」
+</div>
+
+
+<!-- ══════════════════════════════════════════ -->
+<div class="chapter">三、核心職能知識</div>
+
+<div class="section-title">3.1 DOE 田口法（你最強的武器）</div>
+<ul class="note-list">
+  <li><b>全名：</b>Design of Experiments（實驗設計）/ Taguchi Method（田口法）</li>
+  <li><b>目的：</b>用最少實驗次數，找出最佳參數組合</li>
+  <li><b>核心概念：</b>訊號/雜音比（S/N ratio）→ 選擇讓輸出最穩定的參數水準</li>
+  <li><b>你的實際案例：</b>6個製程變數（抗體濃度、孵育時間、修復溫度、時間、封閉濃度、切片厚度）→ 找最佳組合 → 吞吐量 +70%、精準度 92→99%</li>
+</ul>
+
+<div class="flow" style="margin: 10px 0;">
+  <div class="flow-node light">定義問題<sub>影響良率的關鍵因子</sub></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-node light">選定因子水準<sub>各參數的測試範圍</sub></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-node">設計直交表<sub>L9 / L18 陣列</sub></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-node">執行實驗<sub>記錄各組結果</sub></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-node">分析S/N比<sub>選最佳水準</sub></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-node light">驗證實驗<sub>確認改善效果</sub></div>
+</div>
+
+<div class="section-title">3.2 SPC 統計製程管制（Statistical Process Control）</div>
+<ul class="note-list">
+  <li><b>目的：</b>即時監控製程是否在控制狀態內，預防異常發生</li>
+  <li><b>工具：</b>管制圖（Control Chart）→ X-bar chart（均值）+ R chart（全距）</li>
+  <li><b>Cp（製程能力指數）：</b>規格寬度 ÷ 製程寬度（6σ）；Cp ≥ 1.33 為良好</li>
+  <li><b>Cpk（製程能力指數 考慮偏移）：</b>同時考慮準確度與精密度；Cpk ≥ 1.33 為目標</li>
+</ul>
+
+<table>
+  <tr><th>指數</th><th>意義</th><th>判斷標準</th></tr>
+  <tr><td><b>Cp ≥ 1.33</b></td><td>製程精密度足夠</td><td class="check">✔ 優良</td></tr>
+  <tr><td><b>Cp = 1.0～1.33</b></td><td>尚可，需監控</td><td class="warn">⚠ 注意</td></tr>
+  <tr><td><b>Cp &lt; 1.0</b></td><td>製程能力不足，異常率高</td><td style="color:#c0392b; font-weight:700;">✗ 需改善</td></tr>
+  <tr><td><b>Cpk &lt; Cp</b></td><td>製程有偏移，中心未對準規格中心</td><td class="warn">⚠ 需校正</td></tr>
+</table>
+
+<div class="box-gold">
+  <div class="box-title">★ 面試應用話術</div>
+  「在我的研究中，我建立了批次驗收標準（acceptance criteria），等同於 SPC 的管制界限概念。每批數據若超出預期範圍，我會立即追查根因，這與製程工程師處理管制圖失控點的邏輯相同。」
+</div>
+
+<div class="section-title">3.3 異常分析框架（Root Cause Analysis, RCA）</div>
+<ul class="note-list">
+  <li><b>5 Why 分析法：</b>連問5次「為什麼」→ 找出根本原因而非症狀</li>
+  <li><b>魚骨圖（石川圖）：</b>從 人、機、料、法、環 五面向系統性找原因</li>
+  <li><b>8D 報告：</b>半導體廠常用格式；D1~D8 完整記錄問題→根因→矯正→預防</li>
+</ul>
+
+<table>
+  <tr><th>分析框架</th><th>適用情境</th><th>你的對應經驗</th></tr>
+  <tr><td><b>5 Why</b></td><td>快速追查單一異常事件</td><td>染色批次失敗 → 連問5Why → 發現抗原修復溫度不穩</td></tr>
+  <tr><td><b>魚骨圖</b></td><td>複雜異常，多因子交互</td><td>多個批次品質不一致 → 人機料法環全面檢查</td></tr>
+  <tr><td><b>DOE</b></td><td>主動優化、預防失效</td><td>系統化確認6個參數的最佳水準</td></tr>
+</table>
+
+<div class="section-title">3.4 替代料評估流程（Substitute Material Qualification）</div>
+
+<div class="flow" style="flex-wrap: wrap; gap: 6px; justify-content: flex-start;">
+  <div class="flow-node light" style="min-width:100px;">需求確認<sub>原料缺貨/漲價</sub></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-node light" style="min-width:100px;">替代料篩選<sub>規格比對</sub></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-node" style="min-width:110px;">等效性實驗<sub>小批量試跑</sub></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-node" style="min-width:110px;">數據分析<sub>良率/規格比較</sub></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-node light" style="min-width:100px;">文件簽核<sub>ECN工程變更通知</sub></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-node gold" style="min-width:100px;">量產導入</div>
+</div>
+
+<ul class="note-list" style="margin-top:10px;">
+  <li><b>你的對應經驗：</b>評估不同廠商抗體的等效性 → 設計對照實驗 → 比較染色強度、背景雜訊、重複性 → 建立替換文件</li>
+</ul>
+
+
+<!-- ══════════════════════════════════════════ -->
+<div class="chapter">四、STAR 面試故事框架</div>
+
+<div class="section-title">4.1 故事一：DOE 製程優化（對應「製程流程改善」）</div>
+<div class="star-grid">
+  <div class="star-label">S<br><small>情境</small></div>
+  <div class="star-content">碩士研究需對鯨豚皮膚組織進行 IHC 染色分析，但<b>沒有任何既有的操作規範</b>，初期染色結果不穩定，批次間差異大。</div>
+  <div class="star-label">T<br><small>任務</small></div>
+  <div class="star-content">需要建立<b>可重複、可驗證</b>的染色製程，並系統性找出最佳參數組合，在有限時間內提升實驗產出量。</div>
+  <div class="star-label">A<br><small>行動</small></div>
+  <div class="star-content">應用<b>田口法 DOE</b>，設計直交表同時評估 6 個製程變數（抗體濃度、孵育時間、抗原修復溫度/時間、封閉濃度、切片厚度），分析 S/N 比找出最佳組合；同步開發 <b>QuPath 自動化分析流程</b>取代手動計數。</div>
+  <div class="star-label">R<br><small>結果</small></div>
+  <div class="star-content">實驗吞吐量提升 <b>+70%</b>，影像分割精準度從 <b>92% → 99%</b>，建立完整 SOP 文件，後續研究人員可直接沿用。</div>
+</div>
+
+<div class="section-title">4.2 故事二：異常分析（對應「生產異常分析處理」）</div>
+<div class="star-grid">
+  <div class="star-label">S<br><small>情境</small></div>
+  <div class="star-content">某批次組織切片在 IHC 染色後出現<b>背景雜訊異常升高</b>，訊號干擾導致無法進行定量分析，且該批次有時效限制。</div>
+  <div class="star-label">T<br><small>任務</small></div>
+  <div class="star-content">需在短時間內<b>確認根因</b>並決定：是重新處理、調整參數、還是整批廢棄，同時防止同樣問題再次發生。</div>
+  <div class="star-label">A<br><small>行動</small></div>
+  <div class="star-content">用 <b>5 Why 分析</b>追查：背景高 → 封閉不完全 → 血清批號與過去不同 → 供應商更換配方 → 未預先進行等效性測試。立即以新批號重新最適化封閉條件，並更新 <b>SOP 加入供應商更換時的驗收測試</b>步驟。</div>
+  <div class="star-label">R<br><small>結果</small></div>
+  <div class="star-content">成功救回該批次數據；同時建立「耗材更換觸發驗收測試」機制，<b>後續6個月內無相同異常發生</b>。</div>
+</div>
+
+<div class="section-title">4.3 故事三：SOP 從零建立（對應「製程確效與標準化」）</div>
+<div class="star-grid">
+  <div class="star-label">S<br><small>情境</small></div>
+  <div class="star-content">研究對象為鯨豚組織，<b>文獻上幾乎無可參考的標準方法</b>；樣本珍貴且不可重複採集，任何步驟失誤代價極高。</div>
+  <div class="star-label">T<br><small>任務</small></div>
+  <div class="star-content">需在 6 個月內建立從田野採樣到最終統計輸出的<b>完整可驗證製程</b>，且須能讓其他研究人員照 SOP 獨立執行。</div>
+  <div class="star-label">A<br><small>行動</small></div>
+  <div class="star-content">將整體流程拆分為 6 個模組（採樣→保存→切片→染色→分析→統計），<b>每個模組獨立確效</b>後再串聯；每步驟記錄關鍵參數、品質判斷標準與異常處置方式。</div>
+  <div class="star-label">R<br><small>結果</small></div>
+  <div class="star-content">完成完整 SOP 文件體系；跨機構協作的 <b>5 個合作團隊</b>均能依 SOP 執行，批次間一致性達到統計分析要求。</div>
+</div>
+
+<div class="box-red">
+  <div class="box-title">⚠ 注意事項</div>
+  說故事時要主動帶出<b>數字</b>（+70%、92→99%、6個月無異常），避免過度使用生物學術語；強調「製程思維」而非「研究發現」。
+</div>
+
+
+<!-- ══════════════════════════════════════════ -->
+<div class="chapter">五、常見面試 Q&amp;A</div>
+
+<div class="qa-item">
+  <div class="qa-q">請你自我介紹</div>
+  <div class="qa-a">
+    重點：<span class="key">學歷 → 研究核心技能 → 與製程工程的連結 → 為何想加入半導體業</span><br>
+    「我畢業於台大生命科學碩士，GPA 4.0。碩士研究最大的訓練是在完全沒有既有規範的情況下，從零建立可重複的製程——我用 DOE 田口法優化六個參數，使實驗產出提升70%。這套系統性的製程優化思維，讓我對半導體製程工程的工作非常嚮往；我相信方法論是可以跨領域遷移的，而光電半導體這個領域也是我很有興趣深耕的方向。」
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">你的科系跟我們要求的不符，你怎麼看？</div>
+  <div class="qa-a">
+    <span class="key">主動承認差距 → 強調方法論共通 → 說明補強計畫</span><br>
+    「這是我在準備這份工作時最誠實面對的問題。光電製程的材料物理我確實需要從頭學習，我目前已在補強相關知識。但製程工程師每天要處理的核心問題——良率波動分析、多參數優化、異常根因追查——這些我在研究中都有實際操作。我相信專業知識可以靠時間累積，而這種系統性思維需要長時間訓練，我已經建立起來了。」
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">你對半導體製程了解多少？</div>
+  <div class="qa-a">
+    <span class="key">誠實說出了解程度 → 展示學習態度 → 連結自身背景</span><br>
+    「我對磊晶、黃光微影、蝕刻、薄膜沉積等前段製程有基本概念上的了解。台亞的主力產品 LED 和 Photodiode 的製程邏輯我也有初步研讀。我的背景在後段分析與製程確效較為紮實，對前段製程物理我正在學習，若能有機會加入團隊，我有信心能快速上手。」
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">你最大的缺點是什麼？</div>
+  <div class="qa-a">
+    <span class="key">說真實的缺點 → 但要是「可克服」且「非致命」的</span><br>
+    「我在接觸新領域時會花比較多時間確認自己真正理解，而不是快速略過——有時這會讓學習進度比較慢。但另一方面，這也讓我建立的 SOP 和流程比較可靠，不容易出錯。進入新環境我會刻意設定時程，強迫自己在深度和速度之間取得平衡。」
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">你有什麼問題要問我們？</div>
+  <div class="qa-a">
+    準備以下 <span class="key">3 個問題</span>（至少問 2 個）：<br>
+    1.「這個職缺主要負責的是哪條製程線？LED、Photodiode，還是 MOSFET？」<br>
+    2.「新進工程師通常如何安排前三個月的訓練？會有師傅制（Buddy System）嗎？」<br>
+    3.「目前製程改善的主要方向是良率提升，還是成本結構優化？」
+  </div>
+</div>
+
+<div class="box-green">
+  <div class="box-title">✔ 跨領域面試加分話術（隨時準備插入）</div>
+  「製程工程的本質是：在可控的輸入變數下，穩定地產出符合規格的輸出——這和我做研究時要求批次間一致性的思維是完全一樣的。不同的只是材料和場域，方法論是相通的。」
+</div>
+
+
+<!-- ══════════════════════════════════════════ -->
+<div class="chapter">六、一週準備時程</div>
+
+<div class="schedule-row">
+  <div class="schedule-day">Day 1</div>
+  <div class="schedule-content">瀏覽台亞官網（tascsemi.com）了解產品線；看 YouTube「LED製程」或「光電二極體製程」入門影片 1～2 支（30 分鐘）</div>
+</div>
+<div class="schedule-row">
+  <div class="schedule-day">Day 2</div>
+  <div class="schedule-content">複習 DOE 田口法概念；把自己的 DOE 故事用中文說出來計時（目標 2.5 分鐘內說完，含數字）</div>
+</div>
+<div class="schedule-row">
+  <div class="schedule-day">Day 3</div>
+  <div class="schedule-content">準備三個 STAR 故事：DOE優化 / 異常分析 / SOP建立；各寫下關鍵數字與結論</div>
+</div>
+<div class="schedule-row">
+  <div class="schedule-day">Day 4</div>
+  <div class="schedule-content">練習自我介紹（3分鐘版）；準備「科系不符」的標準應對話術；練習問對方的3個問題</div>
+</div>
+<div class="schedule-row">
+  <div class="schedule-day">Day 5</div>
+  <div class="schedule-content">完整模擬面試（自己錄音或找人當面試官）；複習 Cp/Cpk 與 5 Why 基本概念</div>
+</div>
+<div class="schedule-row">
+  <div class="schedule-day">Day 6</div>
+  <div class="schedule-content">查詢交通路線（寶山鄉創新一路8號）；確認報到時間；準備紙本履歷 3 份、穿著整齊商務裝</div>
+</div>
+<div class="schedule-row">
+  <div class="schedule-day">面試當天</div>
+  <div class="schedule-content">提前 <b>15 分鐘抵達</b>；保持自信平靜；若問到不懂的，誠實說「我目前還在學習，但我的理解是⋯⋯」比硬掰好</div>
+</div>
+
+<div class="box-gold" style="margin-top: 20px;">
+  <div class="box-title">★ 最後提醒</div>
+  面試不是考試，而是「雙向了解」。你在評估他們，他們也在評估你。科系不符不是致命傷，<b>思維清晰 + 學習態度 + 有數字支撐的案例</b>，才是你最有力的武器。
+</div>
+
+<div class="page-footer">
+  <span>製程工程師面試準備筆記 ｜ 張合羽 Chang Ho Yu</span>
+  <span>2026</span>
+</div>
+
+</div><!-- /page -->
+</body>
+</html>

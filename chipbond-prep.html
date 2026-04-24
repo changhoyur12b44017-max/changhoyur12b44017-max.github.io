@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>頎邦科技 Bumping 產品工程師 — 面試準備筆記</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft JhengHei", "PingFang TC", Arial, sans-serif;
+         background: #f5f5f0; color: #222; line-height: 1.7; font-size: 15px; }
+
+  .page-header {
+    background: linear-gradient(135deg, #1a4a5a 0%, #0d2d38 100%);
+    color: white; padding: 36px 48px 28px;
+  }
+  .page-header h1 { font-size: 24px; letter-spacing: 1px; margin-bottom: 6px; }
+  .page-header .subtitle { color: #a8d4e0; font-size: 13px; }
+  .meta { margin-top: 14px; display: flex; gap: 16px; flex-wrap: wrap; }
+  .meta-item { background: rgba(255,255,255,0.12); border-radius: 4px;
+               padding: 5px 12px; font-size: 12px; }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 28px 24px 60px; }
+
+  h2 { color: #1a4a5a; font-size: 19px; border-bottom: 2px solid #1a4a5a;
+       padding-bottom: 6px; margin: 32px 0 16px; }
+  h3 { color: #b8911a; font-size: 15px; margin: 20px 0 10px; font-weight: 700; }
+
+  .card { background: white; border-radius: 8px; padding: 20px 24px;
+          margin-bottom: 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+
+  .highlight { background: #e8f4f8; border-left: 4px solid #1a4a5a;
+               padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 12px 0; }
+  .warning  { background: #fff8e8; border-left: 4px solid #b8911a;
+               padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 12px 0; }
+  .success  { background: #e8f5ec; border-left: 4px solid #2a7a4a;
+               padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 12px 0; }
+  .danger   { background: #ffe8e8; border-left: 4px solid #9a2020;
+               padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 12px 0; }
+
+  /* Bumping process flow */
+  .flow { display: flex; align-items: stretch; flex-wrap: wrap; gap: 0; margin: 16px 0; }
+  .flow-step {
+    background: #1a4a5a; color: white;
+    padding: 10px 12px; border-radius: 6px;
+    font-size: 12px; font-weight: 600; text-align: center;
+    min-width: 90px; line-height: 1.4;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .flow-step.accent { background: #b8911a; }
+  .flow-step.light  { background: #3a7a9a; }
+  .flow-step.green  { background: #2a7a4a; }
+  .flow-step small  { font-weight: 400; font-size: 11px; opacity: 0.85; }
+  .flow-arrow { color: #1a4a5a; font-size: 18px; padding: 0 5px;
+                display: flex; align-items: center; font-weight: bold; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  @media(max-width:640px){ .two-col,.three-col { grid-template-columns: 1fr; } }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { background: #1a4a5a; color: white; padding: 8px 14px; text-align: left; }
+  td { padding: 8px 14px; border-bottom: 1px solid #eee; vertical-align: top; }
+  tr:nth-child(even) td { background: #f8f8f5; }
+  td:first-child { color: #1a4a5a; font-weight: 600; }
+
+  /* STAR cards */
+  .star-card { background: white; border-radius: 8px; overflow: hidden;
+               box-shadow: 0 1px 4px rgba(0,0,0,0.08); margin-bottom: 18px; }
+  .star-header { background: #1a4a5a; color: white; padding: 12px 20px; font-weight: 700; font-size: 14px; }
+  .star-body { padding: 16px 20px; }
+  .star-section { margin-bottom: 10px; }
+  .star-label { display: inline-block; background: #b8911a; color: white;
+                padding: 2px 10px; border-radius: 3px; font-size: 12px;
+                font-weight: 700; margin-bottom: 4px; }
+  .star-label.s { background: #3a7a9a; }
+  .star-label.t { background: #1a4a5a; }
+  .star-label.a { background: #7a4a1a; }
+  .star-label.r { background: #2a7a4a; }
+
+  /* Q&A */
+  .qa-item { margin-bottom: 20px; }
+  .qa-q { background: #1a4a5a; color: white; padding: 10px 16px;
+          border-radius: 6px 6px 0 0; font-weight: 600; font-size: 14px; }
+  .qa-hint { background: #b8911a; color: white; padding: 4px 16px;
+             font-size: 12px; }
+  .qa-a { background: white; border: 1px solid #ddd; border-top: none;
+          padding: 14px 16px; border-radius: 0 0 6px 6px; font-size: 14px; line-height: 1.8; }
+  .qa-key { color: #1a4a5a; font-weight: 700; }
+
+  /* Checklist */
+  .checklist { list-style: none; }
+  .checklist li { padding: 6px 0 6px 30px; position: relative; border-bottom: 1px solid #eee; }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before { content: "☐"; position: absolute; left: 0;
+                          color: #1a4a5a; font-size: 16px; }
+
+  /* Vocab table */
+  .vocab { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .vocab-item { padding: 8px 14px; border-bottom: 1px solid #eee;
+                font-size: 13px; }
+  .vocab-item:nth-child(even) { background: #f8f8f5; }
+  .vocab-term { font-weight: 700; color: #1a4a5a; }
+
+  .badge { display: inline-block; padding: 2px 9px; border-radius: 10px;
+           font-size: 12px; font-weight: 700; }
+  .b-teal  { background:#d0eaf5; color:#1a4a5a; }
+  .b-gold  { background:#fff0cc; color:#8a6a0a; }
+  .b-green { background:#d0f0dc; color:#1a5a30; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>頎邦科技 Bumping 產品工程師 — 面試準備筆記</h1>
+  <div class="subtitle">LM8211 | 新竹科學園區 | 2026年4月</div>
+  <div class="meta">
+    <div class="meta-item">🕗 日班 08:30–17:30，週休二日</div>
+    <div class="meta-item">💰 月薪 4 萬以上，年薪 14 個月</div>
+    <div class="meta-item">🎯 應屆畢業生歡迎</div>
+    <div class="meta-item">🌐 英文中等，需簡報能力</div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ══════════════════════════════════════════════════ -->
+<h2>Bumping 製程核心知識</h2>
+
+<h3>完整 Bumping 製程流程（金凸塊為例）</h3>
+<div class="card">
+  <div class="flow">
+    <div class="flow-step">晶圓清洗<br><small>去除污染物</small></div>
+    <div class="flow-arrow">▶</div>
+    <div class="flow-step">UBM 濺鍍<br><small>Ti/Cu 多層</small></div>
+    <div class="flow-arrow">▶</div>
+    <div class="flow-step">光阻塗布<br><small>PR Coating</small></div>
+    <div class="flow-arrow">▶</div>
+    <div class="flow-step light">曝光顯影<br><small>Lithography</small></div>
+    <div class="flow-arrow">▶</div>
+    <div class="flow-step light">Au 電鍍<br><small>Electroplating</small></div>
+    <div class="flow-arrow">▶</div>
+    <div class="flow-step accent">光阻去除<br><small>Strip</small></div>
+    <div class="flow-arrow">▶</div>
+    <div class="flow-step accent">UBM 蝕刻<br><small>Etching</small></div>
+    <div class="flow-arrow">▶</div>
+    <div class="flow-step green">AOI 檢測<br><small>出貨</small></div>
+  </div>
+
+  <div class="two-col" style="margin-top:14px;">
+    <div class="highlight">
+      <strong>關鍵品質項目：</strong><br>
+      • Bump 高度均一性（Height Uniformity）<br>
+      • Bump 直徑 / 間距（Diameter / Pitch）<br>
+      • 表面粗糙度（Surface Roughness）<br>
+      • 無橋接（No Bridging）/ 無缺料（No Missing）<br>
+      • 剪切強度（Shear Strength）
+    </div>
+    <div class="warning">
+      <strong>常見製程失效模式：</strong><br>
+      • Bump 高度不均 → 電鍍電流分布不均<br>
+      • Bridging → 間距過小或阻劑曝光不足<br>
+      • Missing Bump → UBM 附著力問題<br>
+      • 表面氧化 → 儲存/運輸條件不當
+    </div>
+  </div>
+</div>
+
+<h3>重要術語速查</h3>
+<div class="card">
+  <div class="vocab">
+    <div class="vocab-item"><span class="vocab-term">UBM</span> — Under Bump Metallization，凸塊下金屬化層</div>
+    <div class="vocab-item"><span class="vocab-term">NPI</span> — New Product Introduction，新產品導入</div>
+    <div class="vocab-item"><span class="vocab-term">AOI</span> — Automated Optical Inspection，自動光學檢測</div>
+    <div class="vocab-item"><span class="vocab-term">SPC</span> — Statistical Process Control，統計製程管制</div>
+    <div class="vocab-item"><span class="vocab-term">Cpk</span> — 製程能力指標（同時考量偏移與變異）</div>
+    <div class="vocab-item"><span class="vocab-term">FMEA</span> — Failure Mode and Effects Analysis</div>
+    <div class="vocab-item"><span class="vocab-term">8D Report</span> — 八個步驟的客訴處理報告格式</div>
+    <div class="vocab-item"><span class="vocab-term">DFM</span> — Design for Manufacturability，可製造性設計</div>
+    <div class="vocab-item"><span class="vocab-term">ECN</span> — Engineering Change Notice，工程變更通知</div>
+    <div class="vocab-item"><span class="vocab-term">PRR</span> — Production Readiness Review，量產準備審查</div>
+    <div class="vocab-item"><span class="vocab-term">CAPA</span> — Corrective and Preventive Action</div>
+    <div class="vocab-item"><span class="vocab-term">RCA</span> — Root Cause Analysis，根因分析</div>
+    <div class="vocab-item"><span class="vocab-term">Cu-Pillar</span> — 銅柱凸塊，新世代 Bumping 技術</div>
+    <div class="vocab-item"><span class="vocab-term">ILB</span> — Inner Lead Bonding（COF 封裝接合步驟）</div>
+    <div class="vocab-item"><span class="vocab-term">IATF 16949</span> — 車用品質管理系統認證</div>
+    <div class="vocab-item"><span class="vocab-term">DDI</span> — Display Driver IC，顯示驅動IC</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<h2>8D 客訴處理流程（務必熟記）</h2>
+<div class="card">
+  <table>
+    <tr><th>步驟</th><th>英文</th><th>內容</th></tr>
+    <tr><td>D1</td><td>Team Formation</td><td>組建跨部門處理小組（PE、QA、製造）</td></tr>
+    <tr><td>D2</td><td>Problem Description</td><td>精確描述問題（5W1H）</td></tr>
+    <tr><td>D3</td><td>Interim Containment</td><td>短期圍堵行動，防止問題擴散（Hold lot / 100% 篩選）</td></tr>
+    <tr><td>D4</td><td>Root Cause Analysis</td><td>找出真正根因（5-Why / 魚骨圖 / DOE）</td></tr>
+    <tr><td>D5</td><td>Corrective Actions</td><td>制定矯正措施（針對根因）</td></tr>
+    <tr><td>D6</td><td>Implementation</td><td>執行矯正措施並驗證效果</td></tr>
+    <tr><td>D7</td><td>Preventive Actions</td><td>預防措施標準化，更新 SOP / FMEA / Control Plan</td></tr>
+    <tr><td>D8</td><td>Team Recognition</td><td>結案、知識分享、感謝小組</td></tr>
+  </table>
+  <div class="success" style="margin-top:12px;">
+    <strong>我的經驗對應：</strong>研究所中，我對兩次連續批次失敗進行的完整處理（現象確認 → 魚骨圖 → 5-Why → CAPA → SOP更新 → 後續零失敗）等同 D2–D7 的完整執行。
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<h2>STAR 故事對應頎邦職位需求</h2>
+
+<div class="star-card">
+  <div class="star-header">STAR ① — NPI 類比：從零建立 SOP（對應「新產品開發導入」）</div>
+  <div class="star-body">
+    <div class="star-section">
+      <span class="star-label s">Situation</span>
+      <p>研究所研究海洋豚（Lagenodelphis hosei）皮膚組織，全球無現有 IHC 染色文獻可參考，等同新產品導入時無製程記錄可用的情況。</p>
+    </div>
+    <div class="star-section">
+      <span class="star-label t">Task</span>
+      <p>在試樣珍貴且不可重複採集的限制下，建立可移交、可重複執行的完整六模組分析流程。</p>
+    </div>
+    <div class="star-section">
+      <span class="star-label a">Action</span>
+      <p>應用 Taguchi L₁₈ 田口法，對六個製程參數（抗體濃度、孵育時間、抗原修復溫度、修復時間、阻斷液濃度、切片厚度）進行同步優化，將試驗次數從 729 次（全因子）縮減至 18 次，並建立含管制標準的書面 SOP。</p>
+    </div>
+    <div class="star-section">
+      <span class="star-label r">Result</span>
+      <p><strong>Throughput +70%、準確率 92% → 99%、五個機構採用此 SOP、後續批次零失敗。</strong></p>
+    </div>
+  </div>
+</div>
+
+<div class="star-card">
+  <div class="star-header">STAR ② — 異常根因分析（對應「客訴處理」）</div>
+  <div class="star-body">
+    <div class="star-section">
+      <span class="star-label s">Situation</span>
+      <p>連續兩批 IHC 製程失敗，組織型態嚴重劣化，樣本無法重新取得，且無文獻可查詢根因。</p>
+    </div>
+    <div class="star-section">
+      <span class="star-label t">Task</span>
+      <p>在不浪費珍貴樣品的前提下，精確定位根因並防止重複發生。</p>
+    </div>
+    <div class="star-section">
+      <span class="star-label a">Action</span>
+      <p>停止試驗 → 建立魚骨圖列出所有可能因子 → 5-Why 追溯每一路徑 → 確認交互影響的隱性因素（切片刀刃磨耗 + 緩衝液 pH 漂移）→ 導入 CAPA，更新 SOP 新增量測管制點。</p>
+    </div>
+    <div class="star-section">
+      <span class="star-label r">Result</span>
+      <p><strong>後續批次零重複失敗，此 CAPA 成為 SOP 的永久組成部分。</strong></p>
+    </div>
+  </div>
+</div>
+
+<div class="star-card">
+  <div class="star-header">STAR ③ — 英文專業簡報（對應「客戶稽核應對」）</div>
+  <div class="star-body">
+    <div class="star-section">
+      <span class="star-label s">Situation</span>
+      <p>台大 IEEB 研究生學術競賽，需以全英文向評審委員（含外籍學者）展示複雜的多參數研究設計與統計結果。</p>
+    </div>
+    <div class="star-section">
+      <span class="star-label t">Task</span>
+      <p>在 15 分鐘內清楚傳達 Taguchi DOE 設計邏輯、S/N ratio 分析結果及量化成效。</p>
+    </div>
+    <div class="star-section">
+      <span class="star-label a">Action</span>
+      <p>設計以「問題 → 方法 → 數據 → 意義」為主軸的簡報結構，用視覺化圖表取代數學推導，確保非專業背景評審也能理解核心論點。</p>
+    </div>
+    <div class="star-section">
+      <span class="star-label r">Result</span>
+      <p><strong>獲得最高榮譽（Top Honor），評審特別肯定「清晰的方法論展示」與「量化結果的說服力」。</strong></p>
+    </div>
+  </div>
+</div>
+
+<div class="star-card">
+  <div class="star-header">STAR ④ — 跨機構協調（對應「客戶特殊需求 Support」）</div>
+  <div class="star-body">
+    <div class="star-section">
+      <span class="star-label s">Situation</span>
+      <p>大型海洋哺乳類野外採樣計畫，涵蓋五個機構、超過 100 名成員，各單位有不同的樣品處理標準與時程。</p>
+    </div>
+    <div class="star-section">
+      <span class="star-label t">Task</span>
+      <p>確保跨機構採樣流程標準化，避免樣品因處理差異而產生不一致的品質。</p>
+    </div>
+    <div class="star-section">
+      <span class="star-label a">Action</span>
+      <p>制定統一的樣品處理 SOP，建立里程碑與責任矩陣，定期同步各機構進度，對特殊需求進行個別技術評估並書面回覆。</p>
+    </div>
+    <div class="star-section">
+      <span class="star-label r">Result</span>
+      <p><strong>五個機構的樣品品質一致達到分析標準，無因處理差異導致的樣品損失。</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<h2>高頻面試題完整 Q&A</h2>
+
+<div class="qa-item">
+  <div class="qa-q">Q1. 請用三分鐘自我介紹（中文）</div>
+  <div class="qa-hint">⚡ 重點：教育 → 研究經驗（NPI類比）→ 技能 → 應聘動機</div>
+  <div class="qa-a">
+    我是張合羽，畢業於台灣大學生態演化所，碩士成績 GPA 4.0/4.3。<br><br>
+    碩士研究期間，我在沒有任何文獻可參考的情況下，獨立建立了一套完整的組織切片分析流程。我應用田口法對六個製程參數進行同步最佳化，最終將產能提升 70%，準確率提升至 99%，這套流程目前已被五個機構採用。過程中我學到的不只是生物技術，而是「如何在未知領域中，用系統性方法快速建立可量產、可移交的標準製程」。<br><br>
+    我有完整的根因分析與 CAPA 實作經驗，並在英文學術競賽中獲得最高榮譽。我深信這些能力可以直接應用在頎邦的 Bumping 產品工程師職位上——NPI 導入、客訴根因分析、客戶稽核應對，本質上都是相同的問題解決邏輯。<br><br>
+    Bumping 製程的領域知識是我目前正在積極補充的部分，我有強烈的學習動機，也相信自己能在最短時間內達到作戰能力。
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">Q2. 為什麼選擇頎邦？為什麼是產品工程師而不是製程或設備工程師？</div>
+  <div class="qa-hint">⚡ 強調：客戶端溝通 + NPI + 跨功能整合的吸引力</div>
+  <div class="qa-a">
+    頎邦是全球 DDI 封裝龍頭，在這裡能接觸到最嚴格的客戶品質標準（IATF 16949）。我選擇產品工程師而非純製程或設備工程師，是因為這個職位讓我能同時發揮兩個強項：<br><br>
+    一是<span class="qa-key">系統性製程開發能力</span>（對應NPI導入）——從零建立製程、用 DOE 快速找到製程窗口；<br>
+    二是<span class="qa-key">客戶溝通與英文簡報能力</span>（對應客訴、稽核）——我的英文學術競賽經驗和跨機構協調背景，讓我有信心面對技術性的客戶溝通場景。<br><br>
+    純製程工程師偏向製程本身的持續優化，較少客戶直接接觸；設備工程師則以機台維護為核心。產品工程師的「端到端」視角——從客戶規格到量產交付——最符合我的能力組合和職涯期望。
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">Q3. 你如何快速學習不熟悉的技術領域？</div>
+  <div class="qa-hint">⚡ 用實際例子證明，不要只說「我學習能力強」</div>
+  <div class="qa-a">
+    我的方法是「第一原理拆解 + 實作驗證」。研究所時，組織學和光學顯微鏡技術對我來說完全陌生，我沒有先讀完所有教材，而是先理解：<br><br>
+    <em>組織切片 → 抗原修復 → 抗體標記 → 螢光成像</em>，每一步的物理/化學原理是什麼？這讓我能在遇到異常時，知道應該往哪個方向找原因，而不是盲目試驗。<br><br>
+    對於 Bumping 製程，我目前的學習路徑是：先掌握電鍍、微影、蝕刻的基本物理原理，再對應到頎邦的實際產品規格。入職後，我計畫主動向資深工程師請教，並從實際 lot 的 SPC 數據中學習製程行為。
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">Q4. 什麼是 SPC？如何在生產中應用？</div>
+  <div class="qa-hint">⚡ 顯示你理解統計邏輯，不只是背定義</div>
+  <div class="qa-a">
+    SPC（Statistical Process Control）是用統計方法即時監控製程是否處於受控狀態的工具。核心概念是區分<span class="qa-key">隨機變異（Common Cause）</span>和<span class="qa-key">特殊原因變異（Special Cause）</span>——只有後者需要立即行動。<br><br>
+    在 Bumping 中，典型的 SPC 應用：<br>
+    • Bump 高度的 X-bar &amp; R chart：監控批次間均值與變異趨勢<br>
+    • 當某批次數據點超出管制界限（UCL/LCL），立即 Hold lot 並啟動調查<br>
+    • Cpk 評估：定期計算製程能力，確認 Cpk ≥ 1.33（一般要求）或 ≥ 1.67（車用要求）<br><br>
+    我在研究所使用 SAS 進行過多變量統計分析，理解管制圖的統計基礎，可快速遷移至 Bumping 的 SPC 操作。
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">Q5. 如果你和客戶對問題的根因有不同意見，你怎麼處理？</div>
+  <div class="qa-hint">⚡ 展示客戶溝通成熟度，不要說「一切以客戶為主」</div>
+  <div class="qa-a">
+    首先，我會確保<span class="qa-key">用數據說話而不是用意見爭論</span>。如果根因有爭議，表示雙方目前的數據都不夠完整或說服力不足。<br><br>
+    我的做法：<br>
+    1. 收集雙方認為有關的數據，共同檢視（避免各說各話）<br>
+    2. 如果分歧仍存在，提議設計一個可以區分兩種假設的實驗或分析<br>
+    3. 在數據完整之前，採取最保守的短期圍堵措施（D3），避免客戶再受損<br>
+    4. 以書面形式回覆，保留完整的分析記錄<br><br>
+    根本原則：維護公司技術信譽，不因壓力而接受未經驗證的根因。
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">Q6. 請問頎邦的主要產品和服務是什麼？</div>
+  <div class="qa-hint">⚡ 一定要事先研究好，顯示你認真準備</div>
+  <div class="qa-a">
+    頎邦是全球最大的顯示驅動IC後段封裝服務廠，核心技術包括：<br><br>
+    • <span class="qa-key">Bumping</span>（金凸塊、銅柱凸塊、焊錫凸塊）：在晶圓上製作金屬凸塊，是 COF/TCP 封裝的前置步驟<br>
+    • <span class="qa-key">COF（Chip on Film）</span>：將晶片鍵合到撓性膠帶上，大量應用於 LCD/OLED 顯示器<br>
+    • <span class="qa-key">TCP（Tape Carrier Package）</span>：成本較低的撓性封裝，適合大量生產<br>
+    • <span class="qa-key">WLCSP / RDL</span>：晶圓級封裝，馬來西亞新廠主要業務<br><br>
+    頎邦是台灣唯一提供 Bumping → 封裝完整垂直整合服務的廠商，持有 ISO 9001、IATF 16949 等完整認證，2026 年在馬來西亞檳城新設廠，積極拓展非顯示器市場。
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">Q7. 你有什麼問題想問我們？（必問！）</div>
+  <div class="qa-hint">⚡ 準備 3 題，顯示你認真研究過公司</div>
+  <div class="qa-a">
+    <strong>問題 1（NPI流程）：</strong><br>
+    「新人入職後，通常多久才能獨立主導一個 NPI 案？前期會有什麼培訓制度？」<br><br>
+    <strong>問題 2（技術發展）：</strong><br>
+    「我了解頎邦在 2025 年底進入矽光子封裝市場，Bumping 產品工程師在未來是否有機會接觸到 SiPh 相關的 NPI 案？」<br><br>
+    <strong>問題 3（客戶結構）：</strong><br>
+    「這個職位主要服務的客戶類型是偏向面板廠還是 IC 設計公司？客訴案件的語言主要是英文還是中文？」
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<h2>履歷優勢與差異化論點</h2>
+<div class="card">
+  <div class="two-col">
+    <div>
+      <h3>你的強項（明確說出來）</h3>
+      <table>
+        <tr><th>能力</th><th>具體證明</th></tr>
+        <tr><td>DOE 實作</td><td>Taguchi L₁₈，6 參數，18 runs</td></tr>
+        <tr><td>SOP 建立</td><td>從零到五機構採用</td></tr>
+        <tr><td>RCA/CAPA</td><td>5-Why + 魚骨圖 + 零重複失敗</td></tr>
+        <tr><td>英文簡報</td><td>NTU IEEB 最高榮譽</td></tr>
+        <tr><td>跨機構協調</td><td>5機構 100+ 人</td></tr>
+        <tr><td>統計分析</td><td>SAS，多變量比較</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>弱點的正確回應方式</h3>
+      <div class="danger">
+        <strong>不要說：</strong>「我對半導體不熟悉，可能需要時間學習。」（顯得消極）
+      </div>
+      <div class="success" style="margin-top:10px;">
+        <strong>應該說：</strong>「Bumping 製程是我目前正在積極補充的領域知識。我的方法是先理解每個步驟的物理/化學原理，入職後也計畫主動向資深工程師學習，我相信 3–6 個月內能達到獨立作業能力。我現在就能帶來的，是製程問題解決的方法論框架。」
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<h2>面試前一週準備清單</h2>
+<div class="card">
+  <div class="two-col">
+    <div>
+      <h3>知識準備</h3>
+      <ul class="checklist">
+        <li>背熟 Bumping 製程六步驟及每步原理</li>
+        <li>理解 UBM 的作用與常見材料</li>
+        <li>能解釋 Au Bumping vs Cu-Pillar 差異</li>
+        <li>熟記 8D Report 八個步驟</li>
+        <li>能解釋 Cpk 計算方式與工業標準值</li>
+        <li>了解 COF 的應用場景（LCD 驅動IC）</li>
+        <li>熟悉 IATF 16949 的基本要求</li>
+        <li>準備「你對頎邦的了解」2分鐘說明</li>
+      </ul>
+    </div>
+    <div>
+      <h3>實戰準備</h3>
+      <ul class="checklist">
+        <li>練習中文自我介紹（3 分鐘）</li>
+        <li>練習英文自我介紹（2 分鐘）</li>
+        <li>STAR ① NPI 故事反覆練習，壓縮到 2 分鐘</li>
+        <li>STAR ② 客訴/異常故事練習</li>
+        <li>準備 3 個問面試官的問題</li>
+        <li>確認簡報檔在筆電可正常開啟</li>
+        <li>確認服裝（正式商務）</li>
+        <li>確認頎邦地址：力行五路 3 號，提前 15 分鐘到</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="warning" style="margin-top:16px;">
+    <strong>⚡ 面試現場關鍵提醒：</strong><br>
+    • 被問到不懂的技術問題：坦承「我尚未接觸過這個設備/製程，但我可以從…原理推理…」<br>
+    • 被問到薪資：「參考貴公司薪資結構，期望月薪 4.5–5 萬，有充裕的討論空間」<br>
+    • 英文問答：放慢語速，結構清晰（先說結論再說細節）比流暢更重要
+  </div>
+</div>
+
+</div><!-- /container -->
+</body>
+</html>

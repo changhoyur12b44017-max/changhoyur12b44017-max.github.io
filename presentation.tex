@@ -1,0 +1,517 @@
+% ╔══════════════════════════════════════════════════════════════╗
+% ║  製程專員面試簡報 — 張合羽 (Chang Ho Yu)                        ║
+% ║  樂迦再生科技股份有限公司                                        ║
+% ║                                                              ║
+% ║  編譯方式（需安裝 MiKTeX 或 TeX Live）：                        ║
+% ║    xelatex presentation.tex                                  ║
+% ║    xelatex presentation.tex  （執行兩次以確保頁碼正確）           ║
+% ║                                                              ║
+% ║  講稿查看：取消下方 \setbeameroption 其中一行的註解即可           ║
+% ╚══════════════════════════════════════════════════════════════╝
+
+\documentclass[aspectratio=169,12pt]{beamer}
+
+% ─── 字型與中文支援 ─────────────────────────────────────────────
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont{Microsoft JhengHei}
+\setCJKsansfont{Microsoft JhengHei}
+\setmainfont{Calibri}
+\setsansfont{Calibri}
+
+% ─── 套件 ──────────────────────────────────────────────────────
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{pgfpages}
+\usepackage{amssymb}
+\usetikzlibrary{shapes,shapes.misc,arrows.meta,positioning,backgrounds,calc}
+
+% ─── 講稿設定（取消註解以顯示講稿）────────────────────────────────
+% \setbeameroption{show notes}                        % 同頁顯示講稿
+% \setbeameroption{show notes on second screen=right} % 第二螢幕顯示講稿
+
+% ─── 配色 ──────────────────────────────────────────────────────
+\definecolor{mainblue}{RGB}{26,107,138}
+\definecolor{lightblue}{RGB}{224,242,249}
+\definecolor{accentblue}{RGB}{46,155,191}
+\definecolor{darkblue}{RGB}{19,79,104}
+\definecolor{successgreen}{RGB}{46,125,50}
+\definecolor{lightgreen}{RGB}{232,245,233}
+\definecolor{warnyellow}{RGB}{180,115,0}
+\definecolor{lightyellow}{RGB}{255,248,220}
+
+% ─── 主題 ──────────────────────────────────────────────────────
+\usetheme{Madrid}
+\usecolortheme[named=mainblue]{structure}
+\setbeamercolor{normal text}{fg=black!85}
+\setbeamercolor{block title}{bg=accentblue!90, fg=white}
+\setbeamercolor{block body}{bg=lightblue}
+\setbeamertemplate{navigation symbols}{}
+
+% ─── 頁尾 ──────────────────────────────────────────────────────
+\makeatletter
+\setbeamertemplate{footline}{
+  \leavevmode
+  \hbox{%
+    \begin{beamercolorbox}[wd=.35\paperwidth,ht=2.25ex,dp=1ex,leftskip=.3cm]{author in head/foot}
+      \usebeamerfont{author in head/foot}張合羽 (Chang Ho Yu)
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[wd=.45\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}
+      \usebeamerfont{title in head/foot}製程專員應聘｜樂迦再生科技
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[wd=.20\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}
+      \usebeamerfont{date in head/foot}
+      \insertframenumber\,/\,\inserttotalframenumber\hspace*{2ex}
+    \end{beamercolorbox}
+  }
+}
+\makeatother
+
+% ─── 簡報資訊 ──────────────────────────────────────────────────
+\title[製程專員應聘]{製程專員 面試簡報}
+\subtitle{Application for Process Engineer\\樂迦再生科技股份有限公司}
+\author{張合羽~~Chang Ho Yu}
+\institute{國立臺灣大學~生命科學研究所~碩士}
+\date{2026}
+
+% ══════════════════════════════════════════════════════════════
+\begin{document}
+% ══════════════════════════════════════════════════════════════
+
+% ── Slide 1：封面 ─────────────────────────────────────────────
+{
+\setbeamertemplate{footline}{}
+\begin{frame}
+  \titlepage
+  \note{%
+    【開場講稿】\\
+    各位好，我是張合羽，畢業於國立臺灣大學生命科學研究所。
+    今天非常榮幸有機會應徵樂迦再生科技的製程專員職位。
+    接下來我將簡短介紹我的背景、研究經歷，
+    以及我認為與這個職位高度相關的技術能力，請多指教。
+  }
+\end{frame}
+}
+
+% ── Slide 2：自我介紹 ─────────────────────────────────────────
+\begin{frame}{自我介紹}
+  \begin{columns}[c]
+    \column{0.30\textwidth}
+      \centering
+      \includegraphics[width=\linewidth, height=5.8cm,
+                       keepaspectratio]{RESUME/畢業照.jpg}
+
+    \column{0.70\textwidth}
+      \begin{block}{張合羽~~Chang Ho Yu}
+        \begin{itemize}\setlength\itemsep{7pt}
+          \item \textbf{學歷：}國立臺灣大學 生命科學研究所碩士\\
+                GPA\;4.0\,/\,4.3 \quad 2023--2025
+          \item \textbf{碩士研究：}鯨豚皮膚色素組織學分析\\
+                建立鯨豚 IHC 處理完整 SOP（無既有文獻）
+          \item \textbf{大學實習：}成功大學 神經分子實驗室\\
+                Primary Cell Culture・無菌操作・IHC/IF・WB
+          \item \textbf{認證：}LAC 實驗動物中心 認證
+          \item \textbf{獎項：}2025 NTU IEEB 學術報告競賽 \textbf{特優}
+        \end{itemize}
+      \end{block}
+  \end{columns}
+  \note{%
+    【自我介紹講稿】\\
+    我的名字是張合羽，今年剛從台大生命科學研究所畢業，GPA 4.0。\\
+    \\
+    碩士期間主要進行鯨豚皮膚組織學研究。
+    由於鯨豚在文獻上幾乎沒有既有的抗體使用規範，
+    所以我必須從零建立整套的 IHC 組織處理 SOP。
+    這個過程訓練了我對製程確效驗證的核心思維。\\
+    \\
+    大學期間在成功大學神經分子實驗室實習，
+    累積了細胞培養、無菌操作、IHC 染色和 Western Blot 的扎實技術，
+    並通過了 LAC 實驗動物中心認證。\\
+    \\
+    我的背景與貴公司細胞治療製程的需求高度相符，
+    希望有機會在這個職位上貢獻所長。
+  }
+\end{frame}
+
+% ── Slide 3：核心技術能力 ─────────────────────────────────────
+\begin{frame}{核心技術能力}
+  \begin{columns}[t]
+    \column{0.50\textwidth}
+      \begin{block}{濕式實驗技術}
+        \begin{itemize}\setlength\itemsep{4pt}
+          \item 細胞培養（Primary \& Cell Line）
+          \item \textbf{無菌操作}（Aseptic Technique）
+          \item IHC\,/\,IF 免疫組織化學染色
+          \item Western Blot 西方墨點法
+          \item 冷凍切片・組織固定保存
+          \item \textbf{LAC 實驗動物中心 認證}
+        \end{itemize}
+      \end{block}
+
+    \column{0.50\textwidth}
+      \begin{block}{製程優化與品質管控}
+        \begin{itemize}\setlength\itemsep{4pt}
+          \item \textbf{DOE 實驗設計法}（田口法）
+          \item \textbf{SOP 撰寫}・確效驗證
+          \item AI 自動化影像分析（QC 管控）
+          \item SAS 統計分析
+          \item 批次記錄・品質文件撰寫
+          \item 跨機構協調（100+ 人網絡）
+        \end{itemize}
+      \end{block}
+  \end{columns}
+
+  \vspace{0.3cm}
+  \centering
+  \begin{tikzpicture}
+    \foreach \x/\lbl in {
+      0/{細胞培養},
+      2.6/{無菌操作},
+      5.2/{SOP 建立},
+      7.8/{DOE 驗證},
+      10.4/{AI 品管}
+    }{
+      \node[fill=mainblue!15, draw=mainblue, rounded corners=5pt,
+            minimum width=2.3cm, minimum height=0.7cm,
+            font=\small\bfseries\color{mainblue}, align=center] at (\x,0) {\lbl};
+    }
+  \end{tikzpicture}
+  \note{%
+    【核心技術能力講稿】\\
+    我的技術能力分兩個面向：\\
+    \\
+    第一，濕式實驗技術。
+    我在成大實習與台大碩班累積了細胞培養、無菌操作的完整訓練，
+    包括 Primary cell culture、IHC 染色和 Western Blot，
+    並通過 LAC 實驗動物中心認證。\\
+    \\
+    第二，製程優化與品質管控思維。
+    我熟悉 DOE 實驗設計法，能系統化評估多個關鍵製程參數；
+    有從零建立 SOP、撰寫批次記錄的實際經驗；
+    並且導入了 AI 自動化影像分析作為品質管控工具。\\
+    \\
+    這些能力直接對應製程專員的日常核心工作。
+  }
+\end{frame}
+
+% ── Slide 4：碩士研究（SOP建立）────────────────────────────────
+\begin{frame}{碩士研究：鯨豚組織學 SOP 從零建立}
+  \begin{columns}[c]
+    \column{0.38\textwidth}
+      \centering
+      \begin{tikzpicture}[
+        snode/.style={draw=mainblue, fill=lightblue, rounded corners=4pt,
+                     minimum width=3.2cm, minimum height=0.58cm,
+                     font=\small\bfseries\color{darkblue}, align=center},
+        arr/.style={-Stealth, thick, mainblue}
+      ]
+        \node[snode] (s1) {田野採樣（擱淺事件）};
+        \node[snode, below=0.42cm of s1] (s2) {組織固定・冷凍保存};
+        \node[snode, below=0.42cm of s2] (s3) {冷凍切片（Cryosectioning）};
+        \node[snode, below=0.42cm of s3] (s4) {IHC 染色（DOE 優化）};
+        \node[snode, below=0.42cm of s4] (s5) {AI 影像分析（QuPath）};
+        \node[snode, fill=mainblue!22, draw=darkblue,
+              below=0.42cm of s5] (s6) {統計分析（SAS）};
+        \foreach \a/\b in {s1/s2, s2/s3, s3/s4, s4/s5, s5/s6}
+          \draw[arr] (\a) -- (\b);
+      \end{tikzpicture}
+
+    \column{0.62\textwidth}
+      \textbf{\color{mainblue}研究挑戰 → 製程能力對應}
+      \vspace{0.2cm}
+
+      \begin{tabular}{>{\small}p{3.1cm}|>{\small}p{3.7cm}}
+        \rowcolor{mainblue!18}
+        \textbf{研究挑戰} & \textbf{培養的能力} \\
+        \hline
+        無既有文獻方法   & SOP from scratch \\
+        \hline
+        樣本品質高度變異 & 批次管理・異常處置 \\
+        \hline
+        多參數需同步優化 & DOE 確效驗證思維 \\
+        \hline
+        100+ 人跨機構協作 & 跨部門溝通協調 \\
+        \hline
+        高壓環境精細操作 & 品質穩定性維持 \\
+      \end{tabular}
+
+      \vspace{0.3cm}
+      \begin{tikzpicture}
+        \node[fill=lightgreen, draw=successgreen!70, rounded corners=5pt,
+              text width=6.0cm, align=center, inner sep=7pt,
+              font=\small\color{successgreen}] {
+          \textbf{核心共通點：}在資源受限、無標準規範的環境下，\\
+          建立可重複、可驗證的製程標準
+        };
+      \end{tikzpicture}
+  \end{columns}
+  \note{%
+    【碩士研究講稿】\\
+    這是我碩士研究的工作流程，也是我最直接對應製程專員工作的經驗。\\
+    \\
+    由於研究對象是鯨豚，文獻上幾乎沒有既有的組織學操作規範，
+    所以我必須從零建立整套 SOP——
+    從田野採樣的保存條件、切片厚度，到 IHC 染色的每個參數，都需要自行確效。\\
+    \\
+    我使用 DOE 田口法系統評估抗原修復溫度、抗體濃度、封閉時間等關鍵變數，
+    這與製程確效驗證（Process Validation）的邏輯完全相同。\\
+    \\
+    由於每個樣本個體差異大，我也建立了品質篩選標準，
+    確保只有符合品質要求的批次進入下游分析——這就是 QC 的概念。\\
+    \\
+    核心共通點：在資源受限的環境下，建立可重複、可驗證的製程標準。
+  }
+\end{frame}
+
+% ── Slide 5：製程優化成果 ─────────────────────────────────────
+\begin{frame}{製程優化成果：DOE $\times$ AI 品質管控}
+  \begin{columns}[c]
+    \column{0.48\textwidth}
+      \centering
+      \textbf{\color{mainblue}DOE 多參數系統優化}
+      \vspace{0.4cm}
+
+      \begin{tikzpicture}[
+        param/.style={draw=mainblue, fill=lightblue!80, rounded corners=4pt,
+                      minimum width=2.5cm, minimum height=0.58cm,
+                      font=\small\bfseries\color{mainblue}, align=center},
+        center/.style={draw=darkblue, fill=mainblue, rounded corners=8pt,
+                       minimum width=1.55cm, minimum height=1.55cm,
+                       font=\bfseries\color{white}, align=center}
+      ]
+        \node[center] (doe) {DOE\\田口法};
+        \node[param, above=1.25cm of doe]              (p1) {抗體濃度};
+        \node[param, below=1.25cm of doe]              (p2) {孵育時間};
+        \node[param, right=1.4cm of doe, yshift= 0.7cm] (p3) {抗原修復};
+        \node[param, right=1.4cm of doe, yshift=-0.7cm] (p4) {Blocking};
+        \node[param, left=1.4cm  of doe, yshift= 0.7cm] (p5) {樣本固定};
+        \node[param, left=1.4cm  of doe, yshift=-0.7cm] (p6) {切片厚度};
+        \foreach \p in {p1,p2,p3,p4,p5,p6}
+          \draw[mainblue, thick] (doe) -- (\p);
+      \end{tikzpicture}
+
+    \column{0.52\textwidth}
+      \textbf{\color{mainblue}量化成果}
+      \vspace{0.4cm}
+
+      \begin{tikzpicture}[
+        card/.style={rounded corners=6pt, minimum width=5.6cm,
+                     minimum height=1.18cm, align=center, font=\normalsize,
+                     inner sep=6pt}
+      ]
+        \node[card, fill=mainblue!12, draw=mainblue] at (0, 0) {%
+          \textbf{\textcolor{mainblue}{\Large +70\,\%}}\; 實驗吞吐量提升\\
+          {\small AI 自動化分析流程導入}
+        };
+        \node[card, fill=lightgreen, draw=successgreen] at (0,-1.65) {%
+          \textbf{\textcolor{successgreen}{\Large 92\,\% \textrightarrow\; 99\,\%}}\; 偵測精確度\\
+          {\small 模型精調後品質大幅提升}
+        };
+        \node[card, fill=lightyellow, draw=warnyellow] at (0,-3.3) {%
+          \textbf{\textcolor{warnyellow}{\Large 完整 SOP}}\; 從零建立\\
+          {\small 鯨豚組織 IHC 染色標準規範}
+        };
+      \end{tikzpicture}
+  \end{columns}
+  \note{%
+    【製程優化成果講稿】\\
+    這張投影片展示我在製程優化方面的具體量化成果。\\
+    \\
+    左側是我用 DOE 田口法系統優化的六個參數：
+    抗體濃度、孵育時間、抗原修復條件、封閉液、樣本固定方式與切片厚度。
+    透過正交實驗設計，以最少的實驗次數找到最佳參數組合，
+    這正是製程確效的核心方法論。\\
+    \\
+    右側是量化成果：\\
+    ・導入 AI 自動化分析後，實驗吞吐量提升 70\%；\\
+    ・透過模型精調，細胞偵測精確度從 92\% 提升至 99\%；\\
+    ・完整建立了鯨豚組織處理的 SOP。\\
+    \\
+    這些成果展示了我對製程品質管控與效率優化的實際執行能力。
+  }
+\end{frame}
+
+% ── Slide 6：大學實驗室實習 ───────────────────────────────────
+\begin{frame}{大學實驗室實習：細胞培養與無菌操作}
+  \begin{columns}[c]
+    \column{0.54\textwidth}
+      \begin{block}{成功大學 神經分子實驗室（2020--2021）}
+        研究主題：多巴胺受體 D2R 對\\
+        寡突膠細胞（Oligodendrocyte）分化的調控
+      \end{block}
+      \vspace{0.3cm}
+      \begin{itemize}\setlength\itemsep{5pt}
+        \item \textbf{Primary Cell Culture}\\
+              \hspace{1em}神經幹細胞（NSC）培養・OPC 分化誘導
+        \item \textbf{無菌操作（Aseptic Technique）}\\
+              \hspace{1em}LAC 實驗動物中心認證通過
+        \item \textbf{IHC\,/\,IF 免疫螢光染色}\\
+              \hspace{1em}GFAP・NG2・MBP・PLP 細胞標記物
+        \item \textbf{Western Blot}\\
+              \hspace{1em}蛋白質定量・目標蛋白表現鑑定
+        \item \textbf{發炎細胞模型建立}\\
+              \hspace{1em}TNF-$\alpha$・IL-1$\beta$ 細胞激素處理
+      \end{itemize}
+
+    \column{0.46\textwidth}
+      \centering
+      \begin{tikzpicture}[
+        cell/.style={draw=mainblue, fill=lightblue!60, rounded corners=5pt,
+                     minimum width=3.1cm, minimum height=0.62cm,
+                     font=\small\bfseries\color{darkblue}, align=center},
+        arr/.style={-Stealth, thick, mainblue}
+      ]
+        \node[cell] (nsc) at (0,0) {神經幹細胞（NSC）};
+        \node[cell] (opc) at (0,-1.2) {OPC 前驅細胞};
+        \node[cell, fill=mainblue!20, draw=darkblue]
+              (ol)  at (0,-2.4) {成熟 OL 寡突膠細胞};
+        \draw[arr] (nsc) -- (opc) node[midway, right,
+              font=\tiny\color{mainblue}]{分化};
+        \draw[arr] (opc) -- (ol)  node[midway, right,
+              font=\tiny\color{mainblue}]{成熟};
+        \node[draw=warnyellow, fill=lightyellow, rounded corners=3pt,
+              right=0.25cm of opc, font=\scriptsize, align=left,
+              text width=2.0cm, inner sep=4pt] (box) {
+          D2R 調控\\
+          實驗技術：\\
+          ・無菌培養\\
+          ・IHC 染色\\
+          ・Western Blot
+        };
+        \draw[->, dashed, warnyellow, thick] (opc.east) -- (box.west);
+      \end{tikzpicture}
+
+      \vspace{0.4cm}
+      \begin{tikzpicture}
+        \node[fill=lightgreen, draw=successgreen!70, rounded corners=6pt,
+              minimum width=3.6cm, inner sep=6pt, align=center,
+              font=\small\color{successgreen}] {
+          \textbf{LAC 認證完成}\\
+          實驗動物操作合格
+        };
+      \end{tikzpicture}
+  \end{columns}
+  \note{%
+    【大學實習講稿】\\
+    大學期間，我在成功大學神經分子實驗室進行了約一年的實習，
+    研究主題是多巴胺受體 D2R 對寡突膠細胞分化的影響。\\
+    \\
+    這段實習讓我建立了細胞培養的完整基本功。
+    我們從懷孕母鼠的胚胎大腦皮質分離神經幹細胞，
+    進行 primary cell culture，並誘導其分化為寡突膠前驅細胞（OPC）。
+    整個過程都在嚴格的無菌環境下操作。\\
+    \\
+    除了細胞培養，我也進行了 IHC 免疫螢光染色和 Western Blot 蛋白質分析，
+    並建立了 TNF-$\alpha$、IL-1$\beta$ 等發炎因子的細胞處理模型。\\
+    \\
+    我也完成了 LAC 實驗動物中心的認證，具備合格的動物實驗操作資格。\\
+    \\
+    這些技術——特別是 primary cell culture 和無菌操作——
+    與貴公司細胞治療製程的需求直接相關。
+  }
+\end{frame}
+
+% ── Slide 7：職能匹配 ─────────────────────────────────────────
+\begin{frame}{職能匹配：為什麼我適合這個職位}
+  \centering
+  \begin{tabular}{>{\bfseries\small\color{mainblue}}p{3.4cm}
+                  >{\small}p{4.3cm}
+                  >{\small\centering\arraybackslash}p{2.4cm}}
+    \rowcolor{mainblue!20}
+    \textbf{\color{mainblue}職缺要求} &
+    \textbf{\color{mainblue}我的相關經驗} &
+    \textbf{\color{mainblue}符合度} \\
+    \hline
+    無菌操作・細胞培養\,2年+ &
+      成大實習（1年）+台大碩班（2年） &
+      \textcolor{successgreen}{\textbf{\checkmark\;完全符合}} \\
+    \hline
+    SOP 撰寫與修訂 &
+      鯨豚組織處理 SOP，from scratch &
+      \textcolor{successgreen}{\textbf{\checkmark\;核心強項}} \\
+    \hline
+    製程確效驗證 &
+      DOE 田口法，六參數系統優化 &
+      \textcolor{successgreen}{\textbf{\checkmark\;直接對應}} \\
+    \hline
+    品質文件撰寫 &
+      批次記錄、實驗數據記錄 &
+      \textcolor{successgreen}{\textbf{\checkmark\;有經驗}} \\
+    \hline
+    碩士以上學歷 &
+      NTU M.S. 生命科學（GPA\;4.0） &
+      \textcolor{successgreen}{\textbf{\checkmark\;完全符合}} \\
+    \hline
+    生物相關科系 &
+      生命科學系碩士 &
+      \textcolor{successgreen}{\textbf{\checkmark\;完全符合}} \\
+    \hline
+    接受排班制 &
+      鯨豚擱淺事件彈性應急出勤 &
+      \textcolor{successgreen}{\textbf{\checkmark\;可配合}} \\
+  \end{tabular}
+  \note{%
+    【職能匹配講稿】\\
+    讓我用這張表格說明我的背景與這個職位的匹配程度。\\
+    \\
+    職缺最核心的要求是「無菌操作與細胞培養 2 年以上」——
+    我在大學實習和碩士研究加起來超過三年的實際操作，完全符合。\\
+    \\
+    SOP 撰寫方面，我在碩士研究中從零建立了鯨豚組織的完整處理規範，
+    這是我的核心強項。\\
+    \\
+    製程確效驗證，我有 DOE 田口法的實際應用經驗，邏輯完全相同。\\
+    \\
+    關於排班制，我在碩士研究期間需要配合鯨豚擱淺事件即時出勤，
+    對彈性工作時間完全能夠適應。\\
+    \\
+    我相信我的背景能夠快速融入貴公司的製程團隊，並持續成長貢獻。
+  }
+\end{frame}
+
+% ── Slide 8：感謝 ─────────────────────────────────────────────
+{
+\setbeamertemplate{footline}{}
+\begin{frame}
+  \centering
+  \vspace{0.7cm}
+  {\Huge\color{mainblue}\textbf{感謝聆聽}}\\[0.25cm]
+  {\large\color{darkblue} Thank You for Your Time}
+
+  \vspace{0.8cm}
+  \begin{tikzpicture}
+    \node[fill=lightblue, draw=mainblue, rounded corners=10pt,
+          minimum width=9.5cm, minimum height=3.2cm,
+          align=center, font=\normalsize] {
+      \textbf{\large 張合羽~~Chang Ho Yu}\\[6pt]
+      \texttt{changhoyur12b44017@gmail.com}\\[3pt]
+      \texttt{0919-179-654}\\[3pt]
+      \texttt{https://changhoyur12b44017-max.github.io}
+    };
+  \end{tikzpicture}
+
+  \vspace{0.5cm}
+  {\small\color{mainblue}\itshape
+    對再生醫學充滿熱忱，期待在樂迦的平台上貢獻所長}
+  \note{%
+    【結尾講稿】\\
+    非常感謝各位今天給我這個機會。\\
+    \\
+    我對再生醫學與細胞治療產業充滿熱忱。
+    相信我的生命科學研究背景、精細的實驗操作技術，
+    以及對製程品質與標準化的重視，
+    能夠為樂迦的製程團隊帶來實質的貢獻。\\
+    \\
+    我也非常願意接受公司的培訓，
+    持續在細胞治療製程領域深耕學習。\\
+    \\
+    如果各位有任何問題，非常歡迎進一步交流。謝謝。
+  }
+\end{frame}
+}
+
+\end{document}

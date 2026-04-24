@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>頎邦科技 — 公司背景與產品分析</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft JhengHei", "PingFang TC", Arial, sans-serif;
+         background: #f5f5f0; color: #222; line-height: 1.7; font-size: 15px; }
+
+  .page-header {
+    background: linear-gradient(135deg, #1a4a5a 0%, #0d2d38 100%);
+    color: white; padding: 36px 48px 28px;
+  }
+  .page-header h1 { font-size: 26px; letter-spacing: 1px; margin-bottom: 6px; }
+  .page-header .subtitle { color: #a8d4e0; font-size: 14px; }
+  .page-header .meta { margin-top: 14px; display: flex; gap: 24px; flex-wrap: wrap; }
+  .meta-item { background: rgba(255,255,255,0.12); border-radius: 4px;
+               padding: 6px 14px; font-size: 13px; }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 28px 24px 60px; }
+
+  h2 { color: #1a4a5a; font-size: 19px; border-bottom: 2px solid #1a4a5a;
+       padding-bottom: 6px; margin: 32px 0 16px; }
+  h3 { color: #b8911a; font-size: 15px; margin: 20px 0 10px; font-weight: 700; }
+
+  .card { background: white; border-radius: 8px; padding: 20px 24px;
+          margin-bottom: 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media(max-width: 640px){ .card-grid { grid-template-columns: 1fr; } }
+
+  .info-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .info-table th { background: #1a4a5a; color: white; padding: 8px 14px;
+                   text-align: left; font-weight: 600; }
+  .info-table td { padding: 8px 14px; border-bottom: 1px solid #eee; }
+  .info-table tr:last-child td { border-bottom: none; }
+  .info-table tr:nth-child(even) td { background: #f8f8f5; }
+  .info-table td:first-child { color: #1a4a5a; font-weight: 600; width: 120px; }
+
+  .highlight { background: #e8f4f8; border-left: 4px solid #1a4a5a;
+               padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 12px 0; }
+  .warning  { background: #fff8e8; border-left: 4px solid #b8911a;
+               padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 12px 0; }
+  .success  { background: #e8f5ec; border-left: 4px solid #2a7a4a;
+               padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 12px 0; }
+
+  /* Flow diagram */
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 0; margin: 16px 0; }
+  .flow-step { background: #1a4a5a; color: white; padding: 10px 14px;
+               border-radius: 6px; font-size: 13px; font-weight: 600;
+               text-align: center; min-width: 100px; line-height: 1.4; }
+  .flow-step.accent { background: #b8911a; }
+  .flow-step.light  { background: #3a7a9a; }
+  .flow-arrow { color: #1a4a5a; font-size: 20px; padding: 0 6px; font-weight: bold; }
+
+  .tag { display: inline-block; background: #1a4a5a; color: white;
+         border-radius: 3px; padding: 2px 8px; font-size: 12px; margin: 2px; }
+  .tag.gold { background: #b8911a; }
+  .tag.green { background: #2a7a4a; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media(max-width: 640px){ .two-col { grid-template-columns: 1fr; } }
+
+  .step-list { counter-reset: step; list-style: none; }
+  .step-list li { counter-increment: step; padding: 8px 0 8px 40px; position: relative;
+                  border-bottom: 1px solid #eee; }
+  .step-list li:last-child { border-bottom: none; }
+  .step-list li::before {
+    content: counter(step);
+    position: absolute; left: 0; top: 8px;
+    background: #1a4a5a; color: white;
+    width: 24px; height: 24px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+  }
+  .step-label { font-weight: 700; color: #1a4a5a; }
+
+  .qa-item { margin-bottom: 20px; }
+  .qa-q { background: #1a4a5a; color: white; padding: 10px 16px;
+          border-radius: 6px 6px 0 0; font-weight: 600; font-size: 14px; }
+  .qa-a { background: white; border: 1px solid #ddd; border-top: none;
+          padding: 14px 16px; border-radius: 0 0 6px 6px; font-size: 14px;
+          line-height: 1.8; }
+  .qa-a .key { color: #1a4a5a; font-weight: 700; }
+
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 12px;
+           font-size: 12px; font-weight: 700; }
+  .badge-teal  { background: #d0eaf5; color: #1a4a5a; }
+  .badge-gold  { background: #fff0cc; color: #8a6a0a; }
+  .badge-green { background: #d0f0dc; color: #1a5a30; }
+  .badge-red   { background: #ffe8e8; color: #8a2020; }
+
+  .dept-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .dept-table th { background: #b8911a; color: white; padding: 8px 12px; text-align: left; }
+  .dept-table td { padding: 8px 12px; border-bottom: 1px solid #eee; vertical-align: top; }
+  .dept-table tr:nth-child(even) td { background: #f8f8f5; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>頎邦科技股份有限公司 — 背景分析</h1>
+  <div class="subtitle">Chipbond Technology Corporation ｜ TWSE: 6147 ｜ Bumping 產品工程師面試準備</div>
+  <div class="meta">
+    <div class="meta-item">📅 整理日期：2026年4月</div>
+    <div class="meta-item">🏭 新竹科學園區力行五路3號</div>
+    <div class="meta-item">👥 員工約 5,200 人</div>
+    <div class="meta-item">🌍 全球DDI封裝龍頭</div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ══════════════════════════════════════════════════ -->
+<h2>公司基本資料</h2>
+<div class="card">
+  <table class="info-table">
+    <tr><td>成立時間</td><td>1997年7月</td></tr>
+    <tr><td>上市時間</td><td>2002年1月31日，台灣證券交易所（TWSE: 6147）</td></tr>
+    <tr><td>總部地點</td><td>新竹科學園區力行五路3號</td></tr>
+    <tr><td>員工人數</td><td>約 5,200 人（台灣六廠 + 馬來西亞檳城廠）</td></tr>
+    <tr><td>董事長（研發）</td><td>吳飛晉（Fei-Jain Wu），匹茲堡大學電機與物理學碩士</td></tr>
+    <tr><td>總裁（執行長）</td><td>高 Huoo-Wen Gau，清大應用化學碩士（2024年5月接任）</td></tr>
+    <tr><td>2024年營收</td><td>新台幣 203.4 億元（YoY +1.4%）</td></tr>
+    <tr><td>2024年淨利</td><td>新台幣 41.3 億元，EPS 5.59 元</td></tr>
+    <tr><td>市值</td><td>約 USD 13.4 億（2026年初）</td></tr>
+    <tr><td>核心業務</td><td>半導體後段封測：Bumping、COF、TCP、WLCSP</td></tr>
+    <tr><td>主要認證</td><td>ISO 9001、ISO 14001、ISO 45001、IATF 16949、IECQ-QC080000</td></tr>
+  </table>
+</div>
+
+<div class="highlight">
+  <strong>市場定位：</strong>頎邦是<strong>全球最大的顯示驅動IC（DDI）後段封裝廠</strong>，也是台灣唯一提供 Bumping → COF/TCP 完整垂直整合服務的廠商。
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<h2>廠區佈局</h2>
+<div class="card-grid">
+  <div class="card">
+    <h3>台灣六廠</h3>
+    <ul style="padding-left:18px; font-size:14px;">
+      <li>力新廠（Lihsin Plant）</li>
+      <li>展業廠（Zhanye Plant）</li>
+      <li>研發廠（Yanfa Plant）</li>
+      <li>光復廠（Kuangfu Plant）</li>
+      <li>南六廠（Nanliu Plant）</li>
+      <li>南一廠（Nanyi Plant）</li>
+    </ul>
+    <p style="margin-top:10px;font-size:13px;color:#666;">均位於新竹科學園區及周邊</p>
+  </div>
+  <div class="card">
+    <h3>🌏 馬來西亞檳城廠（2026年新廠）</h3>
+    <p style="font-size:14px;">投資金額：USD 2 億</p>
+    <p style="font-size:14px;">初期產能：Wafer Bumping 10,000 片/月 + WLCSP 1億顆/月</p>
+    <p style="font-size:14px;">客戶認證：2026年Q1啟動</p>
+    <div class="warning" style="margin-top:10px;font-size:13px;">
+      策略意義：供應鏈分散化，降低地緣政治風險，開拓非顯示器市場客戶
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<h2>核心技術產品解析</h2>
+
+<h3>① Bumping（晶圓凸塊製程）</h3>
+<div class="card">
+  <p style="margin-bottom:14px;font-size:14px;">在晶圓的 I/O Pad 上製作金屬凸塊（bump），作為後續封裝的電氣及機械連接介面。頎邦提供三種主要 Bumping 技術：</p>
+
+  <div class="two-col">
+    <div>
+      <h3>金凸塊（Au Bumping）</h3>
+      <div class="flow" style="flex-direction:column;gap:6px;">
+        <div class="flow-step" style="width:100%;">UBM 濺鍍沉積</div>
+        <div class="flow-arrow" style="transform:rotate(90deg);">▶</div>
+        <div class="flow-step" style="width:100%;">黃光微影（Photolithography）</div>
+        <div class="flow-arrow" style="transform:rotate(90deg);">▶</div>
+        <div class="flow-step" style="width:100%;">電鍍金（Au Electroplating）</div>
+        <div class="flow-arrow" style="transform:rotate(90deg);">▶</div>
+        <div class="flow-step" style="width:100%;">光阻去除 + UBM蝕刻</div>
+        <div class="flow-arrow" style="transform:rotate(90deg);">▶</div>
+        <div class="flow-step accent" style="width:100%;">AOI 外觀檢驗 + 出貨</div>
+      </div>
+      <p style="font-size:13px;margin-top:8px;color:#666;">傳統成熟技術，廣泛用於 COF/TCP 接合</p>
+    </div>
+    <div>
+      <h3>銅柱凸塊（Cu-Pillar Bumping）</h3>
+      <div class="flow" style="flex-direction:column;gap:6px;">
+        <div class="flow-step light" style="width:100%;">UBM 層沉積</div>
+        <div class="flow-arrow" style="transform:rotate(90deg);">▶</div>
+        <div class="flow-step light" style="width:100%;">黃光微影</div>
+        <div class="flow-arrow" style="transform:rotate(90deg);">▶</div>
+        <div class="flow-step light" style="width:100%;">Cu 柱電鍍 + 薄錫帽</div>
+        <div class="flow-arrow" style="transform:rotate(90deg);">▶</div>
+        <div class="flow-step light" style="width:100%;">光阻去除 + 種晶層蝕刻</div>
+        <div class="flow-arrow" style="transform:rotate(90deg);">▶</div>
+        <div class="flow-step accent" style="width:100%;">Reflow + 檢驗</div>
+      </div>
+      <p style="font-size:13px;margin-top:8px;color:#666;">較高導熱/導電性，抗電遷移，支援更細間距（fine pitch）</p>
+    </div>
+  </div>
+
+  <div class="highlight" style="margin-top:16px;">
+    <strong>UBM（Under Bump Metallization）</strong>是所有 Bumping 的基礎，通常為 Ti/Cu 或 Cr/Cu 濺鍍多層金屬，提供附著力與阻障層。
+  </div>
+</div>
+
+<h3>② COF（Chip on Film）</h3>
+<div class="card">
+  <p style="font-size:14px;margin-bottom:12px;">將金凸塊晶片直接鍵合到撓性聚醯亞胺膠帶上，大量用於 LCD/OLED 顯示器驅動IC封裝。</p>
+  <div class="flow">
+    <div class="flow-step">FPC 基板製作<br><small>半加成法電鍍銅</small></div>
+    <div class="flow-arrow">▶</div>
+    <div class="flow-step">ILB 內引腳鍵合<br><small>&gt;400°C 熱壓合</small></div>
+    <div class="flow-arrow">▶</div>
+    <div class="flow-step">Underfill 填充</div>
+    <div class="flow-arrow">▶</div>
+    <div class="flow-step">封裝成型</div>
+    <div class="flow-arrow">▶</div>
+    <div class="flow-step accent">捲帶包裝出貨</div>
+  </div>
+  <div class="two-col" style="margin-top:14px;">
+    <div class="success">
+      <strong>頎邦 COF 優勢：</strong><br>
+      • Super Fine Pitch 超細間距<br>
+      • 雙面銅導線設計<br>
+      • 強化散熱結構<br>
+      • Reel-to-Reel 連續生產
+    </div>
+    <div class="warning">
+      <strong>主要應用：</strong><br>
+      • LCD / OLED 驅動IC<br>
+      • 行動裝置顯示器<br>
+      • 車載顯示器<br>
+      • 大型面板模組
+    </div>
+  </div>
+</div>
+
+<h3>③ TCP（Tape Carrier Package）</h3>
+<div class="card">
+  <p style="font-size:14px;">IC 晶片鍵合於聚醯亞胺載帶，外引腳可撓曲，成本較低，適合大量生產。</p>
+  <div class="flow">
+    <div class="flow-step">晶圓 Bumping</div>
+    <div class="flow-arrow">▶</div>
+    <div class="flow-step">TAB 載帶製作</div>
+    <div class="flow-arrow">▶</div>
+    <div class="flow-step">晶片接合</div>
+    <div class="flow-arrow">▶</div>
+    <div class="flow-step">五面包封</div>
+    <div class="flow-arrow">▶</div>
+    <div class="flow-step">外引腳成形</div>
+    <div class="flow-arrow">▶</div>
+    <div class="flow-step accent">捲帶出貨</div>
+  </div>
+</div>
+
+<h3>④ 其他服務</h3>
+<div class="card-grid">
+  <div class="card">
+    <span class="tag">WLCSP</span> <span class="tag">RDL</span> <span class="tag">BSM/FSM</span>
+    <p style="font-size:13px;margin-top:10px;">晶圓級封裝服務，馬來西亞新廠主要承接</p>
+  </div>
+  <div class="card">
+    <span class="tag gold">化合物半導體</span>
+    <p style="font-size:13px;margin-top:10px;">GaAs / GaN / SiC / SiGe 晶圓加工，多元化新市場</p>
+  </div>
+  <div class="card">
+    <span class="tag green">矽光子封裝</span>
+    <p style="font-size:13px;margin-top:10px;">2025年底進入 SiPh 市場，作為第二成長引擎，應對面板業景氣循環</p>
+  </div>
+  <div class="card">
+    <span class="tag">COG / COP</span>
+    <p style="font-size:13px;margin-top:10px;">Chip-on-Glass / Chip-on-Panel，直貼型封裝服務</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<h2>市場定位與競爭優勢</h2>
+<div class="card">
+  <div class="success" style="margin-bottom:16px;">
+    <strong>🏆 全球第一：</strong>顯示驅動IC（DDI）後段封裝市場龍頭，也是台灣唯一提供 Bumping → 封裝完整垂直整合的廠商。
+  </div>
+
+  <table class="info-table">
+    <tr>
+      <th>競爭優勢</th>
+      <th>說明</th>
+    </tr>
+    <tr>
+      <td>垂直整合</td>
+      <td>一站式完成 Bumping → COF/TCP 封裝 → 測試，降低交期與品質風險</td>
+    </tr>
+    <tr>
+      <td>DDI 專精</td>
+      <td>深耕顯示驅動IC製程20年以上，製程參數優化積累深厚</td>
+    </tr>
+    <tr>
+      <td>認證完整</td>
+      <td>IATF 16949 車用級品質認證，可承接汽車電子客戶</td>
+    </tr>
+    <tr>
+      <td>策略夥伴</td>
+      <td>與 UMC 股份交換（持股9.09%），強化前後段協作；E Ink SoP 合作</td>
+    </tr>
+    <tr>
+      <td>地理分散</td>
+      <td>台灣六廠 + 馬來西亞新廠，降低單一地區供應鏈風險</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<h2>最新動態（2024–2026）</h2>
+<div class="card-grid">
+  <div class="card">
+    <h3>🌏 馬來西亞檳城廠正式開幕（2026年2月）</h3>
+    <p style="font-size:13px;">投資 USD 2億，初期月產能 Bumping 1萬片 + WLCSP 1億顆。策略意義：進入非台灣供應鏈客群，分散地緣政治風險。</p>
+  </div>
+  <div class="card">
+    <h3>🔬 進入矽光子封裝市場（2025年底）</h3>
+    <p style="font-size:13px;">面板產業景氣低迷下，以 Bumping 核心技術切入 SiPh 封裝，開拓 AI/HPC 相關市場，作為第二成長引擎。</p>
+  </div>
+  <div class="card">
+    <h3>📊 2024年全年財報</h3>
+    <p style="font-size:13px;">營收 203.4 億元（+1.4% YoY），淨利 41.3 億元（+3.5% YoY），EPS 5.59 元。在面板市場疲弱下仍維持成長。</p>
+  </div>
+  <div class="card">
+    <h3>🤝 UMC 股份交換</h3>
+    <p style="font-size:13px;">與聯電進行股份交換，頎邦持有 UMC 9.09% 股份，強化前段晶圓廠與後段封裝的協作關係。</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<h2>產品工程師（Bumping）職務分析</h2>
+
+<h3>四大核心工作對應表</h3>
+<div class="card">
+  <table class="dept-table">
+    <tr>
+      <th>工作項目</th>
+      <th>具體內容</th>
+      <th>所需能力</th>
+    </tr>
+    <tr>
+      <td><strong>①新產品開發導入（NPI）</strong></td>
+      <td>
+        接收客戶設計規格 → DFM 可行性評估 → 製程窗口開發 →
+        試產 → 工程樣品交客戶驗證 → 量產移轉
+      </td>
+      <td>DOE、SOP 建立、跨部門協調、製程知識</td>
+    </tr>
+    <tr>
+      <td><strong>②客訴處理</strong></td>
+      <td>
+        接收客訴 → 現象確認 → RCA（5-Why/魚骨圖） →
+        CAPA 制定 → 8D Report 回覆客戶 → 追蹤改善效果
+      </td>
+      <td>RCA、CAPA、英文書面溝通、SPC 分析</td>
+    </tr>
+    <tr>
+      <td><strong>③客戶稽核應對</strong></td>
+      <td>
+        準備製程文件/SPC 圖表/FMEA → 廠區導覽 →
+        回答技術問題 → ISO/IATF 合規說明 → 後續改善回覆
+      </td>
+      <td>英文專業簡報、製程文件管理、品質系統知識</td>
+    </tr>
+    <tr>
+      <td><strong>④客戶特殊需求 Support</strong></td>
+      <td>
+        客製化 Bump 設計評估 → 特殊材料可行性測試 →
+        ESD/可靠性特殊要求評估 → 技術報告回覆
+      </td>
+      <td>快速技術評估、跨部門協作、英文溝通</td>
+    </tr>
+  </table>
+</div>
+
+<h3>NPI 新產品導入完整流程</h3>
+<div class="card">
+  <div class="flow" style="flex-wrap:wrap;gap:8px;">
+    <div class="flow-step">①<br>客戶規格接收<br><small>Spec Review</small></div>
+    <div class="flow-arrow">▶</div>
+    <div class="flow-step">②<br>DFM 評估<br><small>可行性確認</small></div>
+    <div class="flow-arrow">▶</div>
+    <div class="flow-step">③<br>製程窗口開發<br><small>DOE / 參數優化</small></div>
+    <div class="flow-arrow">▶</div>
+    <div class="flow-step">④<br>試產<br><small>Pilot Run</small></div>
+    <div class="flow-arrow">▶</div>
+    <div class="flow-step accent">⑤<br>樣品交客戶<br><small>Engineering Sample</small></div>
+    <div class="flow-arrow">▶</div>
+    <div class="flow-step accent">⑥<br>客戶驗證<br><small>Customer Qual.</small></div>
+    <div class="flow-arrow">▶</div>
+    <div class="flow-step" style="background:#2a7a4a;">⑦<br>量產移轉<br><small>Mass Production</small></div>
+  </div>
+
+  <div class="highlight" style="margin-top:14px;">
+    <strong>與我的研究背景對應：</strong>NPI 的本質等同於「從零建立 SOP」— 無前例可參考、需要在有限試驗次數內找到可量產的製程窗口，正是 Taguchi DOE 的核心應用場景。
+  </div>
+</div>
+
+<h3>日常工作時間分配（推估）</h3>
+<div class="card">
+  <div class="two-col">
+    <div>
+      <table class="info-table">
+        <tr><th>活動</th><th>時間比例</th></tr>
+        <tr><td>NPI 製程開發</td><td>40%</td></tr>
+        <tr><td>客訴/異常處理</td><td>25%</td></tr>
+        <tr><td>客戶稽核準備/應對</td><td>15%</td></tr>
+        <tr><td>量產支援/SPC 監控</td><td>12%</td></tr>
+        <tr><td>文件撰寫/報告</td><td>8%</td></tr>
+      </table>
+    </div>
+    <div class="warning">
+      <strong>常用術語：</strong><br>
+      UBM、Bump Height、Bump Pitch<br>
+      AOI（自動光學檢測）<br>
+      SPC / Cpk / Ppk<br>
+      FMEA（失效模式分析）<br>
+      8D Report（客訴標準格式）<br>
+      DFM（Design for Manufacturability）<br>
+      PRR（Production Readiness Review）<br>
+      ECN（Engineering Change Notice）
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<h2>跨部門互動</h2>
+<div class="card">
+  <table class="dept-table">
+    <tr>
+      <th>合作部門</th>
+      <th>互動內容</th>
+      <th>頻率</th>
+    </tr>
+    <tr>
+      <td>製程工程（PE）</td>
+      <td>NPI 製程開發技術討論、異常根因確認、SOP 審查</td>
+      <td>每日</td>
+    </tr>
+    <tr>
+      <td>設備工程（EE）</td>
+      <td>設備參數設定、Bump 尺寸異常排查、PM 後確認</td>
+      <td>每日</td>
+    </tr>
+    <tr>
+      <td>品保（QA/QE）</td>
+      <td>客訴 8D 報告審核、CAPA 有效性驗證、稽核文件準備</td>
+      <td>每週</td>
+    </tr>
+    <tr>
+      <td>業務/PM</td>
+      <td>客戶需求傳遞、NPI Timeline 協調、客訴溝通介面</td>
+      <td>每週</td>
+    </tr>
+    <tr>
+      <td>客戶（直接）</td>
+      <td>稽核接待、工程樣品確認、技術問題英文回覆</td>
+      <td>不定期</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<h2>面試 Q&A（10 題）</h2>
+
+<div class="qa-item">
+  <div class="qa-q">Q1. 你沒有半導體或 Bumping 相關背景，為何認為自己適合這個職位？</div>
+  <div class="qa-a">
+    <span class="key">核心論點：製程工程的邏輯是通用的。</span><br>
+    在研究所，我在沒有任何文獻依據的情況下，獨立建立了完整的六模組組織切片分析流程——這與 NPI 的本質高度相同：面對未知、在有限試驗次數內找到可量產的製程窗口。我應用 Taguchi L₁₈ 田口法同時優化六個參數，僅用 18 次實驗取代 729 次全因子實驗，將throughput 提升 70%，準確率從 92% 提升至 99%。這套「系統性設計實驗 → 數據驅動決策 → 建立可移交 SOP」的思路，正是 Bumping 產品工程師在 NPI 導入時所需要的。缺少的是 Bumping 製程的領域知識，我會在最短時間內補足這個部分。
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">Q2. 請說明你處理過最困難的製程異常，以及如何解決。</div>
+  <div class="qa-a">
+    研究所期間，連續兩批 IHC 染色製程失敗，組織型態嚴重劣化，且無文獻可查。我強迫自己停下來，用魚骨圖列出所有可能的影響因子，再以 5-Why 逐一追溯根因，最終鎖定兩個交互影響的隱性因素——切片刀刃磨耗與緩衝液 pH 值漂移——兩者均未納入原 SOP 的管制標準。導入 CAPA 並更新 SOP 後，後續批次零重複失敗。<br><br>
+    <span class="key">關鍵訊息：</span>這套 RCA → CAPA → SOP 更新流程，等同於頎邦客訴處理的 8D Report 標準流程，可直接遷移應用。
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">Q3. 如果客戶抱怨 Bump 高度不均勻，你會如何處理？</div>
+  <div class="qa-a">
+    <span class="key">步驟框架（即使不懂 Bumping 細節，思路是對的）：</span><br>
+    1. <strong>現象確認：</strong>收集不良品資料（Wafer ID、Lot#、分佈位置）、確認量測方式是否一致<br>
+    2. <strong>範圍界定：</strong>是單一批次/單一機台/跨批次的系統性問題？<br>
+    3. <strong>根因分析：</strong>電鍍電流密度分布、阻劑厚度均一性、UBM 蝕刻速率差異、設備 PM 週期<br>
+    4. <strong>CAPA：</strong>針對根因制定矯正預防措施，設定新的管制限<br>
+    5. <strong>8D Report：</strong>書面回覆客戶，包含短期圍堵與長期預防措施<br>
+    6. <strong>追蹤：</strong>SPC 監控後續批次，確認改善效果
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">Q4. 客戶稽核時，你如何用英文展示製程能力？</div>
+  <div class="qa-a">
+    在台大就讀期間，我在 NTU IEEB 學生學術競賽中以全英文簡報獲得最高榮譽，同時曾協調五個跨機構（100人以上）的大型野外作業，對於跨組織英文溝通與簡報有實際經驗。面對客戶稽核，我理解核心是：清晰呈現<strong>製程管制邏輯（Control Plan → SPC → CAPA閉環）</strong>，用數據說話，對不確定的問題誠實說「我確認後回覆」而非猜測。英文表達能力已是我的優勢，半導體製程術語則是我目前正在補充的部分。
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">Q5. 你如何確保 NPI 在期限內完成，同時維持品質？</div>
+  <div class="qa-a">
+    研究所 NPI 類比經驗：建立六模組 SOP 時，我先做<strong>可行性切割（Feasibility Breakdown）</strong>，確認每個模組的最小可行驗證次數；再用 Taguchi DOE 最大化每次試驗的資訊量，避免一個變數一個變數地改、浪費時間。在跨機構協調中，我習慣建立明確的里程碑與各方責任矩陣，讓進度可視化。<br><br>
+    轉移到 Bumping NPI：同樣的邏輯——先確認哪些關鍵參數最影響 Yield，優先驗證，再逐步收斂製程窗口。
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">Q6. 什麼是 Cpk？如何用它判斷製程是否穩定？</div>
+  <div class="qa-a">
+    Cpk（Process Capability Index）= min[(USL−μ)/3σ, (μ−LSL)/3σ]<br><br>
+    Cpk 同時反映製程的<strong>集中度（偏移）</strong>和<strong>變異（σ）</strong>：
+    <ul style="margin:8px 0 0 20px;">
+      <li>Cpk ≥ 1.33：製程能力良好（業界一般要求）</li>
+      <li>Cpk ≥ 1.67：車用/高可靠性要求（IATF 16949）</li>
+      <li>Cpk &lt; 1.0：製程能力不足，需改善</li>
+    </ul>
+    我在研究所的統計分析課程和實驗設計中實際操作過類似的製程能力評估（使用 SAS），理解其背後的統計邏輯；Bumping 製程的 Cpk 計算原理相同，僅是量測項目不同（如 Bump 高度、直徑）。
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">Q7. 頎邦和競爭對手（如 ASE、日月光）有什麼差異？你為什麼選擇頎邦？</div>
+  <div class="qa-a">
+    頎邦的定位是<strong>DDI 封裝的深度專家</strong>而非全能 OSAT，這種專精策略在全球 DDI 市場建立了無可取代的領導地位。我選擇頎邦的原因：<br>
+    1. <strong>產品工程師職位的完整性</strong>：同時涵蓋 NPI 導入、客訴、稽核，能快速建立端對端的產品工程能力<br>
+    2. <strong>技術深度</strong>：Bumping 技術持續演進（Cu-Pillar、SiPh），有長期學習空間<br>
+    3. <strong>IATF 16949 車用認證</strong>：接觸到要求最嚴格的客戶品質標準，對個人成長有高度價值<br>
+    4. <strong>新廠擴張</strong>：公司處於積極成長期，個人發展機會更多
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">Q8. 你的最大缺點是什麼？</div>
+  <div class="qa-a">
+    我目前最大的不足是<strong>缺乏半導體製程的直接業界經驗</strong>，特別是 Bumping 製程中的電鍍化學、設備原理，以及半導體工廠的 SPC/SOP 文件管理規範。但我有強烈的學習動機，且我的研究訓練讓我習慣從第一原理理解問題——我相信我可以在 3–6 個月內，透過實際操作和向資深工程師請教，建立足夠的業界知識基礎。文件管理和系統性思維是我現在就有的強項，製程知識是我正在積極補充的部分。
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">Q9. 你如何看待輪班或加班的要求？</div>
+  <div class="qa-a">
+    頎邦這個職位是日班（08:30–17:30），週休二日，對我來說是理想的工作安排。在研究所期間，我習慣長時間、高強度的工作節奏——野外採樣需要在有限時間窗口完成大量工作，實驗室 run gel 也常有非標準時間的彈性需求。我理解半導體業有時因客戶緊急需求或異常處理需要加班，這是業界常態，我可以接受合理範圍的彈性工時安排。
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">Q10. 五年後你希望在頎邦達到什麼目標？</div>
+  <div class="qa-a">
+    短期（1–2年）：<strong>熟練掌握 Bumping 製程知識</strong>，能獨立主導 NPI 導入和客訴處理，成為客戶稽核的主要技術聯絡窗口。<br><br>
+    中期（3–5年）：<strong>晉升為資深產品工程師</strong>，能跨產品線（Au / Cu-Pillar / WLCSP）管理多個 NPI 案，並參與客製化製程的技術評估，同時協助培訓新進工程師。<br><br>
+    長期：如果頎邦持續在矽光子和化合物半導體擴展，我希望能參與這些新技術的 NPI 導入，把在生命科學研究中養成的「在未知領域中快速建立製程」的能力，持續應用在新興技術上。
+  </div>
+</div>
+
+</div><!-- /container -->
+</body>
+</html>

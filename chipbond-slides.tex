@@ -1,0 +1,463 @@
+% ╔══════════════════════════════════════════════════════════════╗
+% ║  Bumping Product Engineer Interview — Chang Ho Yu            ║
+% ║  Chipbond Technology Corporation                             ║
+% ║  Compile: xelatex chipbond-slides.tex  (twice)              ║
+% ╚══════════════════════════════════════════════════════════════╝
+
+\documentclass[aspectratio=169,10pt]{beamer}
+
+% ─── Fonts ─────────────────────────────────────────────────────
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont{Microsoft JhengHei}
+\setCJKsansfont{Microsoft JhengHei}
+\setmainfont{Calibri}
+\setsansfont{Calibri}
+
+% ─── Packages ──────────────────────────────────────────────────
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{amssymb}
+\usetikzlibrary{arrows.meta,positioning,shapes.misc}
+
+% ─── Colors ────────────────────────────────────────────────────
+\definecolor{mainblue}{RGB}{55,55,155}
+\definecolor{lightblue}{RGB}{220,222,248}
+\definecolor{alertred}{RGB}{160,20,20}
+\definecolor{alertpink}{RGB}{252,222,222}
+\definecolor{successgreen}{RGB}{25,110,50}
+\definecolor{lightgreen}{RGB}{210,240,218}
+\definecolor{teal}{RGB}{26,74,90}
+\definecolor{lightteal}{RGB}{210,235,242}
+\definecolor{gold}{RGB}{184,145,26}
+\definecolor{lightgold}{RGB}{255,248,210}
+
+% ─── Theme ─────────────────────────────────────────────────────
+\usetheme{default}
+\usecolortheme[named=teal]{structure}
+
+\setbeamercolor{title}{fg=white, bg=teal}
+\setbeamercolor{frametitle}{fg=teal, bg=white}
+\setbeamercolor{block title}{fg=white, bg=teal}
+\setbeamercolor{block body}{fg=black, bg=lightteal!60}
+\setbeamercolor{block title alerted}{fg=white, bg=alertred}
+\setbeamercolor{block body alerted}{fg=black, bg=alertpink}
+\setbeamercolor{block title example}{fg=white, bg=successgreen}
+\setbeamercolor{block body example}{fg=black, bg=lightgreen}
+\setbeamercolor{itemize item}{fg=teal}
+\setbeamercolor{itemize subitem}{fg=teal}
+\setbeamercolor{author in head/foot}{fg=white, bg=teal!90}
+\setbeamercolor{title in head/foot}{fg=white,  bg=teal!65}
+\setbeamercolor{date in head/foot}{fg=white,  bg=teal!90}
+
+% ─── Footer ────────────────────────────────────────────────────
+\setbeamertemplate{footline}{
+  \leavevmode
+  \hbox{%
+    \begin{beamercolorbox}[wd=.333\paperwidth,ht=2.4ex,dp=1.2ex,left]
+      {author in head/foot}
+      \hspace{1.2em}\usebeamerfont{author in head/foot}\insertshortauthor
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.334\paperwidth,ht=2.4ex,dp=1.2ex,center]
+      {title in head/foot}
+      \usebeamerfont{title in head/foot}\insertshorttitle
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.333\paperwidth,ht=2.4ex,dp=1.2ex,right]
+      {date in head/foot}
+      \usebeamerfont{date in head/foot}\insertshortdate{}\hspace{2em}
+      \insertframenumber{} / \inserttotalframenumber\hspace{1.2em}
+    \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize item}{\small\textbullet}
+\setbeamertemplate{itemize subitem}{\small\textbullet}
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+
+% ─── Meta ──────────────────────────────────────────────────────
+\title[Bumping Product Engineer Interview]{Product Engineer Interview Presentation}
+\subtitle{Bumping Process --- Chipbond Technology}
+\author[Chang Ho Yu]{Chang Ho Yu \quad 張合羽}
+\institute{M.S. Biological Sciences, National Taiwan University}
+\date{April 2026}
+
+% ═══════════════════════════════════════════════════════════════
+\begin{document}
+
+% ── Slide 1: Title ─────────────────────────────────────────────
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% ── Slide 2: Outline ───────────────────────────────────────────
+\begin{frame}{Outline}
+  \tableofcontents
+\end{frame}
+
+% ═══════════════════════════════════════════════════════════════
+\section{About Me}
+\begin{frame}{About Me}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+      \begin{block}{Education}
+        \small
+        \begin{itemize}
+          \item \textbf{M.S.} National Taiwan University\\
+                Ecology \& Evolutionary Biology\\
+                {\footnotesize 2023--2025 \quad GPA 4.0\,/\,4.3}
+          \item \textbf{B.S.} National Cheng Kung University\\
+                Department of Life Sciences\\
+                {\footnotesize 2019--2023}
+        \end{itemize}
+      \end{block}
+      \vspace{0.1cm}
+      \begin{block}{Award}
+        \small
+        \begin{itemize}
+          \item $\bigstar$\ \textbf{Top Honor} — NTU IEEB\\
+                Academic Presentation Competition, 2025
+          \item NSTC Undergraduate Research Grant
+        \end{itemize}
+      \end{block}
+
+    \column{0.46\textwidth}
+      \begin{block}{Core Strengths}
+        \small
+        \begin{itemize}
+          \item \textbf{NPI / SOP from Scratch}\\
+                {\footnotesize 6-module process, zero prior reference}
+          \item \textbf{DOE / Taguchi Method}\\
+                {\footnotesize 6-parameter simultaneous optimization}
+          \item \textbf{Root-Cause Analysis \& CAPA}\\
+                {\footnotesize 5-Why, fishbone, 8D framework}
+          \item \textbf{English Technical Presentation}\\
+                {\footnotesize Award-winning, customer-facing ready}
+          \item \textbf{Cross-institutional Coordination}\\
+                {\footnotesize 100+ members, 5 organizations}
+        \end{itemize}
+      \end{block}
+  \end{columns}
+\end{frame}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Core Technical Skills}
+\begin{frame}{Core Technical Skills}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+      \begin{block}{Process Engineering}
+        \small
+        \begin{itemize}
+          \item DOE / Taguchi Method (6-parameter)
+          \item SOP development \& process validation
+          \item Batch QC with acceptance criteria
+          \item RCA and CAPA (8D framework)
+        \end{itemize}
+      \end{block}
+      \vspace{0.1cm}
+      \begin{block}{Data \& Statistical Analysis}
+        \small
+        \begin{itemize}
+          \item SAS statistical analysis
+          \item Multi-variable comparison (S/N ratio)
+          \item Automated QC pipeline (QuPath)
+          \item AI segmentation model fine-tuning
+        \end{itemize}
+      \end{block}
+
+    \column{0.48\textwidth}
+      \begin{block}{Documentation \& Quality Systems}
+        \small
+        \begin{itemize}
+          \item GMP-standard experimental records
+          \item Substitute material equivalency reports
+          \item Process change documentation (ECN)
+          \item Audit-ready traceability records
+        \end{itemize}
+      \end{block}
+      \vspace{0.1cm}
+      \begin{block}{Communication \& Coordination}
+        \small
+        \begin{itemize}
+          \item English technical presentation (award)
+          \item 100+ member, 5-institution coordination
+          \item Teaching assistant (30+ lab sessions)
+          \item Cross-functional team facilitation
+        \end{itemize}
+      \end{block}
+  \end{columns}
+\end{frame}
+
+% ═══════════════════════════════════════════════════════════════
+\section{NPI Process Development}
+\begin{frame}{M.S. Research as NPI: SOP from Scratch}
+  \begin{block}{Challenge}
+    \small
+    Cetacean skin IHC analysis --- \textbf{no existing protocol globally};
+    complete 6-module process built independently under irreplaceable-sample constraints.
+  \end{block}
+
+  \vspace{0.1cm}
+  \begin{center}
+  \begin{tikzpicture}[
+    snode/.style={draw=teal, fill=lightteal, rounded corners=3pt,
+                  minimum width=1.95cm, minimum height=0.52cm,
+                  font=\scriptsize\bfseries\color{teal}, align=center},
+    arr/.style={-Stealth, thick, teal}
+  ]
+    \node[snode] (s1) {Spec\\Review};
+    \node[snode, right=0.28cm of s1] (s2) {Process\\Development};
+    \node[snode, right=0.28cm of s2] (s3) {DOE\\Optimization};
+    \node[snode, right=0.28cm of s3] (s4) {Pilot\\Run};
+    \node[snode, fill=gold!30, draw=gold,
+          right=0.28cm of s4] (s5) {Validation\\Sample};
+    \node[snode, fill=successgreen!25, draw=successgreen!80,
+          right=0.28cm of s5] (s6) {SOP\\Released};
+    \foreach \a/\b in {s1/s2,s2/s3,s3/s4,s4/s5,s5/s6}
+      \draw[arr] (\a) -- (\b);
+  \end{tikzpicture}
+  \end{center}
+
+  \vspace{0.1cm}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+      \begin{block}{Research $\to$ Bumping NPI Analogy}
+        \footnotesize
+        \begin{tabular}{p{2.8cm}p{2.4cm}}
+          \toprule
+          Research Situation & NPI Equivalent \\
+          \midrule
+          No literature ref.    & No process history \\
+          DOE on 6 parameters   & Process window DOE \\
+          Batch QC criteria     & Cpk / spec limits \\
+          5-inst. SOP adoption  & Customer qual. \\
+          \bottomrule
+        \end{tabular}
+      \end{block}
+
+    \column{0.46\textwidth}
+      \begin{alertblock}{Quantified Results}
+        \small
+        \begin{itemize}
+          \item Throughput \textbf{+70\%}
+          \item Accuracy \textbf{92\% $\to$ 99\%}
+          \item 5 organizations adopted SOP
+          \item Zero repeat batch failures post-CAPA
+        \end{itemize}
+      \end{alertblock}
+  \end{columns}
+\end{frame}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Root-Cause Analysis \& Customer Communication}
+\begin{frame}{RCA \& Customer Communication Capability}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+      \begin{block}{Root-Cause Analysis (8D Framework)}
+        \footnotesize
+        \begin{tabular}{p{0.5cm}p{4.5cm}}
+          \toprule
+          D3 & Containment: Hold lot, 100\% screen \\
+          D4 & RCA: Fishbone diagram + 5-Why \\
+          D5 & Corrective actions targeting root cause \\
+          D6 & Validation run; SPC confirmation \\
+          D7 & SOP update + FMEA revision \\
+          \bottomrule
+        \end{tabular}
+      \end{block}
+      \vspace{0.1cm}
+      \begin{block}{My RCA Experience}
+        \small
+        \begin{itemize}
+          \item 2 consecutive batch failures, no literature ref.
+          \item Fishbone $\to$ 5-Why $\to$ dual root cause found
+          \item CAPA implemented; \textbf{zero repeat failures}
+        \end{itemize}
+      \end{block}
+
+    \column{0.46\textwidth}
+      \begin{block}{English Customer Interface}
+        \small
+        \begin{itemize}
+          \item \textbf{Top Honor} — NTU IEEB, all-English\\
+                academic presentation (2025)
+          \item Cross-institutional technical liaison\\
+                for 5 organizations, 100+ members
+          \item Experience presenting complex\\
+                DOE results to non-specialist panels
+        \end{itemize}
+      \end{block}
+      \vspace{0.1cm}
+      \begin{exampleblock}{Audit Readiness}
+        \footnotesize
+        GMP-standard documentation; process\\
+        traceability records; SOP version control;\\
+        data-driven CAPA closure evidence
+      \end{exampleblock}
+  \end{columns}
+\end{frame}
+
+% ═══════════════════════════════════════════════════════════════
+\section{DOE Taguchi Optimization}
+\begin{frame}{DOE Taguchi Method: 6-Parameter Optimization}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+      \begin{block}{Six Process Parameters}
+        \footnotesize
+        \begin{tabular}{@{}cl@{}}
+          \toprule
+          \# & Parameter \\
+          \midrule
+          P1 & Antibody Concentration \\
+          P2 & Incubation Time \\
+          P3 & Antigen Retrieval Temperature \\
+          P4 & Retrieval Duration \\
+          P5 & Blocking Agent Concentration \\
+          P6 & Section Thickness \\
+          \bottomrule
+        \end{tabular}
+      \end{block}
+      \vspace{0.1cm}
+      \begin{block}{Experimental Efficiency}
+        \small
+        \begin{itemize}
+          \item Full factorial: $3^{6} = 729$ runs
+          \item Taguchi $L_{18}$: \textbf{18 runs}
+          \item \textbf{97.5\% reduction} in experiments
+        \end{itemize}
+      \end{block}
+
+    \column{0.46\textwidth}
+      \begin{block}{Analysis Method}
+        \small
+        \begin{itemize}
+          \item S/N ratio analysis per factor
+          \item Main effect ranking
+          \item Optimal level selection
+          \item Confirmation run validation
+        \end{itemize}
+      \end{block}
+      \vspace{0.1cm}
+      \begin{alertblock}{Applicable to Bumping NPI}
+        \footnotesize
+        \begin{tabular}{p{2.2cm}p{2.5cm}}
+          \toprule
+          Bumping Factor & Analog \\
+          \midrule
+          Plating current & Antibody conc. \\
+          PR thickness    & Section thickness \\
+          Etch time       & Retrieval duration \\
+          Temperature     & Retrieval temp. \\
+          \bottomrule
+        \end{tabular}
+      \end{alertblock}
+  \end{columns}
+\end{frame}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Undergraduate Research}
+\begin{frame}{Undergraduate Research: NSTC Project (NCKU)}
+  {\small Neuro-Molecular Lab, NCKU \quad 2020--2021 \quad
+   \textit{D2R in oligodendrocyte differentiation \& CNS myelination}}
+
+  \vspace{0.1cm}
+  \begin{columns}[T]
+    \column{0.46\textwidth}
+      \begin{block}{Techniques \& Certifications}
+        \small
+        \begin{itemize}
+          \item IHC/IF staining (GFAP, NG2, MBP, PLP)
+          \item Western Blot \& qPCR
+          \item Mouse brain region dissection
+          \item Primary cell culture (NHRI certified)
+          \item LAC Laboratory Animal Certification
+        \end{itemize}
+      \end{block}
+
+    \column{0.50\textwidth}
+      \begin{block}{Research $\to$ Product Engineering}
+        \footnotesize
+        \begin{tabular}{p{2.6cm}p{2.7cm}}
+          \toprule
+          Research Action & Engineering Equiv. \\
+          \midrule
+          NSTC proposal       & Project planning \\
+          Cytokine dose test  & Multi-param. DOE \\
+          Multi-vendor eval.  & Substitute QC \\
+          Experiment records  & GMP documentation \\
+          \bottomrule
+        \end{tabular}
+      \end{block}
+      \vspace{0.1cm}
+      \begin{exampleblock}{Key Finding}
+        \footnotesize
+        TNF-$\alpha$, IL-1$\beta$, LPS suppress \textit{Drd2} mRNA\\
+        in OPCs significantly ($p < 0.01$)
+      \end{exampleblock}
+  \end{columns}
+\end{frame}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Competency Mapping}
+\begin{frame}{Competency Mapping: Bumping Product Engineer}
+  \begin{center}
+  \footnotesize
+  \begin{tabular}{p{2.3cm}p{5.7cm}p{2.2cm}}
+    \toprule
+    \textbf{Requirement} & \textbf{My Equivalent Experience} & \textbf{Match} \\
+    \midrule
+    NPI dev. &
+    6-module SOP from scratch; Taguchi DOE process window dev. &
+    \textcolor{successgreen}{\textbf{Direct}} \\[2pt]
+    Complaint RCA &
+    Batch failure 5-Why + fishbone; CAPA; zero repeat failures &
+    \textcolor{successgreen}{\textbf{Direct}} \\[2pt]
+    Audit support &
+    Top Honor English presentation; GMP-standard documentation &
+    \textcolor{successgreen}{\textbf{Direct}} \\[2pt]
+    Special req. eval. &
+    Cross-inst. liaison (5 orgs); custom protocol eval. &
+    \textcolor{successgreen}{\textbf{Transferable}} \\[2pt]
+    B.S. / M.S. degree &
+    NTU M.S. Biological Sciences, GPA 4.0\,/\,4.3 &
+    \textcolor{successgreen}{\textbf{Qualified}} \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+
+  \vspace{0.08cm}
+  \begin{alertblock}{Cross-Domain Core Argument}
+    \small
+    NPI without precedent, complaint RCA under pressure, audit-ready documentation ---
+    these are domain-independent skills I have \textbf{demonstrated in practice}.
+  \end{alertblock}
+\end{frame}
+
+% ═══════════════════════════════════════════════════════════════
+{
+\setbeamertemplate{footline}{}
+\begin{frame}[c]
+  \begin{center}
+  {\Large\color{teal}\textbf{Thank You}}\\[0.18cm]
+  {\normalsize\color{teal!80} 感謝聆聽}\\[0.35cm]
+  \begin{tikzpicture}
+    \node[draw=teal, fill=lightteal!55, rounded corners=8pt,
+          minimum width=9.5cm, minimum height=2.8cm,
+          align=center, font=\normalsize] {
+      \textbf{\large Chang Ho Yu \quad 張合羽}\\[5pt]
+      changhoyur12b44017@gmail.com\\[3pt]
+      0919-179-654\\[3pt]
+      changhoyur12b44017-max.github.io
+    };
+  \end{tikzpicture}\\[0.3cm]
+  {\small\color{teal}\itshape
+    Committed to building reliable processes from the ground up ---\\
+    in semiconductor manufacturing as in research}
+  \end{center}
+\end{frame}
+}
+
+\end{document}

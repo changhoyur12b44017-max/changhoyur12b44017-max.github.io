@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台亞半導體背景分析 & 面試Q&A — 張合羽</title>
+<style>
+  :root {
+    --teal: #1a4a5a;
+    --teal-light: #e6f0f4;
+    --teal-mid: #2d7a96;
+    --gold: #b8911a;
+    --gold-light: #fdf5dc;
+    --gold-border: #d4ab3a;
+    --red-tip: #c0392b;
+    --red-light: #fdf0ee;
+    --green: #2e7d32;
+    --green-light: #e8f5e9;
+    --purple: #5c3a8a;
+    --purple-light: #f0ebf8;
+    --text: #1a2535;
+    --muted: #556677;
+    --border: #ccd8e0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", sans-serif;
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--text);
+    background: #f8f9fa;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    background: white;
+    padding: 52px 60px 72px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+  }
+
+  /* ── COVER ── */
+  .cover {
+    text-align: center;
+    padding-bottom: 28px;
+    border-bottom: 3px solid var(--gold);
+    margin-bottom: 40px;
+  }
+
+  .cover h1 { font-size: 2rem; font-weight: 900; color: var(--teal); letter-spacing: -0.5px; margin-bottom: 6px; }
+  .cover .subtitle { font-size: 0.92rem; color: var(--muted); margin-bottom: 10px; }
+  .cover .topics { font-size: 0.83rem; color: var(--muted); }
+  .cover .topics span { margin: 0 8px; color: var(--teal-mid); font-weight: 600; }
+  .cover .author { font-size: 0.78rem; color: var(--gold); font-weight: 700; margin-top: 8px; letter-spacing: 0.05em; }
+
+  /* ── CHAPTER ── */
+  .chapter {
+    background: var(--teal);
+    color: white;
+    font-size: 1.15rem;
+    font-weight: 800;
+    padding: 10px 20px;
+    border-radius: 6px;
+    margin: 40px 0 20px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── SECTION ── */
+  .section-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--teal);
+    margin: 26px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-title::before {
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 1.1em;
+    background: var(--teal);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ── BULLETS ── */
+  ul.note-list { list-style: none; padding: 0; margin: 6px 0 14px 0; }
+  ul.note-list li { padding: 2px 0 2px 18px; position: relative; font-size: 0.87rem; line-height: 1.7; }
+  ul.note-list li::before { content: '•'; position: absolute; left: 4px; color: var(--teal-mid); font-weight: 700; }
+  ul.note-list li.sub { padding-left: 32px; color: var(--muted); font-size: 0.83rem; }
+  ul.note-list li.sub::before { content: '◦'; left: 18px; color: var(--muted); }
+
+  b { color: var(--teal); }
+  .arr { color: var(--teal-mid); font-weight: 700; margin: 0 3px; }
+
+  /* ── TABLES ── */
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 18px; font-size: 0.84rem; }
+  table th { background: var(--teal); color: white; padding: 9px 13px; text-align: left; font-weight: 700; font-size: 0.82rem; }
+  table th:first-child { border-radius: 6px 0 0 0; }
+  table th:last-child { border-radius: 0 6px 0 0; }
+  table td { padding: 8px 13px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.6; }
+  table tr:nth-child(even) td { background: var(--teal-light); }
+  table tr:last-child td { border-bottom: none; }
+  .check { color: var(--green); font-weight: 800; }
+  .warn  { color: #e65100; font-weight: 700; }
+  .center { text-align: center; }
+
+  /* ── BOXES ── */
+  .box-gold { background: var(--gold-light); border-left: 4px solid var(--gold-border); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 14px 0; font-size: 0.86rem; }
+  .box-gold .box-title { font-weight: 800; color: var(--gold); font-size: 0.82rem; letter-spacing: 0.04em; margin-bottom: 5px; }
+  .box-teal { background: var(--teal-light); border-left: 4px solid var(--teal-mid); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 14px 0; font-size: 0.86rem; }
+  .box-teal .box-title { font-weight: 800; color: var(--teal); font-size: 0.82rem; margin-bottom: 5px; }
+  .box-red { background: var(--red-light); border-left: 4px solid var(--red-tip); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 14px 0; font-size: 0.86rem; }
+  .box-red .box-title { font-weight: 800; color: var(--red-tip); font-size: 0.82rem; margin-bottom: 5px; }
+  .box-green { background: var(--green-light); border-left: 4px solid var(--green); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 14px 0; font-size: 0.86rem; }
+  .box-green .box-title { font-weight: 800; color: var(--green); font-size: 0.82rem; margin-bottom: 5px; }
+  .box-purple { background: var(--purple-light); border-left: 4px solid var(--purple); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 14px 0; font-size: 0.86rem; }
+  .box-purple .box-title { font-weight: 800; color: var(--purple); font-size: 0.82rem; margin-bottom: 5px; }
+
+  /* ── FLOW ── */
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 0; margin: 14px 0; justify-content: center; }
+  .flow-node { background: var(--teal); color: white; border-radius: 8px; padding: 8px 13px; text-align: center; font-size: 0.77rem; font-weight: 700; min-width: 78px; line-height: 1.35; }
+  .flow-node.light { background: var(--teal-light); color: var(--teal); border: 1.5px solid var(--teal-mid); }
+  .flow-node.gold { background: var(--gold-light); color: var(--gold); border: 1.5px solid var(--gold-border); }
+  .flow-node.warn { background: #fff3e0; color: #bf360c; border: 1.5px solid #ff8a65; }
+  .flow-node sub { display: block; font-size: 0.62rem; font-weight: 400; opacity: 0.85; margin-top: 2px; }
+  .flow-arr { font-size: 1.1rem; color: var(--teal-mid); padding: 0 5px; flex-shrink: 0; }
+
+  /* ── ORG CHART ── */
+  .org { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 14px 0; }
+  .org-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .org-box { background: var(--teal-light); border: 1.5px solid var(--teal-mid); border-radius: 8px; padding: 7px 14px; font-size: 0.78rem; font-weight: 700; color: var(--teal); text-align: center; }
+  .org-box.main { background: var(--teal); color: white; font-size: 0.85rem; padding: 9px 18px; }
+  .org-box.grey { background: #f0f0f0; color: #555; border-color: #bbb; }
+  .org-down { font-size: 1.1rem; color: var(--teal-mid); }
+
+  /* ── PRODUCT CARD ── */
+  .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 14px 0; }
+  .product-card { border: 1.5px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .product-card-head { background: var(--teal); color: white; padding: 8px 12px; font-size: 0.78rem; font-weight: 800; text-align: center; }
+  .product-card-body { padding: 10px 12px; font-size: 0.77rem; line-height: 1.65; }
+  .product-card-body .tag { display: inline-block; background: var(--teal-light); color: var(--teal); font-size: 0.65rem; font-weight: 700; padding: 2px 7px; border-radius: 10px; margin: 2px 1px; }
+
+  /* ── MARKET MAP ── */
+  .market-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0; }
+  .market-cell { background: var(--teal-light); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; text-align: center; font-size: 0.79rem; }
+  .market-cell .icon { font-size: 1.4rem; margin-bottom: 4px; }
+  .market-cell .name { font-weight: 700; color: var(--teal); font-size: 0.78rem; }
+  .market-cell .desc { color: var(--muted); font-size: 0.68rem; margin-top: 2px; line-height: 1.4; }
+
+  /* ── DAILY WORK ── */
+  .work-row { display: flex; gap: 10px; margin-bottom: 8px; align-items: stretch; }
+  .work-tag { background: var(--teal); color: white; font-weight: 800; font-size: 0.78rem; padding: 8px 12px; border-radius: 6px 0 0 6px; min-width: 110px; text-align: center; display: flex; align-items: center; justify-content: center; flex-shrink: 0; line-height: 1.3; }
+  .work-body { background: var(--teal-light); border: 1px solid var(--border); border-left: none; padding: 8px 13px; border-radius: 0 6px 6px 0; flex: 1; font-size: 0.84rem; line-height: 1.65; }
+
+  /* ── QA ── */
+  .qa-item { margin: 14px 0; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; font-size: 0.85rem; }
+  .qa-q { background: var(--teal); color: white; padding: 9px 14px; font-weight: 700; }
+  .qa-q::before { content: 'Q　'; opacity: 0.7; }
+  .qa-a { padding: 11px 14px; line-height: 1.75; background: white; }
+  .qa-a .key { color: var(--teal); font-weight: 700; }
+  .qa-a .point { background: var(--gold-light); border-radius: 4px; padding: 1px 6px; font-weight: 700; color: var(--gold); font-size: 0.82rem; }
+
+  /* ── FOOTER ── */
+  .page-footer { margin-top: 60px; padding-top: 14px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--muted); }
+
+  @media print {
+    body { background: white; }
+    .page { box-shadow: none; padding: 20px 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- COVER -->
+<div class="cover">
+  <h1>台亞半導體 背景分析 &amp; 面試筆記</h1>
+  <div class="subtitle">TASC Semiconductor Co., Ltd. — T250042-M161 製程工程師 完整整理</div>
+  <div class="topics">
+    <span>公司背景</span>｜<span>產品分析</span>｜<span>製程工作內容</span>｜<span>面試 Q&amp;A</span>
+  </div>
+  <div class="author">張合羽 · Chang Ho Yu · 2026</div>
+</div>
+
+
+<!-- ══════════════════════════════════════════ -->
+<div class="chapter">一、公司背景統整</div>
+
+<div class="section-title">1.1 基本資料</div>
+<table>
+  <tr><th>項目</th><th>內容</th></tr>
+  <tr><td><b>中文全名</b></td><td>台亞半導體股份有限公司</td></tr>
+  <tr><td><b>英文名稱</b></td><td>TASC Semiconductor Co., Ltd.</td></tr>
+  <tr><td><b>股票代號</b></td><td>3013（台灣證券交易所上市）</td></tr>
+  <tr><td><b>成立年份</b></td><td>1983年（逾40年歷史）</td></tr>
+  <tr><td><b>資本額</b></td><td>約 43.8 億元新台幣</td></tr>
+  <tr><td><b>員工人數</b></td><td>約 840 人</td></tr>
+  <tr><td><b>廠區位置</b></td><td>新竹科學園區（創新廠：創新一路8號 ／ 力行廠：力行五路1號）</td></tr>
+  <tr><td><b>官方網站</b></td><td>tascsemi.com</td></tr>
+  <tr><td><b>關係企業</b></td><td>光磊科技（LEO Systems）— 同屬光磊集團，互補產品線</td></tr>
+</table>
+
+<div class="section-title">1.2 公司定位與經營理念</div>
+<ul class="note-list">
+  <li><b>核心定位：</b>「全球技術最先進的光電感測整合元件開發與製造商」</li>
+  <li><b>競爭優勢：</b>垂直整合供應鏈（磊晶 → 封裝 → 測試一條龍）+ 客製化服務能力</li>
+  <li><b>技術方向：</b>環境與健康管理感測平台（Environmental &amp; Health Sensing）</li>
+  <li><b>市場策略：</b>以客為尊，貼近客戶需求客製化開發</li>
+</ul>
+
+<table>
+  <tr><th>經營理念</th><th>說明</th></tr>
+  <tr><td>尖端科技</td><td>開發減少環境負荷的產品，普及全球</td></tr>
+  <tr><td>顧客至上</td><td>貫徹客製化，建立可持續發展的業務體系</td></tr>
+  <tr><td>工作環境</td><td>打造舒適、充滿活力的工作環境（面試可呼應此點）</td></tr>
+  <tr><td>遵守法紀</td><td>嚴格遵守法律與企業紀律</td></tr>
+</table>
+
+<div class="section-title">1.3 集團關係結構</div>
+<div class="org">
+  <div class="org-row"><div class="org-box main">光磊集團（LEO Systems Group）</div></div>
+  <div class="org-down">↓</div>
+  <div class="org-row">
+    <div class="org-box">台亞半導體（3013）<br><small>光電感測元件為主</small></div>
+    <div class="org-box grey">光磊科技（2399）<br><small>LED 為主，互補產品線</small></div>
+  </div>
+</div>
+
+<div class="box-gold">
+  <div class="box-title">★ 面試應用：為何選台亞？</div>
+  「台亞是少數擁有從磊晶到封裝完整垂直整合能力的光電半導體廠，且已深耕40年，產品線涵蓋感測、發射、功率元件。我認為在這樣的環境能接觸到完整製程鏈，對製程工程師的成長非常有價值。」
+</div>
+
+
+<!-- ══════════════════════════════════════════ -->
+<div class="chapter">二、產品線深度分析</div>
+
+<div class="section-title">2.1 三大產品類別</div>
+<div class="product-grid">
+  <div class="product-card">
+    <div class="product-card-head">感測元件（受光）</div>
+    <div class="product-card-body">
+      <b>光電二極體</b>（Photodiode）<br>
+      <b>光電晶體</b>（Phototransistor）<br>
+      <b>雙向光閘流體</b>（Bilateral Switch）<br><br>
+      <span class="tag">工業感測</span><span class="tag">ToF</span><span class="tag">遙控接收</span><span class="tag">光纖通訊</span>
+    </div>
+  </div>
+  <div class="product-card">
+    <div class="product-card-head">發射元件（發光）</div>
+    <div class="product-card-body">
+      <b>一般型 LED</b><br>
+      <b>高亮型 LED</b><br>
+      <b>VCSEL</b>（垂直共振腔面射型雷射）<br><br>
+      <span class="tag">光源</span><span class="tag">光通訊</span><span class="tag">ToF感測</span><span class="tag">Face ID</span>
+    </div>
+  </div>
+  <div class="product-card">
+    <div class="product-card-head">其他保護/功率元件</div>
+    <div class="product-card-body">
+      <b>齊納二極體</b>（Zener Diode）<br>
+      <b>功率 MOSFET</b><br>
+      <b>TVS 二極體</b>（瞬態電壓抑制）<br>
+      <b>電阻</b><br>
+      <span class="tag">電源保護</span><span class="tag">整流</span><span class="tag">ESD防護</span>
+    </div>
+  </div>
+</div>
+
+<div class="section-title">2.2 明星產品詳解</div>
+<table>
+  <tr><th>產品</th><th>技術重點</th><th>應用</th><th>製程關鍵</th></tr>
+  <tr>
+    <td><b>VCSEL</b></td>
+    <td>垂直共振腔結構；波長精確（850nm / 940nm）；低閾值電流</td>
+    <td>Face ID、LiDAR、ToF、光纖通訊</td>
+    <td>磊晶層厚度均勻性、共振腔對準精度</td>
+  </tr>
+  <tr>
+    <td><b>光電二極體</b></td>
+    <td>高響應速度；低暗電流；寬感應波長範圍</td>
+    <td>光感測器、遙控接收、工業自動化</td>
+    <td>接面深度控制、表面鈍化處理</td>
+  </tr>
+  <tr>
+    <td><b>功率 MOSFET</b></td>
+    <td>低導通電阻（Rds(on)）；高耐壓</td>
+    <td>電源管理、馬達驅動、DC-DC 轉換</td>
+    <td>閘極氧化層品質、摻雜均勻度</td>
+  </tr>
+  <tr>
+    <td><b>LED（高亮型）</b></td>
+    <td>高外部量子效率（EQE）；波長一致性</td>
+    <td>顯示器背光、照明、醫療</td>
+    <td>MQW磊晶均勻性、ITO電極沉積</td>
+  </tr>
+</table>
+
+<div class="section-title">2.3 終端市場分布</div>
+<div class="market-grid">
+  <div class="market-cell">
+    <div class="icon">🏭</div>
+    <div class="name">工業自動化</div>
+    <div class="desc">光電感測器、位置偵測、物件計數</div>
+  </div>
+  <div class="market-cell">
+    <div class="icon">📱</div>
+    <div class="name">消費電子</div>
+    <div class="desc">Face ID、接近感測、遙控器</div>
+  </div>
+  <div class="market-cell">
+    <div class="icon">🚗</div>
+    <div class="name">汽車電子</div>
+    <div class="desc">LiDAR、車用LED、電源保護</div>
+  </div>
+  <div class="market-cell">
+    <div class="icon">🌡️</div>
+    <div class="name">環境健康感測</div>
+    <div class="desc">空氣品質、生理訊號監測</div>
+  </div>
+  <div class="market-cell">
+    <div class="icon">🔌</div>
+    <div class="name">光通訊</div>
+    <div class="desc">VCSEL用於資料中心光纖傳輸</div>
+  </div>
+  <div class="market-cell">
+    <div class="icon">⚕️</div>
+    <div class="name">醫療</div>
+    <div class="desc">血氧偵測、內視鏡光源</div>
+  </div>
+</div>
+
+<div class="box-teal">
+  <div class="box-title">💡 產業趨勢加分點</div>
+  VCSEL 市場因 <b>3D sensing（Face ID）、LiDAR（自駕車）、ToF（AR/VR）</b>快速成長，台亞作為 VCSEL 製造商具備未來成長動能。面試時可主動提到對此趨勢的了解。
+</div>
+
+
+<!-- ══════════════════════════════════════════ -->
+<div class="chapter">三、T250042-M161 製程工程師工作內容</div>
+
+<div class="section-title">3.1 四大核心任務</div>
+
+<div class="work-row">
+  <div class="work-tag">① 製程流程改善</div>
+  <div class="work-body">
+    <b>目標：</b>提升良率（Yield）、縮短製程週期（Cycle Time）、提高穩定性<br>
+    <b>日常：</b>分析製程數據 → 找出瓶頸站點 → 設計改善實驗（DOE）→ 導入新參數 → 驗證效果 → 更新SOP<br>
+    <b>工具：</b>SPC管制圖、Minitab/JMP統計分析、製程工程系統（MES）
+  </div>
+</div>
+<div class="work-row">
+  <div class="work-tag">② 異常分析處理</div>
+  <div class="work-body">
+    <b>目標：</b>快速找出製程異常根因，防止問題擴散到下游<br>
+    <b>日常：</b>接到品質警報 → 划批次 → 5Why根因分析 → 擬定CAPA → 追蹤效果 → 填寫8D報告<br>
+    <b>常見異常：</b>良率突降、電性規格超出管控界限、外觀不良、批次間差異過大
+  </div>
+</div>
+<div class="work-row">
+  <div class="work-tag">③ 降低製造成本</div>
+  <div class="work-body">
+    <b>目標：</b>在不影響品質前提下降低 Cost Per Die<br>
+    <b>方法：</b>減少耗材用量（DOE找最低有效用量）、縮短製程步驟、提升設備利用率、降低廢品率<br>
+    <b>指標：</b>COO（Cost of Ownership）、UPH（Units Per Hour）、廢品率（Scrap Rate）
+  </div>
+</div>
+<div class="work-row">
+  <div class="work-tag">④ 替代料評估</div>
+  <div class="work-body">
+    <b>目標：</b>在原料缺貨、漲價或供應商問題時，評估替代材料的等效性<br>
+    <b>流程：</b>規格比對 → 小批量試跑 → 電性/外觀/可靠性測試 → 數據分析 → 工程變更通知（ECN）→ 核准導入<br>
+    <b>文件：</b>材料規格書（Material Spec）、等效性報告（Equivalency Report）
+  </div>
+</div>
+
+<div class="section-title">3.2 一天的工作流程（典型日）</div>
+<div class="flow" style="flex-wrap: wrap; justify-content: flex-start; gap: 6px;">
+  <div class="flow-node light" style="min-width:90px;">早會<sub>晨間例會<br>異常回報</sub></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-node" style="min-width:100px;">製程監控<sub>看SPC管制圖<br>確認良率</sub></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-node warn" style="min-width:100px;">異常處理<sub>（若有）<br>根因分析</sub></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-node" style="min-width:100px;">改善實驗<sub>DOE執行<br>數據收集</sub></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-node light" style="min-width:100px;">跨部門協作<sub>設備/品質/生產<br>會議討論</sub></div>
+  <div class="flow-arr">→</div>
+  <div class="flow-node gold" style="min-width:90px;">文件更新<sub>SOP/報告<br>ECN填寫</sub></div>
+</div>
+
+<div class="section-title">3.3 跨部門互動關係</div>
+<table>
+  <tr><th>合作對象</th><th>互動內容</th></tr>
+  <tr><td><b>設備工程師</b></td><td>確認機台狀態是否影響製程；要求預防保養；異常發生時聯合排查</td></tr>
+  <tr><td><b>品質工程師（QA）</b></td><td>回應客戶投訴；提供製程異常的根因分析報告（8D）；制定品管規範</td></tr>
+  <tr><td><b>生產線（Operator）</b></td><td>監督作業員照SOP操作；現場教育訓練；確認異常時的第一線資訊</td></tr>
+  <tr><td><b>研發（R&amp;D）</b></td><td>新製程轉移到量產時的技術交接；參數移轉與確效</td></tr>
+  <tr><td><b>採購</b></td><td>替代料評估時協調供應商；報價與交期確認</td></tr>
+</table>
+
+<div class="box-red">
+  <div class="box-title">⚠ 工作現實面</div>
+  製程工程師須<b>長時間在無塵室（Cleanroom）</b>環境工作，穿著防靜電衣、防靜電鞋、髮帽。若遇緊急良率異常，可能需要延遲下班或週末支援。<b>台亞為日班制</b>，但緊急事件仍需彈性應對。
+</div>
+
+<div class="section-title">3.4 新人前三個月可能的學習路徑</div>
+<table>
+  <tr><th>階段</th><th>時間</th><th>主要任務</th></tr>
+  <tr><td><b>入門期</b></td><td>第1個月</td><td>了解公司產品線與製程流程；跟著資深工程師學習各站操作；完成無塵室操作訓練</td></tr>
+  <tr><td><b>熟悉期</b></td><td>第2個月</td><td>獨立閱讀並理解製程規範（Process Spec）；開始接觸SPC數據分析；協助異常追查</td></tr>
+  <tr><td><b>獨立期</b></td><td>第3個月</td><td>負責特定製程站點的日常監控；主導小型改善專案；開始撰寫SOP或報告</td></tr>
+</table>
+
+
+<!-- ══════════════════════════════════════════ -->
+<div class="chapter">四、面試 Q&amp;A — 針對台亞半導體</div>
+
+<div class="section-title">4.1 開場類</div>
+
+<div class="qa-item">
+  <div class="qa-q">請你自我介紹</div>
+  <div class="qa-a">
+    <span class="point">架構：學歷 → 研究核心技能 → 製程連結 → 為何選台亞</span><br><br>
+    「我是張合羽，畢業於台灣大學生命科學碩士，GPA 4.0，並獲得系所學術發表特優獎。<br><br>
+    我的碩士研究核心在於——在完全沒有既有規範的情況下，從零建立完整的實驗製程。我用 DOE 田口法同時優化六個製程變數，使實驗吞吐量提升 70%，並開發自動化數據分析流程讓品質精準度從 92% 提升到 99%。這套系統性思維——多參數優化、批次 QC、異常根因分析——讓我很自然地想往製程工程發展。<br><br>
+    選擇台亞，是因為台亞擁有從磊晶到封裝的完整垂直整合能力，在光電感測元件領域深耕超過 40 年，是少數能讓製程工程師接觸完整製程鏈的公司，我希望能在這裡打下紮實的半導體製程基礎。」
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">你為什麼想來台亞半導體？</div>
+  <div class="qa-a">
+    <span class="point">重點：具體說出台亞的特色，避免泛泛回答</span><br><br>
+    「有三個原因。第一，台亞擁有完整的垂直整合能力，製程工程師能接觸到從前段製程到封裝測試的完整鏈路，這對我這個想在半導體製程打好基礎的人非常有價值。<br>
+    第二，台亞的產品線涵蓋 VCSEL、光電二極體、功率 MOSFET 等，橫跨感測與發射元件，產品應用方向跟未來趨勢（ToF感測、LiDAR、健康監測）高度吻合，我認為這是有前景的方向。<br>
+    第三，台亞的企業文化強調穩健踏實，對於我這個跨領域進入半導體業的新人，我認為在這樣的環境能夠扎實學習。」
+  </div>
+</div>
+
+<div class="section-title">4.2 技術能力類</div>
+
+<div class="qa-item">
+  <div class="qa-q">你對光電半導體製程了解多少？</div>
+  <div class="qa-a">
+    <span class="point">策略：誠實說出了解程度，展示學習態度，連結自身背景</span><br><br>
+    「我目前對光電半導體製程有概念層次的了解：整體流程從磊晶（MOCVD）、黃光微影、蝕刻、金屬化，到後段的封裝與測試。台亞主力的 VCSEL 和 Photodiode 的製程邏輯我也有初步研讀。<br><br>
+    老實說，在材料物理的深度上我還需要補強。但我的核心強項是製程方法論——DOE 實驗設計、SOP 確效、數據驅動的異常分析——這些邏輯在光電製程中是完全通用的。若有機會加入，我有信心能快速在實做中補足知識。」
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">什麼是良率？如果良率下降，你會怎麼處理？</div>
+  <div class="qa-a">
+    <span class="point">展現：定義清楚 + 有系統的分析思維</span><br><br>
+    「良率（Yield）= 良品數 ÷ 總投入數 × 100%，是衡量製程穩定性最核心的指標。<br><br>
+    若良率下降，我的處理步驟是：<br>
+    <span class="key">①確認範圍</span>：是特定批次、特定機台，還是全面性下降？<br>
+    <span class="key">②收集數據</span>：比對前後批次的製程參數、設備log、操作記錄，找出異常時間點。<br>
+    <span class="key">③根因分析</span>：用 5 Why 或魚骨圖（人機料法環）系統性排查。<br>
+    <span class="key">④隔離問題</span>：將問題批次隔離，防止流到下游造成更大損失。<br>
+    <span class="key">⑤CAPA</span>：擬定矯正（Corrective Action）與預防（Preventive Action），更新 SOP，追蹤效果。<br><br>
+    我在研究中處理批次品質異常的邏輯完全相同，例如某批染色背景雜訊異常，我透過逐步隔離發現是耗材批號更換導致，並建立了耗材更換觸發測試的 SOP。」
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">DOE 是什麼？你有實際應用過嗎？</div>
+  <div class="qa-a">
+    <span class="point">這是你最強的武器，要說得完整有數字</span><br><br>
+    「DOE（Design of Experiments，實驗設計）是一種系統性的實驗方法，用最少的實驗次數找出影響製程輸出的最佳參數組合，田口法是其中最常用的。<br><br>
+    我的碩士研究中有直接應用。當時需要優化 IHC 染色製程，但有 6 個關鍵變數同時影響結果——抗體濃度、孵育時間、抗原修復溫度、修復時間、封閉濃度、切片厚度。若全因子實驗需要 729 組，用田口法直交表只需 18 組就能找到最佳組合。<br><br>
+    分析 S/N 比後確認最佳參數，驗證實驗結果：實驗吞吐量 <span class="key">提升 70%</span>、品質精準度從 <span class="key">92% → 99%</span>，大幅降低了耗材浪費和操作時間。」
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">如何進行替代料評估？</div>
+  <div class="qa-a">
+    <span class="point">展現：流程清晰 + 重視文件化 + 有實際案例</span><br><br>
+    「替代料評估的核心是確認「等效性」，流程通常是：<br>
+    <span class="key">①規格比對</span>：確認替代料的關鍵規格（電性、物性、化學組成）與原料的差異範圍是否在允收標準內。<br>
+    <span class="key">②小批量試跑</span>：用替代料跑少量批次，收集製程參數與輸出數據。<br>
+    <span class="key">③等效性測試</span>：電性規格、外觀、可靠性測試，與原料結果做統計比較（t-test 或 Cpk 比較）。<br>
+    <span class="key">④風險評估</span>：評估對下游製程、客戶端可能的影響。<br>
+    <span class="key">⑤文件化</span>：完成等效性報告，提交工程變更通知（ECN），獲得核准後才能量產導入。<br><br>
+    我在研究中評估過不同廠商抗體的等效性，包括染色強度、背景雜訊、批次重複性的對照實驗，邏輯完全相同。」
+  </div>
+</div>
+
+<div class="section-title">4.3 跨領域 / 挑戰類</div>
+
+<div class="qa-item">
+  <div class="qa-q">你的科系是生命科學，跟我們要求的光電工程不符，為什麼你認為自己適合？</div>
+  <div class="qa-a">
+    <span class="point">主動承認差距 → 強調方法論共通 → 說出具體補強計畫</span><br><br>
+    「這是我在準備這份工作時最誠實面對的問題。光電製程的材料物理，例如能帶結構、MOCVD磊晶機制，我目前確實是在補強階段。<br><br>
+    但我想說明的是，製程工程師每天面對的核心挑戰——良率波動分析、多參數同步優化、異常根因追查——這些的解決邏輯是跨領域共通的。我在碩士研究中，在沒有既有規範、資源有限的條件下，完整實踐了這套思維：DOE優化、SOP確效、批次 QC、CAPA。<br><br>
+    半導體的技術知識，我可以靠時間在實做中累積。但這種系統性的製程思維，需要在有挑戰的研究環境中長時間訓練才能建立——我已經建立起來了。」
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">你最大的優點和缺點是什麼？</div>
+  <div class="qa-a">
+    <span class="point">優點要有數字支撐；缺點要真實但「可克服」</span><br><br>
+    <b>優點：</b>「我的優點是系統性思維和對數據的敏銳度。面對複雜問題時，我習慣先定義變數、設計實驗、用數據說話，而不是憑直覺。這讓我在研究中能用 DOE 同時管控 6 個變數，最終取得量化的改善成果。」<br><br>
+    <b>缺點：</b>「我的缺點是在接觸新領域時會花比較多時間確認自己真正理解，有時學習速度偏慢。但另一方面，這讓我建立的 SOP 比較可靠，也比較不容易出錯。進入新環境我會設定明確的時間節點，強迫自己在深度和速度之間取得平衡。」
+  </div>
+</div>
+
+<div class="qa-item">
+  <div class="qa-q">5 年後你希望在哪裡？</div>
+  <div class="qa-a">
+    <span class="point">展現目標明確 + 與公司成長連結</span><br><br>
+    「5 年後，我希望能成為能夠獨立主導製程改善專案的資深製程工程師。具體來說，希望在前兩年把光電半導體製程的核心知識扎實補起來，第三年開始能獨立負責特定製程模組的良率提升與成本改善。<br><br>
+    長期而言，如果有機會，我希望朝製程整合（Process Integration）或模組主管的方向發展，能夠跨站點統籌思考製程間的交互影響。我認為台亞的產品線廣度和垂直整合能力，是讓我實現這個目標的很好的平台。」
+  </div>
+</div>
+
+<div class="section-title">4.4 你可以問對方的問題</div>
+<div class="box-green">
+  <div class="box-title">✔ 準備至少問 2 個（展現主動性與深度思考）</div>
+  <ul class="note-list" style="margin: 0;">
+    <li>「這個職缺 T250042-M161 主要負責的是哪條製程線？是 VCSEL、Photodiode，還是 MOSFET 相關的？」</li>
+    <li>「新進製程工程師通常如何安排前三個月的訓練計畫？會有師傅制（Buddy System）嗎？」</li>
+    <li>「目前製程改善的主要方向是良率提升，還是製造成本結構的優化？」</li>
+    <li>「台亞在 VCSEL 產品線上的市場布局，未來有往 LiDAR 或汽車電子延伸的規劃嗎？」</li>
+  </ul>
+</div>
+
+<div class="box-gold" style="margin-top: 20px;">
+  <div class="box-title">★ 最後整體提醒</div>
+  台亞是穩健型傳統半導體廠，面試官重視的通常是：<b>① 學習態度積極</b>、<b>② 邏輯清晰有條理</b>、<b>③ 有數字支撐的實際案例</b>。科系不符雖是劣勢，但只要展現出「方法論到位、補強意願強」，仍有很大機會。祝面試順利。
+</div>
+
+<div class="page-footer">
+  <span>台亞半導體背景分析 &amp; 面試筆記 ｜ 張合羽 Chang Ho Yu</span>
+  <span>2026</span>
+</div>
+
+</div>
+</body>
+</html>
